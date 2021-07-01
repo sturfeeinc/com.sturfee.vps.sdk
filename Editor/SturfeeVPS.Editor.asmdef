@@ -1,7 +1,8 @@
 {
     "name": "SturfeeVPS.Editor",
+    "rootNamespace": "",
     "references": [
-        "GUID:79093e8d15de64e3ba3538cc69f29a29"
+        "GUID:ed240bb10f6164d23ac3ab74c4f0af04"
     ],
     "includePlatforms": [
         "Editor"
