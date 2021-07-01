@@ -1,0 +1,15 @@
+{
+    "name": "SturfeeVPS",
+    "references": [
+        "GUID:7aef541cec9604024a43c0ba6a107495"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

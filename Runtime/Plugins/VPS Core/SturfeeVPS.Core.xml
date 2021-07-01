@@ -1,0 +1,574 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SturfeeVPS.Core</name>
+    </assembly>
+    <members>
+        <member name="T:SturfeeVPS.Core.Proto.ParamsReflection">
+            <summary>Holder for reflection information generated from params.proto</summary>
+        </member>
+        <member name="P:SturfeeVPS.Core.Proto.ParamsReflection.Descriptor">
+            <summary>File descriptor for params.proto</summary>
+        </member>
+        <member name="F:SturfeeVPS.Core.Proto.Position.LatFieldNumber">
+            <summary>Field number for the "lat" field.</summary>
+        </member>
+        <member name="F:SturfeeVPS.Core.Proto.Position.LonFieldNumber">
+            <summary>Field number for the "lon" field.</summary>
+        </member>
+        <member name="F:SturfeeVPS.Core.Proto.Position.HeightFieldNumber">
+            <summary>Field number for the "height" field.</summary>
+        </member>
+        <member name="F:SturfeeVPS.Core.Proto.Quaternion.XFieldNumber">
+            <summary>Field number for the "x" field.</summary>
+        </member>
+        <member name="F:SturfeeVPS.Core.Proto.Quaternion.YFieldNumber">
+            <summary>Field number for the "y" field.</summary>
+        </member>
+        <member name="F:SturfeeVPS.Core.Proto.Quaternion.ZFieldNumber">
+            <summary>Field number for the "z" field.</summary>
+        </member>
+        <member name="F:SturfeeVPS.Core.Proto.Quaternion.WFieldNumber">
+            <summary>Field number for the "w" field.</summary>
+        </member>
+        <member name="F:SturfeeVPS.Core.Proto.ExternalParameters.PositionFieldNumber">
+            <summary>Field number for the "position" field.</summary>
+        </member>
+        <member name="F:SturfeeVPS.Core.Proto.ExternalParameters.QuaternionFieldNumber">
+            <summary>Field number for the "quaternion" field.</summary>
+        </member>
+        <member name="F:SturfeeVPS.Core.Proto.InternalParameters.SceneHeightFieldNumber">
+            <summary>Field number for the "scene_height" field.</summary>
+        </member>
+        <member name="F:SturfeeVPS.Core.Proto.InternalParameters.SceneWidthFieldNumber">
+            <summary>Field number for the "scene_width" field.</summary>
+        </member>
+        <member name="F:SturfeeVPS.Core.Proto.InternalParameters.FovFieldNumber">
+            <summary>Field number for the "fov" field.</summary>
+        </member>
+        <member name="F:SturfeeVPS.Core.Proto.InternalParameters.ProjectionMatrixFieldNumber">
+            <summary>Field number for the "projectionMatrix" field.</summary>
+        </member>
+        <member name="F:SturfeeVPS.Core.Proto.Request.OperationFieldNumber">
+            <summary>Field number for the "operation" field.</summary>
+        </member>
+        <member name="F:SturfeeVPS.Core.Proto.Request.RequestIdFieldNumber">
+            <summary>Field number for the "request_id" field.</summary>
+        </member>
+        <member name="F:SturfeeVPS.Core.Proto.Request.ExternalParametersFieldNumber">
+            <summary>Field number for the "external_parameters" field.</summary>
+        </member>
+        <member name="F:SturfeeVPS.Core.Proto.Request.InternalParametersFieldNumber">
+            <summary>Field number for the "internal_parameters" field.</summary>
+        </member>
+        <member name="F:SturfeeVPS.Core.Proto.Request.TotalNumOfFramesFieldNumber">
+            <summary>Field number for the "total_num_of_frames" field.</summary>
+        </member>
+        <member name="F:SturfeeVPS.Core.Proto.Request.FrameOrderFieldNumber">
+            <summary>Field number for the "frame_order" field.</summary>
+        </member>
+        <member name="F:SturfeeVPS.Core.Proto.Request.TrackingIdFieldNumber">
+            <summary>Field number for the "tracking_id" field.</summary>
+        </member>
+        <member name="F:SturfeeVPS.Core.Proto.Request.SourceImageFieldNumber">
+            <summary>Field number for the "source_image" field.</summary>
+        </member>
+        <member name="F:SturfeeVPS.Core.Proto.Response.PositionFieldNumber">
+            <summary>Field number for the "position" field.</summary>
+        </member>
+        <member name="F:SturfeeVPS.Core.Proto.Response.YawOffsetQuaternionFieldNumber">
+            <summary>Field number for the "yaw_offset_quaternion" field.</summary>
+        </member>
+        <member name="F:SturfeeVPS.Core.Proto.Response.PitchOffsetQuaternionFieldNumber">
+            <summary>Field number for the "pitch_offset_quaternion" field.</summary>
+        </member>
+        <member name="F:SturfeeVPS.Core.Proto.Error.CodeFieldNumber">
+            <summary>Field number for the "code" field.</summary>
+        </member>
+        <member name="F:SturfeeVPS.Core.Proto.Error.MessageFieldNumber">
+            <summary>Field number for the "message" field.</summary>
+        </member>
+        <member name="T:SturfeeVPS.Core.Proto.Error.Types">
+            <summary>Container for nested types declared in the Error message type.</summary>
+        </member>
+        <member name="F:SturfeeVPS.Core.Proto.ResponseMessage.RequestIdFieldNumber">
+            <summary>Field number for the "request_id" field.</summary>
+        </member>
+        <member name="F:SturfeeVPS.Core.Proto.ResponseMessage.TrackingIdFieldNumber">
+            <summary>Field number for the "tracking_id" field.</summary>
+        </member>
+        <member name="F:SturfeeVPS.Core.Proto.ResponseMessage.ResponseFieldNumber">
+            <summary>Field number for the "response" field.</summary>
+        </member>
+        <member name="F:SturfeeVPS.Core.Proto.ResponseMessage.ErrorFieldNumber">
+            <summary>Field number for the "error" field.</summary>
+        </member>
+        <member name="T:SturfeeVPS.Core.VideoProviderBase">
+            <summary>
+            Abstract base class for VideoProvider that inherits from Monobehaviour
+            </summary>
+        </member>
+        <member name="M:SturfeeVPS.Core.VideoProviderBase.GetCurrentFrame">
+            <summary>
+            Returns current frame of video as an image
+            </summary>
+            <returns>A Texture2D frame</returns>
+        </member>
+        <member name="M:SturfeeVPS.Core.VideoProviderBase.GetFOV">
+            <summary>
+            Gets Field of View of Device Camera
+            </summary>
+            <returns>The fov.</returns>
+        </member>
+        <member name="M:SturfeeVPS.Core.VideoProviderBase.GetHeight">
+            <summary>
+            Gets height of the video texture
+            </summary>
+            <returns>The height.</returns>
+        </member>
+        <member name="M:SturfeeVPS.Core.VideoProviderBase.GetProjectionMatrix">
+            <summary>
+            Gets projection matrix of Device Camera
+            </summary>
+            <returns>The projection matrix.</returns>
+        </member>
+        <member name="M:SturfeeVPS.Core.VideoProviderBase.GetWidth">
+            <summary>
+            Gets width of the video texture
+            </summary>
+            <returns>The width.</returns>
+        </member>
+        <member name="M:SturfeeVPS.Core.VideoProviderBase.IsPortrait">
+            <summary>
+            Determines whether the screen orientation is portrait.
+            </summary>
+            <returns><c>true</c> if orientation is portrait; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:SturfeeVPS.Core.VideoProviderBase.GetProviderStatus">
+            <summary>
+            Gets provider's current status
+            </summary>
+            <returns>The provider status.</returns>
+        </member>
+        <member name="M:SturfeeVPS.Core.VideoProviderBase.Destroy">
+            <summary>
+            Destroy any Objects/GameObjects that were cretaed using this provider
+            </summary>
+        </member>
+        <member name="T:SturfeeVPS.Core.IVideoProvider">
+            <summary>
+            Video provider interface.
+            </summary>
+        </member>
+        <member name="M:SturfeeVPS.Core.IVideoProvider.GetCurrentFrame">
+            <summary>
+            Returns current frame of video as an image
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SturfeeVPS.Core.IVideoProvider.GetHeight">
+            <summary>
+            Gets height of the video texture
+            </summary>
+            <returns>The height.</returns>
+        </member>
+        <member name="M:SturfeeVPS.Core.IVideoProvider.GetWidth">
+            <summary>
+            Gets width of the video texture
+            </summary>
+            <returns>The width.</returns>
+        </member>
+        <member name="M:SturfeeVPS.Core.IVideoProvider.IsPortrait">
+            <summary>
+            Determines whether the screen orientation is portrait.
+            </summary>
+            <returns><c>true</c> if this instance is portrait; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:SturfeeVPS.Core.IVideoProvider.GetProjectionMatrix">
+            <summary>
+            Gets projection matrix of Device Camera
+            </summary>
+            <returns>The projection matrix.</returns>
+        </member>
+        <member name="M:SturfeeVPS.Core.IVideoProvider.GetFOV">
+            <summary>
+            Gets Field of View of Device Camera
+            </summary>
+            <returns>The fov.</returns>
+        </member>
+        <member name="T:SturfeeVPS.Core.IPoseProvider">
+            <summary>
+            Pose provider interface.
+            </summary>
+        </member>
+        <member name="M:SturfeeVPS.Core.IPoseProvider.GetOrientation">
+            <summary>
+            Gets orientation of device in world coordinate system
+            </summary>
+            <returns>The orientation.</returns>
+        </member>
+        <member name="M:SturfeeVPS.Core.IPoseProvider.GetPosition">
+            <summary>
+            Gets relative position of device in world coordinate system
+            </summary>
+            <returns>The position.</returns>
+        </member>
+        <member name="T:SturfeeVPS.Core.IGpsProvider">
+            <summary>
+            Gps provider interface.
+            </summary>
+        </member>
+        <member name="M:SturfeeVPS.Core.IGpsProvider.GetCurrentLocation">
+            <summary>
+            Gets the current Geo-spatial Location.
+            </summary>
+            <returns>The Geo-spatial Location.</returns>
+        </member>
+        <member name="T:SturfeeVPS.Core.IProvider">
+            <summary>
+            Determines if the provider supports the device it is running on.
+            </summary>
+            <returns><c>true</c> if the device is supported; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:SturfeeVPS.Core.IProvider.Destroy">
+            <summary>
+            Destroy any Objects/GameObjects that were cretaed using this provider
+            </summary>
+        </member>
+        <member name="M:SturfeeVPS.Core.IProvider.GetProviderStatus">
+            <summary>
+            Gets provider's current status
+            </summary>
+            <returns>The provider status.</returns>
+        </member>
+        <member name="T:SturfeeVPS.Core.GpsProviderBase">
+            <summary>
+            Abstract base class for GpsProvider that inherits from Monobehaviour
+            </summary>
+        </member>
+        <member name="M:SturfeeVPS.Core.GpsProviderBase.GetCurrentLocation">
+            <summary>
+            Gets the current GPS Location.
+            </summary>
+            <returns>The GPS Location.</returns>
+        </member>
+        <member name="M:SturfeeVPS.Core.GpsProviderBase.GetProviderStatus">
+            <summary>
+            Gets provider's current status
+            </summary>
+            <returns>The provider status.</returns>
+        </member>
+        <member name="M:SturfeeVPS.Core.GpsProviderBase.Destroy">
+            <summary>
+            Destroy any Objects/GameObjects that were cretaed using this provider
+            </summary>
+        </member>
+        <member name="T:SturfeeVPS.Core.PoseProviderBase">
+            <summary>
+            Abstract base class for PoseProvider that inherits from Monobehaviour
+            </summary>
+        </member>
+        <member name="M:SturfeeVPS.Core.PoseProviderBase.GetOrientation">
+            <summary>
+            Gets orientation of device in world coordinate system   
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SturfeeVPS.Core.PoseProviderBase.GetPosition">
+            <summary>
+            Gets relative position of device in world coordinate system
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SturfeeVPS.Core.PoseProviderBase.GetProviderStatus">
+            <summary>
+            Gets provider's current status
+            </summary>
+            <returns>The provider status.</returns>
+        </member>
+        <member name="M:SturfeeVPS.Core.PoseProviderBase.Destroy">
+            <summary>
+            Destroy any Objects/GameObjects that were cretaed using this provider
+            </summary>
+        </member>
+        <member name="T:SturfeeVPS.Core.SessionStatus">
+            <summary>
+            Current state of XRSession
+            </summary>
+        </member>
+        <member name="F:SturfeeVPS.Core.SessionStatus.Initializing">
+            <summary>
+            Session has started initialing
+            </summary>
+        </member>
+        <member name="F:SturfeeVPS.Core.SessionStatus.Failed">
+            <summary>
+            Session creation failed
+            </summary>
+        </member>
+        <member name="F:SturfeeVPS.Core.SessionStatus.Ready">
+            <summary>
+            Session is Ready
+            </summary>
+        </member>
+        <member name="F:SturfeeVPS.Core.SessionStatus.Localizing">
+            <summary>
+            Session is localizing
+            </summary>
+        </member>
+        <member name="F:SturfeeVPS.Core.SessionStatus.Localized">
+            <summary>
+            Session is localized
+            </summary>
+        </member>
+        <member name="T:SturfeeVPS.Core.XRSessionManager">
+            <summary>
+            Manages lifecycle of an XRSession
+            </summary>
+        </member>
+        <member name="M:SturfeeVPS.Core.XRSessionManager.CreateSession(SturfeeVPS.Core.XRSessionConfig)">
+            <summary>
+            Creates an XRSession based on providers provided in <see cref="T:SturfeeVPS.Core.XRSessionConfig"/>
+            </summary>
+            <param name="xRSessionConfig"> Configuration for creating this session</param>
+        </member>
+        <member name="M:SturfeeVPS.Core.XRSessionManager.GetSession">
+            <summary>
+            Gets Current active XRSession
+            </summary>
+            <returns><see cref="T:SturfeeVPS.Core.XRSession"/></returns>
+        </member>
+        <member name="M:SturfeeVPS.Core.XRSessionManager.DestroySession">
+            <summary>
+            Destroys Current active XRSession
+            </summary>
+        </member>
+        <member name="T:SturfeeVPS.Core.XRSessionConfig">
+            <summary>
+            Session Configuration needed to create any XRSession
+            </summary>
+        </member>
+        <member name="F:SturfeeVPS.Core.XRSessionConfig.GpsProvider">
+            <summary>
+            GpsProvider to use while creating XRSession
+            </summary>
+        </member>
+        <member name="F:SturfeeVPS.Core.XRSessionConfig.PoseProvider">
+            <summary>
+            PoseProvider to use while creating XRSession
+            </summary>
+        </member>
+        <member name="F:SturfeeVPS.Core.XRSessionConfig.VideoProvider">
+            <summary>
+            VideoProvider to use while creating XRSession
+            </summary>
+        </member>
+        <member name="P:SturfeeVPS.Core.XRSession.GpsProvider">
+            <summary>
+            GpsProvider used to create this session
+            </summary>
+        </member>
+        <member name="P:SturfeeVPS.Core.XRSession.PoseProvider">
+            <summary>
+            PoseProvider used to create this session
+            </summary>
+        </member>
+        <member name="P:SturfeeVPS.Core.XRSession.VideoProvider">
+            <summary>
+            VideoProvider used to create this session
+            </summary>
+        </member>
+        <member name="P:SturfeeVPS.Core.XRSession.Status">
+            <summary>
+            Current status of active XRSession
+            </summary>
+        </member>
+        <member name="P:SturfeeVPS.Core.XRSession.Progress">
+            <summary>
+            Progress of XRSession while it is initializing
+            </summary>
+        </member>
+        <member name="M:SturfeeVPS.Core.XRSession.PerformLocalization">
+            <summary>
+            Performs Localization by capturing multiple frames
+            </summary>
+        </member>
+        <member name="M:SturfeeVPS.Core.XRSession.PerformRelocalization">
+            <summary>
+            Perform relocalization after session is localized.
+            Performed by capturing only 1 frame/picture
+            </summary>
+        </member>
+        <member name="M:SturfeeVPS.Core.XRSession.GetXRCameraLocation">
+            <summary>
+            Gets current XR Camera Geo-location in World 
+            </summary>
+            <returns> XR Camera's Geo-location </returns>
+        </member>
+        <member name="M:SturfeeVPS.Core.XRSession.GetXRCameraOrientation">
+            <summary>
+            Gets current XR Camera orientation in World
+            </summary>
+            <returns>XR Camera's Orientation</returns>
+        </member>
+        <member name="M:SturfeeVPS.Core.XRSession.GetLocationOffset">
+            <summary>
+            Gets offset position that can be added to local position read from sensor (PoseProvider).
+            The resulting position is equivalent to <see cref="M:SturfeeVPS.Core.XRSession.GetXRCameraLocation"/>, but converted into local space
+            </summary>
+            <returns> Location Offset</returns>
+        </member>
+        <member name="M:SturfeeVPS.Core.XRSession.GetOrientationOffset">
+            <summary>
+            Gets offset orientation that can be applied to orientation read from sensor (PoseProvider).
+            The resulting orientation is equivalent to <see cref="M:SturfeeVPS.Core.XRSession.GetXRCameraOrientation"/>
+            </summary>
+            <returns> Orientation offset </returns>
+        </member>
+        <member name="T:SturfeeVPS.Core.SturfeeSubscriptionManager">
+            <summary>
+            Provides some methods to check the Sturfee subscription details
+            </summary>
+        </member>
+        <member name="M:SturfeeVPS.Core.SturfeeSubscriptionManager.GetSubscriptionInfo(System.String)">
+            <summary>
+            Returns the subscription details for the provided token.
+            </summary>
+            <param name="accessToken">Access Token to check</param>
+            <returns>SturfeeSubscriptionInfo object</returns>
+        </member>
+        <member name="M:SturfeeVPS.Core.SturfeeSubscriptionManager.GetSubscription(System.String,System.Action{SturfeeVPS.Core.SturfeeSubscriptionInfo},System.Action{System.String})">
+            <summary>
+            Validates the subscription details with the server
+            </summary>
+            <param name="accessToken"></param>
+            <param name="callback"></param>
+            <param name="errorCallback"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SturfeeVPS.Core.TokenValidation.ValidateToken(System.String)">
+            <summary>
+            Checks for token format and sets the Tenant
+            </summary>
+            <returns>The token.</returns>
+            <param name="accessToken">Access token.</param>
+        </member>
+        <member name="M:SturfeeVPS.Core.JsonHelper.FromJson``1(System.String)">
+            <summary>
+            Deserialize json into an array object of type T
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="json"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SturfeeVPS.Core.JsonHelper.ToJson``1(``0[])">
+            <summary>
+            Serialize an object array of type T into json
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="array"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SturfeeVPS.Core.JsonHelper.ToJson``1(``0[],System.Boolean)">
+            <summary>
+            Serialize an object array of type T into json
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="array"></param>
+            <param name="prettyPrint"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SturfeeVPS.Core.SturfeeEvents.SessionInitializeAction">
+            <summary>
+            Event that is fired when the session is initialized
+            </summary>
+        </member>
+        <member name="T:SturfeeVPS.Core.SturfeeEvents.SessionReadyAction">
+            <summary>
+            Event that is fired when the session is ready
+            </summary>
+        </member>
+        <member name="T:SturfeeVPS.Core.SturfeeEvents.SessionFailedAction">
+            <summary>
+            Event that is fired when the session failed to initialize
+            </summary>
+        </member>
+        <member name="T:SturfeeVPS.Core.SturfeeEvents.OnFrameCaptured">
+            <summary>
+            Event that is fired when a frame is captured during localization
+            </summary>
+            <param name="frameNum"> Current capture number</param>
+            <param name="localizationRequest"> Captured request details</param>
+        </member>
+        <member name="T:SturfeeVPS.Core.SturfeeEvents.LocalizationSuccessfulAction">
+            <summary>
+            Event fired after successful localization
+            </summary>
+        </member>
+        <member name="T:SturfeeVPS.Core.SturfeeEvents.LocalizationLoadingAction">
+            <summary>
+            Event that is fired when alignment is waiting response from VPS service.
+            </summary>
+        </member>
+        <member name="T:SturfeeVPS.Core.SturfeeEvents.LocalizationFailAction">
+            <summary>
+            Event that is fired when alignment fails.
+            </summary>
+        </member>
+        <member name="E:SturfeeVPS.Core.SturfeeEventManager.OnSessionInitializing">
+            <summary>
+            Fires when XR Session is initializing
+            </summary>
+        </member>
+        <member name="E:SturfeeVPS.Core.SturfeeEventManager.OnSessionReady">
+            <summary>
+            Fires when XR Session is initialized and ready.
+            </summary>
+        </member>
+        <member name="E:SturfeeVPS.Core.SturfeeEventManager.OnSessionFailed">
+            <summary>
+            Fires when Sturfee XR Session initialization fails.
+            </summary>
+        </member>
+        <member name="E:SturfeeVPS.Core.SturfeeEventManager.OnLocalizationSuccessful">
+            <summary>
+            Fires after localization request is successful
+            </summary>
+        </member>
+        <member name="E:SturfeeVPS.Core.SturfeeEventManager.OnFrameCaptured">
+            <summary>
+            Fires after every frame capture during localization
+            </summary>
+        </member>
+        <member name="E:SturfeeVPS.Core.SturfeeEventManager.OnLocalizationLoading">
+            <summary>
+            Fires when alignment request is made.
+            </summary>
+        </member>
+        <member name="E:SturfeeVPS.Core.SturfeeEventManager.OnLocalizationFail">
+            <summary>
+            Fires when localization request fails.
+            </summary>
+        </member>
+        <member name="T:SturfeeVPS.Core.ErrorMessages">
+            <summary>
+            Error messages.
+            </summary>
+        </member>
+        <member name="F:SturfeeVPS.Core.ErrorMessages.Session.NoCoverageArea">
+            <summary>
+            Error message when current GPS is in no coverage area.
+            </summary>
+        </member>
+        <member name="F:SturfeeVPS.Core.ErrorMessages.Session.NotAuthorizedToken">
+            <summary>
+            Error message when token is not authorized.
+            </summary>
+        </member>
+        <member name="F:SturfeeVPS.Core.ErrorMessages.Session.NoConnectivity">
+            <summary>
+            Error message when there is no connectivity to internet.
+            </summary>
+        </member>
+    </members>
+</doc>
