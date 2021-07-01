@@ -107,7 +107,7 @@ namespace SturfeeVPS.SDK
 
                     EditorGUILayout.BeginHorizontal();
                     GUILayout.FlexibleSpace();
-                    var dllFile = new FileInfo(@"Packages/com.sturfee.vps.sdk/Runtime/Plugins/VPS Core/SturfeeVPS.Core.dll");
+                    var dllFile = new FileInfo(@"Packages/com.sturfee.vps.sdk/Plugins/VPS Core/SturfeeVPS.Core.dll");
                     string assemblyVersion = Assembly.LoadFile(dllFile.FullName).GetName().Version.ToString();
                     GUILayout.Label("v" + assemblyVersion);
                     EditorGUILayout.EndHorizontal();
