@@ -1,7 +1,7 @@
-Copyright (c) 2020, Sturfee Inc.
+Copyright (c) 2021, Sturfee Inc.
 
 Sturfee VPS SDK
-version 2.3.0b2
+version 2.4.0
 
 The SturfeeVPS SDK provides functionality for building immersive outdoor AR experiences. 
 Using Sturfee's proprietary Visual Processing System (VPS), the SDK can provide precise localization (position and orientation) through imagery from the device camera.
