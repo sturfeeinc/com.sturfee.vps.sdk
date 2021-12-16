@@ -1,0 +1,19 @@
+{
+    "name": "SturfeeVPS.Editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:34326c4360e2d4760b399f1589bcd4dc",
+        "GUID:c4e23bbd1362b407bb2e7bc6aa7571c9"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
