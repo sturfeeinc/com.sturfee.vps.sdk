@@ -13,14 +13,28 @@ namespace SturfeeVPS.SDK
         public PoseProviderBase PoseProvider;
         public VideoProviderBase VideoProvider;
 
+        public bool PlayOnStart = true;
+
         [HideInInspector]
         public int SelectedProvider;
 
         private void Start()
         {
             SturfeeThemeProvider.Instance.ApplyTheme();
-            PlayerPrefs.DeleteKey("SturfeeVPS.Core.CustomApi.Api");
-            PlayerPrefs.DeleteKey("SturfeeVPS.Core.CustomApi.Websocket");
+            
+            if (PlayOnStart)
+            {
+                CreateSession();
+            }
+        }
+
+        private void Update()
+        {
+            Status = XRSessionManager.GetSession().Status;
+        }
+
+        public void CreateSession()
+        {
             XRSessionConfig config = new XRSessionConfig
             {
                 GpsProvider = GpsProvider,
@@ -28,15 +42,8 @@ namespace SturfeeVPS.SDK
                 VideoProvider = VideoProvider
             };
 
-            XRSessionManager.CreateSession(config);            
+            XRSessionManager.CreateSession(config);
         }
-
-        private void Update()
-        {
-            Status = XRSessionManager.GetSession().Status;
-
-        }
-
         private void OnDestroy()
         {
             XRSessionManager.DestroySession();
