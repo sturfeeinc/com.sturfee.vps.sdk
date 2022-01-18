@@ -27,7 +27,7 @@ namespace SturfeeVPS.Providers
         private bool _locationReady;    
         private ProviderStatus _providerStatus;
 
-        private void Update()
+        protected virtual void Update()
         {
             if (!_locationReady)
             {
