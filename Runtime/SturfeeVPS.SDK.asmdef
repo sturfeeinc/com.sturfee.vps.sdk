@@ -2,9 +2,8 @@
     "name": "SturfeeVPS.SDK",
     "rootNamespace": "",
     "references": [
-        "GUID:b4f79bb5c909f4c18a13809783b0e7c1",
         "GUID:6055be8ebefd69e48b49212b09b47b2f",
-        "GUID:3f03218fc51224d51a1e7c95698e9801"
+        "GUID:1a2810f97d211ef40ac4e52ad9eaaa2d"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
