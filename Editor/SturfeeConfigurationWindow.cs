@@ -169,14 +169,14 @@ namespace SturfeeVPS.SDK
 
 
                 EditorGUILayout.BeginHorizontal();
-                GUILayout.FlexibleSpace();
-#if VPS_SRC
-                var dllFile = new FileInfo($"Library/ScriptAssemblies/SturfeeVPS.Core.dll");
-#else
-                var dllFile = new FileInfo($"{_runtimePath}/Plugins/SturfeeVPS.Core.dll");
-#endif
-                string assemblyVersion = Assembly.LoadFile(dllFile.FullName).GetName().Version.ToString();
-                GUILayout.Label("v" + assemblyVersion);
+//                GUILayout.FlexibleSpace();
+//#if VPS_SRC
+//                var dllFile = new FileInfo($"Library/ScriptAssemblies/SturfeeVPS.Core.dll");
+//#else
+//                var dllFile = new FileInfo($"{_runtimePath}/Plugins/SturfeeVPS.Core.dll");
+//#endif
+//                string assemblyVersion = Assembly.LoadFile(dllFile.FullName).GetName().Version.ToString();
+//                GUILayout.Label("v" + assemblyVersion);
                 EditorGUILayout.EndHorizontal();
 
             }

@@ -17,8 +17,8 @@
     "url": "https://sturfee.com"
   },
   "dependencies": {
-    "com.unity.xr.arfoundation": "4.1.7",
-    "com.unity.textmeshpro": "3.0.6"
+    "com.unity.textmeshpro": "3.0.6",
+    "com.unity.xr.arfoundation": "4.1.7"
   },
   "type": "library"
 }
