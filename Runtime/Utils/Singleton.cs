@@ -1,16 +1,31 @@
 using System;
 using UnityEngine;
 
-public abstract class Singleton<T> where T : Singleton<T>, new()
+public abstract class Singleton<T> : MonoBehaviour where T : Component
 {
-    private static readonly Lazy<T> LazyInstance = new Lazy<T>(CreateSingleton);
-
-    public static T Instance => LazyInstance.Value;
-
-    private static T CreateSingleton()
+    private static T _instance;
+    public static T Instance
     {
-        var instance = new T();
-        return instance;
+        get
+        {
+            if (_instance == null)
+            {
+                var objs = FindObjectsOfType(typeof(T)) as T[];
+                if (objs.Length > 0)
+                    _instance = objs[0];
+                if (objs.Length > 1)
+                {
+                    Debug.LogError("There is more than one " + typeof(T).Name + " in the scene.");
+                }
+                if (_instance == null)
+                {
+                    GameObject obj = new GameObject();
+                    obj.name = string.Format("_{0}", typeof(T).Name);
+                    _instance = obj.AddComponent<T>();
+                }
+            }
+            return _instance;
+        }
     }
 
 }
