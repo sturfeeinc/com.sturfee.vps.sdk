@@ -29,7 +29,7 @@ namespace SturfeeVPS.Providers
 
         private void Update()
         {
-            if (!_locationReady || _providerStatus != ProviderStatus.Ready )
+            if (!_locationReady || _providerStatus != ProviderStatus.Ready)
             {
                 if (SturfeeNativeGps.GetLatitude() != 0 && SturfeeNativeGps.GetLongitude() != 0)
                 {
