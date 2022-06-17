@@ -67,6 +67,12 @@ namespace SturfeeVPS.SDK
             //GUI.UnfocusWindow();
         }
 
+        [InitializeOnLoadMethod]
+        public static void InstallLayers()
+        {
+            CreateSturfeeLayers();
+        }
+
         protected virtual void OnGUI()
         {
             if (_config == null)
