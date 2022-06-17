@@ -6,6 +6,8 @@ using UnityEngine.Networking;
 using SturfeeVPS.Core;
 using SturfeeVPS.UI;
 using System.Reflection;
+using UnityEditor.PackageManager;
+using System.Threading;
 
 namespace SturfeeVPS.SDK
 {
@@ -39,7 +41,8 @@ namespace SturfeeVPS.SDK
         private static UnityWebRequest _www;
 
         private static string _editorPath = @"Packages/com.sturfee.vps.sdk/Editor";   
-        private static string _runtimePath = @"Packages/com.sturfee.vps.sdk/Runtime";   
+        private static string _runtimePath = @"Packages/com.sturfee.vps.sdk/Runtime";
+        private static string _packagePath = @"Packages/com.sturfee.vps.sdk";
 
 
 
@@ -71,6 +74,50 @@ namespace SturfeeVPS.SDK
         public static void InstallLayers()
         {
             CreateSturfeeLayers();
+        }
+
+        [InitializeOnLoadMethod]
+        public static void InstallPackage()
+        {
+            var listRequest = Client.List(true);
+            while (!listRequest.IsCompleted)
+                Thread.Sleep(100);
+
+            if (listRequest.Error != null)
+            {
+                Debug.Log("Error: " + listRequest.Error.message);
+                return;
+            }
+            string pkg = "";
+            var packages = listRequest.Result;
+            foreach (var package in packages)
+            {
+                if(package.name == "com.sturfee.vps.sdk")
+                {
+                    pkg = package.version;
+                }                
+            }
+
+            if (string.IsNullOrEmpty(pkg))
+            {
+                Debug.LogError(" No package found for com.sturfee.vps.sdk");
+                return;
+            }
+            var packageVersion = new Version(pkg);
+
+            if (!File.Exists($"{Paths.SturfeeResourcesAbsolute}/version"))
+            {
+                File.WriteAllText($"{Paths.SturfeeResourcesAbsolute}/version", pkg.ToString());                
+            }
+            string current = File.ReadAllText($"{Paths.SturfeeResourcesAbsolute}/version");
+            var currentVersion = new Version(current);
+
+
+            if(currentVersion.CompareTo(packageVersion) < 0)
+            {
+                Debug.Log(" Updating Sturfee VPS unitypackage");
+                AssetDatabase.ImportPackage($"{_packagePath}/Sturfee-VPS-SDK.unityPackage", true);
+            }
         }
 
         protected virtual void OnGUI()
