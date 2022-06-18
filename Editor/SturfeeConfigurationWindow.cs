@@ -107,11 +107,12 @@ namespace SturfeeVPS.SDK
 
             if (!File.Exists($"{Paths.SturfeeResourcesAbsolute}/version"))
             {
+                AssetDatabase.ImportPackage($"{_packagePath}/Sturfee-VPS-SDK.unityPackage", true);
                 File.WriteAllText($"{Paths.SturfeeResourcesAbsolute}/version", pkg.ToString());                
             }
+
             string current = File.ReadAllText($"{Paths.SturfeeResourcesAbsolute}/version");
             var currentVersion = new Version(current);
-
 
             if(currentVersion.CompareTo(packageVersion) < 0)
             {
