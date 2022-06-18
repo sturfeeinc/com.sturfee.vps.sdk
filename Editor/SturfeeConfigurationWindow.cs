@@ -118,6 +118,7 @@ namespace SturfeeVPS.SDK
             {
                 Debug.Log(" Updating Sturfee VPS unitypackage");
                 AssetDatabase.ImportPackage($"{_packagePath}/Sturfee-VPS-SDK.unityPackage", true);
+                File.WriteAllText($"{Paths.SturfeeResourcesAbsolute}/version", pkg.ToString());
             }
         }
 
