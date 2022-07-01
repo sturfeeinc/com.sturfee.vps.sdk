@@ -79,6 +79,8 @@ namespace SturfeeVPS.SDK
         [InitializeOnLoadMethod]
         public static void InstallPackage()
         {
+            if(!Directory.Exists(Paths.SturfeeResourcesAbsolute))   Directory.CreateDirectory(Paths.SturfeeResourcesAbsolute);
+
             var listRequest = Client.List(true);
             while (!listRequest.IsCompleted)
                 Thread.Sleep(100);
