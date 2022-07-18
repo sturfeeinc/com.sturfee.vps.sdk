@@ -114,6 +114,7 @@ namespace SturfeeVPS.UI
         {
             var count = 0;
             string prefix = "." + locale;
+
             foreach (string res in _resources) // SturfeeThemeProvider.Instance.Theme.StringResources)
             {
                 TextAsset textAsset = Resources.Load<TextAsset>($"{res}{prefix}");

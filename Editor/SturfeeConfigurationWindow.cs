@@ -71,56 +71,16 @@ namespace SturfeeVPS.SDK
         }
 
         [InitializeOnLoadMethod]
-        public static void InstallLayers()
+        public static void Install()
         {
-            CreateSturfeeLayers();
+            if (!Directory.Exists(Paths.SturfeeResourcesAbsolute)) 
+                Directory.CreateDirectory(Paths.SturfeeResourcesAbsolute);
+            
+            InstallLayers();
+            InstallPackage();
+            InstallLocales();            
         }
 
-        [InitializeOnLoadMethod]
-        public static void InstallPackage()
-        {
-            var listRequest = Client.List(true);
-            while (!listRequest.IsCompleted)
-                Thread.Sleep(100);
-
-            if (listRequest.Error != null)
-            {
-                Debug.Log("Error: " + listRequest.Error.message);
-                return;
-            }
-            string pkg = "";
-            var packages = listRequest.Result;
-            foreach (var package in packages)
-            {
-                if(package.name == "com.sturfee.vps.sdk")
-                {
-                    pkg = package.version;
-                }                
-            }
-
-            if (string.IsNullOrEmpty(pkg))
-            {
-                Debug.LogError(" No package found for com.sturfee.vps.sdk");
-                return;
-            }
-            var packageVersion = new Version(pkg);
-
-            if (!File.Exists($"{Paths.SturfeeResourcesAbsolute}/version"))
-            {
-                AssetDatabase.ImportPackage($"{_packagePath}/Sturfee-VPS-SDK.unityPackage", true);
-                File.WriteAllText($"{Paths.SturfeeResourcesAbsolute}/version", pkg.ToString());                
-            }
-
-            string current = File.ReadAllText($"{Paths.SturfeeResourcesAbsolute}/version");
-            var currentVersion = new Version(current);
-
-            if(currentVersion.CompareTo(packageVersion) < 0)
-            {
-                Debug.Log(" Updating Sturfee VPS unitypackage");
-                AssetDatabase.ImportPackage($"{_packagePath}/Sturfee-VPS-SDK.unityPackage", true);
-                File.WriteAllText($"{Paths.SturfeeResourcesAbsolute}/version", pkg.ToString());
-            }
-        }
 
         protected virtual void OnGUI()
         {
@@ -448,7 +408,7 @@ namespace SturfeeVPS.SDK
                 GUILayout.Label("Unity Setup", EditorStyles.boldLabel);
                 if (GUILayout.Button("First Time Setup", GUILayout.Width(200), GUILayout.Height(30)))
                 {
-                    CreateSturfeeLayers();
+                    InstallLayers();
                     _setupFinished = true;
                 }
             }
@@ -540,7 +500,7 @@ namespace SturfeeVPS.SDK
 
             var json = JsonUtility.ToJson(configuration);
             File.WriteAllText(_configurationFile, json);
-            AssetDatabase.Refresh();
+            //AssetDatabase.Refresh();
             Repaint();
 
             // set the config
@@ -623,8 +583,9 @@ namespace SturfeeVPS.SDK
             return false;
         }
 
-        private static void CreateSturfeeLayers()
+        private static void InstallLayers()
         {
+
             SerializedObject tagManager = new SerializedObject(AssetDatabase.LoadAllAssetsAtPath("ProjectSettings/TagManager.asset")[0]);
             SerializedProperty layers = tagManager.FindProperty("layers");
 
@@ -688,7 +649,73 @@ namespace SturfeeVPS.SDK
 
             //_www.SendWebRequest();
         }
-        
+
+        private static void InstallPackage()
+        {
+            if (!Directory.Exists(Paths.SturfeeResourcesAbsolute)) Directory.CreateDirectory(Paths.SturfeeResourcesAbsolute);
+
+            var listRequest = Client.List(true);
+            while (!listRequest.IsCompleted)
+                Thread.Sleep(100);
+
+            if (listRequest.Error != null)
+            {
+                Debug.Log("Error: " + listRequest.Error.message);
+                return;
+            }
+            string pkg = "";
+            var packages = listRequest.Result;
+            foreach (var package in packages)
+            {
+                if (package.name == "com.sturfee.vps.sdk")
+                {
+                    pkg = package.version;
+                }
+            }
+
+            if (string.IsNullOrEmpty(pkg))
+            {
+                Debug.LogError(" No package found for com.sturfee.vps.sdk");
+                return;
+            }
+            var packageVersion = new Version(pkg);
+
+            if (!File.Exists($"{Paths.SturfeeResourcesAbsolute}/version"))
+            {
+                AssetDatabase.ImportPackage($"{_packagePath}/Sturfee-VPS-SDK.unityPackage", true);
+                File.WriteAllText($"{Paths.SturfeeResourcesAbsolute}/version", pkg.ToString());
+            }
+
+            string current = File.ReadAllText($"{Paths.SturfeeResourcesAbsolute}/version");
+            var currentVersion = new Version(current);
+
+            if (currentVersion.CompareTo(packageVersion) < 0)
+            {
+                Debug.Log(" Updating Sturfee VPS unitypackage");
+                AssetDatabase.ImportPackage($"{_packagePath}/Sturfee-VPS-SDK.unityPackage", true);
+                File.WriteAllText($"{Paths.SturfeeResourcesAbsolute}/version", pkg.ToString());
+            }
+        }
+
+        private static void InstallLocales()
+        {
+            string[] defaultLocales = new string[] { "en-US", "ja-JP" };
+            // Copy string resources from package to local
+            foreach (string locale in defaultLocales)
+            {
+                string src = Path.Combine(Application.dataPath, $"SturfeeVPS/Resources/Strings/Sturfee.StringResources.{locale}.xml");
+
+                string stringsDir = Path.Combine(Paths.SturfeeResourcesAbsolute, "Strings"); 
+                if(!Directory.Exists(stringsDir))    Directory.CreateDirectory(stringsDir);
+                string dest = $"{stringsDir}/Sturfee.StringResources.{locale}.xml";
+
+                if (!File.Exists(dest))
+                {
+                    Debug.Log($" Installing Locale {locale}");
+                    File.Copy(src, dest, true);
+                }
+            }
+        }
     }
 
 }

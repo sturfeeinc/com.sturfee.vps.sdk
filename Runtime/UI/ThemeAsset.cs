@@ -26,7 +26,7 @@ namespace SturfeeVPS.UI
             ForegroundColor = new Color(0.1f, 0.1f, 0.1f, 1);
             BackgroundColor = new Color(0.8901961f, 0.9411765f, 1, 1);
             Locale = "en-US";
-            StringResources = new List<string> { "Strings/Sturfee.StringResources" };
+            StringResources = new List<string> { "Sturfee/Strings/Sturfee.StringResources" };
 
             CreateHighlights();
         }
