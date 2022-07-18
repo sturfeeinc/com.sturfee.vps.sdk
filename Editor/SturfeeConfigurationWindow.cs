@@ -654,7 +654,7 @@ namespace SturfeeVPS.SDK
         {
             if (!Directory.Exists(Paths.SturfeeResourcesAbsolute)) Directory.CreateDirectory(Paths.SturfeeResourcesAbsolute);
 
-            var listRequest = Client.List(true);
+            var listRequest = Client.List(true,true);
             while (!listRequest.IsCompleted)
                 Thread.Sleep(100);
 

@@ -1,5 +1,10 @@
 # Changelog
 
+## [3.1.4] - 2022-07-18
+
+## Fixes
+- Package installation editor code fix
+
 
 ## [3.1.3] - 2022-07-18
 
