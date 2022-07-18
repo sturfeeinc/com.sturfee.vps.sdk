@@ -9,6 +9,9 @@
 - Added more Japanese translations that covers all the text appearing on screen
 - Protobuf libraries updated
 
+## Fixes
+- Fixed blank screen image getting sent to VPS service when using post processing on iOS
+
 ## [3.1.2] - 2022-06-18
 
 ## [3.1.1] - 2022-06-18
@@ -28,7 +31,7 @@
 
 ### Fixes
 
-- Fixes GPS Error issue when localization scan is performed 2nd time in a session
+- Fixes GPS Error issue when localization scan is performed 2nd time onwards in a session
 
 ## [3.0.4] - 2022-05-26
 
