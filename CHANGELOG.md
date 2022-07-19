@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.1.5] - 2022-07-19
+
+## Fixes
+- Localized text fix for textMeshPro text
+- Minor UI fixes on SatelliteScanController.prefab 
+
+
 ## [3.1.4] - 2022-07-18
 
 ## Fixes

@@ -32,7 +32,7 @@ namespace SturfeeVPS.UI
 
             if (m_textMP != null)
             {
-                m_textMP.text = SturfeeLocalizationProvider.Instance.GetString(m_text.text, null);
+                m_textMP.text = SturfeeLocalizationProvider.Instance.GetString(m_textMP.text, null);
             }
         }
     }

@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.IO;
 using System.Linq;
 using SturfeeVPS.Core;
 using SturfeeVPS.SDK;
@@ -98,7 +99,7 @@ namespace SturfeeVPS.UI
             if (configTextAsset != null)
             {
                 var config = JsonUtility.FromJson<EditorConfiguration>(configTextAsset.text);
-                return Resources.Load<ThemeAsset>(config.Theme.Path);
+                return Resources.Load<ThemeAsset>(Path.GetFileNameWithoutExtension(config.Theme.Path));
             }
 
             SturfeeDebug.LogError(" Cannot load editor config");
