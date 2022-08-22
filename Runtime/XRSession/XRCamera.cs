@@ -61,7 +61,7 @@ namespace SturfeeVPS.SDK
         {
             var xrSession = XRSessionManager.GetSession();
 
-            if (xrSession != null && xrSession.Status < XRSessionStatus.Ready)
+            if (xrSession == null || xrSession.Status < XRSessionStatus.Ready)
             {
                 return;
             }

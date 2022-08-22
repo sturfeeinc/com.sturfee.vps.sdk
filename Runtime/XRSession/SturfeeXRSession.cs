@@ -30,7 +30,10 @@ namespace SturfeeVPS.SDK
 
         private void Update()
         {
-            Status = XRSessionManager.GetSession().Status;
+            if (XRSessionManager.GetSession() != null)
+            {
+                Status = XRSessionManager.GetSession().Status;
+            }
         }
 
         public void CreateSession()
