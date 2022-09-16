@@ -1,15 +1,24 @@
 # Changelog
 
+## [3.2.0] - 2022-09-16
+
+### Changes
+- Added VPS HD services to retrieve HD sites for a user/app using userId/appId
+- `Sturfee-VPS-SDK.unitypackage` updated to include HDScanner
+- Added ThumbnailProvider to access Sturfee XRCS' Thumbnail service
+- Few Utility classes are now surrounded with `SturfeeVPS.SDK` namespace
+
+
 ## [3.1.5] - 2022-07-19
 
-## Fixes
+### Fixes
 - Localized text fix for textMeshPro text
 - Minor UI fixes on SatelliteScanController.prefab 
 
 
 ## [3.1.4] - 2022-07-18
 
-## Fixes
+### Fixes
 - Package installation editor code fix
 
 
@@ -21,7 +30,7 @@
 - Added more Japanese translations that covers all the text appearing on screen
 - Protobuf libraries updated
 
-## Fixes
+### Fixes
 - Fixed blank screen image getting sent to VPS service when using post processing on iOS
 
 ## [3.1.2] - 2022-06-18
