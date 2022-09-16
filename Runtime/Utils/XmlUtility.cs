@@ -5,7 +5,7 @@ using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
 
-namespace SturfeeVPS.Utils
+namespace SturfeeVPS.SDK
 {
     public static class XmlUtility
     {
