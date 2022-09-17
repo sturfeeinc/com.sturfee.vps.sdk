@@ -9,14 +9,18 @@ namespace SturfeeVPS.SDK
 {
     public class HDSitesManager : SceneSingleton<HDSitesManager>
     {        
+        [Header("Config")]
         [SerializeField]
         private HDSiteFilter _filter;
+        [SerializeField]
+        private GameObject _siteItems;
+
+        [Header("Internal")]
         [SerializeField]
         private HDSite _currentSite;
         [SerializeField]
         private HDSite[] _sites;
-        [SerializeField]
-        private GameObject _siteItems;
+        
         
         private HDSitesProvider _hDSitesProvider;
         
