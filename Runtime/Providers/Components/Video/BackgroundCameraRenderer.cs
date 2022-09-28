@@ -39,7 +39,7 @@ namespace SturfeeVPS.Providers
                     width = 720;
                     height = 1280;
                 }
-                else if (Screen.orientation == ScreenOrientation.Landscape)
+                else if (Screen.orientation == ScreenOrientation.LandscapeLeft)
                 {
                     width = 1280;
                     height = 720;

@@ -21,9 +21,9 @@ namespace SturfeeVPS.SDK
 
         public async Task<HDSite[]> FetchHDSites(HDSiteFilter siteFilter)
         {
-            if(siteFilter == null)
+            if(string.IsNullOrEmpty(siteFilter.AppId))
             {
-                throw new ArgumentNullException(nameof(siteFilter));
+                throw new Exception("AppId is NULL. Enter an appId/userId in HDSitesManager");
             }
             
             string json = await DownloadSitesMetaData(siteFilter.AppId);

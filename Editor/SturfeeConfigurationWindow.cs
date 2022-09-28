@@ -13,7 +13,7 @@ namespace SturfeeVPS.SDK
 {
     //[InitializeOnLoad]
     public class SturfeeConfigurationWindow : EditorWindow
-    { 
+    {
         public delegate void SubscriptionSuccessful();
         public static SubscriptionSuccessful OnSubscriptionSuccessful;
 
@@ -21,9 +21,9 @@ namespace SturfeeVPS.SDK
         public MonoScript source;
         public static int OpenToSection = 0;
 
-        private string _apiKey = "N/A";        
+        private string _apiKey = "N/A";
         private int _accessLevel = 0;
-        
+
         static string _configurationFile;
         private EditorConfiguration _config = null;
         private Vector2 _scrollPosition;
@@ -40,7 +40,7 @@ namespace SturfeeVPS.SDK
         private bool _setupFinished = false;
         private static UnityWebRequest _www;
 
-        private static string _editorPath = @"Packages/com.sturfee.vps.sdk/Editor";   
+        private static string _editorPath = @"Packages/com.sturfee.vps.sdk/Editor";
         private static string _runtimePath = @"Packages/com.sturfee.vps.sdk/Runtime";
         private static string _packagePath = @"Packages/com.sturfee.vps.sdk";
 
@@ -54,6 +54,9 @@ namespace SturfeeVPS.SDK
 
         // Theme
         private ThemeAsset _themeAsset;
+
+        // location
+        private string _locationTxt;
 
         [MenuItem("Sturfee/Configure", false, 0)]
         public static void ShowWindow()
@@ -73,12 +76,12 @@ namespace SturfeeVPS.SDK
         [InitializeOnLoadMethod]
         public static void Install()
         {
-            if (!Directory.Exists(Paths.SturfeeResourcesAbsolute)) 
+            if (!Directory.Exists(Paths.SturfeeResourcesAbsolute))
                 Directory.CreateDirectory(Paths.SturfeeResourcesAbsolute);
-            
+
             InstallLayers();
             InstallPackage();
-            InstallLocales();            
+            InstallLocales();
         }
 
 
@@ -120,7 +123,7 @@ namespace SturfeeVPS.SDK
                     GUILayout.EndHorizontal();
                 }
                 else
-                {             
+                {
                     _currentTab = GUILayout.Toolbar(_currentTab, new string[] { "Subscription", "Config", "Objects" });
                 }
 
@@ -184,14 +187,14 @@ namespace SturfeeVPS.SDK
 
 
                 EditorGUILayout.BeginHorizontal();
-//                GUILayout.FlexibleSpace();
-//#if VPS_SRC
-//                var dllFile = new FileInfo($"Library/ScriptAssemblies/SturfeeVPS.Core.dll");
-//#else
-//                var dllFile = new FileInfo($"{_runtimePath}/Plugins/SturfeeVPS.Core.dll");
-//#endif
-//                string assemblyVersion = Assembly.LoadFile(dllFile.FullName).GetName().Version.ToString();
-//                GUILayout.Label("v" + assemblyVersion);
+                //                GUILayout.FlexibleSpace();
+                //#if VPS_SRC
+                //                var dllFile = new FileInfo($"Library/ScriptAssemblies/SturfeeVPS.Core.dll");
+                //#else
+                //                var dllFile = new FileInfo($"{_runtimePath}/Plugins/SturfeeVPS.Core.dll");
+                //#endif
+                //                string assemblyVersion = Assembly.LoadFile(dllFile.FullName).GetName().Version.ToString();
+                //                GUILayout.Label("v" + assemblyVersion);
                 EditorGUILayout.EndHorizontal();
 
             }
@@ -355,15 +358,15 @@ namespace SturfeeVPS.SDK
 
                     EditorGUILayout.BeginHorizontal();
                     EditorGUILayout.LabelField("Clear if", GUILayout.Width(100));
-                    _cacheDistance = EditorGUILayout.IntSlider(_cacheDistance, 50, 300,GUILayout.Width(200));
+                    _cacheDistance = EditorGUILayout.IntSlider(_cacheDistance, 50, 300, GUILayout.Width(200));
                     EditorGUILayout.Space(1, false);
                     EditorGUILayout.LabelField("meters away from previous session location");
                     EditorGUILayout.EndHorizontal();
 
                     EditorGUILayout.BeginHorizontal();
                     EditorGUILayout.LabelField("Clear after ", GUILayout.Width(100));
-                    _cacheExpiration = EditorGUILayout.IntSlider(_cacheExpiration, 5, 50,GUILayout.Width(200));
-                    EditorGUILayout.Space(1,false);
+                    _cacheExpiration = EditorGUILayout.IntSlider(_cacheExpiration, 5, 50, GUILayout.Width(200));
+                    EditorGUILayout.Space(1, false);
                     EditorGUILayout.LabelField("days");
                     //AddSpace(15);
                     EditorGUILayout.EndHorizontal();
@@ -377,18 +380,53 @@ namespace SturfeeVPS.SDK
                 }
 
                 // Theme
-                EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
-                EditorGUILayout.BeginHorizontal();
-                _themeAsset = (ThemeAsset)EditorGUILayout.ObjectField("Theme", _themeAsset, typeof(ThemeAsset), false, GUILayout.Width(500)) ;
-
-                string path = AssetDatabase.GetAssetPath(_themeAsset);
-                if (_themeAsset == null || !path.Contains("Resources"))
                 {
-                    _themeAsset = Resources.Load<ThemeAsset>("Config/SturfeeTheme");
+                    EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
+                    EditorGUILayout.BeginHorizontal();
+                    _themeAsset = (ThemeAsset)EditorGUILayout.ObjectField("Theme", _themeAsset, typeof(ThemeAsset), false, GUILayout.Width(500));
+
+                    string path = AssetDatabase.GetAssetPath(_themeAsset);
+                    if (_themeAsset == null || !path.Contains("Resources"))
+                    {
+                        _themeAsset = Resources.Load<ThemeAsset>("Config/SturfeeTheme");
+                    }
+
+                    EditorGUILayout.LabelField("\t Please select a theme from Resources folder only");
+                    EditorGUILayout.EndHorizontal();
                 }
-                
-                EditorGUILayout.LabelField("\t Please select a theme from Resources folder only");
-                EditorGUILayout.EndHorizontal();
+
+                // Location
+                {
+                    EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
+                    EditorGUILayout.BeginHorizontal();
+                    if (string.IsNullOrEmpty(_locationTxt))
+                    {
+                        _locationTxt = $"{EditorUtils.EditorFallbackLocation.Latitude},{EditorUtils.EditorFallbackLocation.Longitude}";
+                    }
+
+                    _locationTxt = EditorGUILayout.TextField("Fallback Location", _locationTxt, GUILayout.Width(500));
+                    if (GUILayout.Button("Set", GUILayout.Width(100), GUILayout.Height(20)))
+                    {
+                        var location = new GeoLocation
+                        {
+                            Latitude = double.Parse(_locationTxt.Split(',')[0]),
+                            Longitude = double.Parse(_locationTxt.Split(',')[1])
+                        };
+                        
+                        EditorUtils.EditorFallbackLocation = location;
+                        Debug.Log($"Editor fallback location set to {location.ToFormattedString()}");
+                    }
+                    EditorGUILayout.LabelField("\t This loation will be used when GPSProvider's gps takes more than 10 seconds to be ready");
+                    EditorGUILayout.EndHorizontal();
+
+                    EditorGUILayout.BeginHorizontal();
+                    if (GUILayout.Button("Reset", GUILayout.Width(100), GUILayout.Height(20)))
+                    {
+                        _locationTxt = $"{EditorUtils.EditorFallbackLocation.Latitude},{EditorUtils.EditorFallbackLocation.Longitude}";
+                    }
+                    EditorGUILayout.EndHorizontal();
+                }
+
 
                 AddCustomizedConfiguration();
 
@@ -451,7 +489,7 @@ namespace SturfeeVPS.SDK
             if (info.Tier > 0)
             {
                 _accessTokenValid = true;
-            }   
+            }
             else
             {
                 _accessTokenValid = false;
@@ -480,14 +518,14 @@ namespace SturfeeVPS.SDK
             if (_configurationFile == null)
                 _configurationFile = Path.Combine(Paths.SturfeeResourcesAbsolute, Paths.ConfigFile);
 
-            
+
             var configuration = new EditorConfiguration
             {
                 AccessToken = _apiKey,
                 TileSize = _tileSize,
-            };            
+            };
 
-            if(_themeAsset != null)
+            if (_themeAsset != null)
             {
                 string path = AssetDatabase.GetAssetPath(_themeAsset);
                 string resourcesPath = path.Substring(path.IndexOf("Resources") + "Resources".Length + 1);
@@ -535,7 +573,7 @@ namespace SturfeeVPS.SDK
             }
 
             TextAsset configurationTextAsset = Resources.Load<TextAsset>(Paths.SturfeeResourcesRelative);// _configurationFile);// Paths.SturfeeResourcesAbsolute);
-            
+
             _config = configurationTextAsset == null ? null : JsonUtility.FromJson<EditorConfiguration>(configurationTextAsset.text);
 
             if (_config != null)
@@ -546,8 +584,8 @@ namespace SturfeeVPS.SDK
                 _themeAsset = Resources.Load<ThemeAsset>(_config.Theme.Path.Split('.')[0]);
                 _loadingSubscription = true;
                 CheckSubscription(_apiKey, HandleSubscriptionResult, HandleSubscriptionError); // validates against the server
-                                                                      //var subscriptionInfo = SturfeeSubscriptionManager.GetSubscriptionInfo(_apiKey); // local
-                                                                      //HandleSubscriptionResult(subscriptionInfo);
+                                                                                               //var subscriptionInfo = SturfeeSubscriptionManager.GetSubscriptionInfo(_apiKey); // local
+                                                                                               //HandleSubscriptionResult(subscriptionInfo);
             }
         }
 
@@ -652,9 +690,12 @@ namespace SturfeeVPS.SDK
 
         private static void InstallPackage()
         {
+            // major.minor[.build[.revision] 
+            // build => 0 -> beta, 1 -> production 
+
             if (!Directory.Exists(Paths.SturfeeResourcesAbsolute)) Directory.CreateDirectory(Paths.SturfeeResourcesAbsolute);
 
-            var listRequest = Client.List(true,true);
+            var listRequest = Client.List(true, true);
             while (!listRequest.IsCompleted)
                 Thread.Sleep(100);
 
@@ -678,22 +719,30 @@ namespace SturfeeVPS.SDK
                 Debug.LogError(" No package found for com.sturfee.vps.sdk");
                 return;
             }
+
+            Debug.Log($"pkg version => {pkg}");
+
+            if (pkg.Contains("pre"))
+            {
+                pkg = ParsePreviewPackage(pkg);
+            }
             var packageVersion = new Version(pkg);
 
-            if (!File.Exists($"{Paths.SturfeeResourcesAbsolute}/version"))
+            if (!File.Exists($"{Paths.SturfeeResourcesAbsolute}/version.txt"))
             {
                 AssetDatabase.ImportPackage($"{_packagePath}/Sturfee-VPS-SDK.unityPackage", true);
-                File.WriteAllText($"{Paths.SturfeeResourcesAbsolute}/version", pkg.ToString());
+                File.WriteAllText($"{Paths.SturfeeResourcesAbsolute}/version.txt", pkg.ToString());
             }
 
-            string current = File.ReadAllText($"{Paths.SturfeeResourcesAbsolute}/version");
+            string current = File.ReadAllText($"{Paths.SturfeeResourcesAbsolute}/version.txt");
             var currentVersion = new Version(current);
+            Debug.Log($"current version => {current}");
 
             if (currentVersion.CompareTo(packageVersion) < 0)
             {
                 Debug.Log(" Updating Sturfee VPS unitypackage");
                 AssetDatabase.ImportPackage($"{_packagePath}/Sturfee-VPS-SDK.unityPackage", true);
-                File.WriteAllText($"{Paths.SturfeeResourcesAbsolute}/version", pkg.ToString());
+                File.WriteAllText($"{Paths.SturfeeResourcesAbsolute}/version.txt", pkg.ToString());
             }
         }
 
@@ -705,8 +754,8 @@ namespace SturfeeVPS.SDK
             {
                 string src = Path.Combine(Application.dataPath, $"SturfeeVPS/Resources/Strings/Sturfee.StringResources.{locale}.xml");
 
-                string stringsDir = Path.Combine(Paths.SturfeeResourcesAbsolute, "Strings"); 
-                if(!Directory.Exists(stringsDir))    Directory.CreateDirectory(stringsDir);
+                string stringsDir = Path.Combine(Paths.SturfeeResourcesAbsolute, "Strings");
+                if (!Directory.Exists(stringsDir)) Directory.CreateDirectory(stringsDir);
                 string dest = $"{stringsDir}/Sturfee.StringResources.{locale}.xml";
 
                 if (!File.Exists(dest))
@@ -715,6 +764,22 @@ namespace SturfeeVPS.SDK
                     File.Copy(src, dest, true);
                 }
             }
+        }
+
+        private static string ParsePreviewPackage(string previewPackage)
+        {
+            // major.minor.build-pre.rev => major.minor.buildrev
+            // ex: 3.2.0-prev.1 => 3.2.0.1
+            string[] parts = previewPackage.Split('.');
+            var major = parts[0];
+            var minor = parts[1];
+            var build = parts[2].Split('-')[0];
+            var revision = parts[3];
+
+            string package = $"{major}.{minor}.{build}.{revision}";
+            Debug.Log($"{previewPackage} updated to {package}");
+
+            return package;
         }
     }
 

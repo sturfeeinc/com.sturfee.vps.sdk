@@ -40,6 +40,10 @@ namespace SturfeeVPS.SDK
             }
 
             _instance = this;
+
+            _camera.cullingMask |= 1 << LayerMask.NameToLayer("sturfeeBuilding");
+            _camera.cullingMask |= 1 << LayerMask.NameToLayer("sturfeeTerrain");
+            _camera.cullingMask &= ~(1 << LayerMask.NameToLayer("sturfeeBackground"));
         }
 
         private void OnEnable()
