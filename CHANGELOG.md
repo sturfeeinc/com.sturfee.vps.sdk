@@ -3,7 +3,7 @@
 ## [3.2.0] - 2022-09-16
 
 ### Fixes
-- Layers forced dynamically on few objects. Fixes gameobject's layer getting overwriten by existing project's layer'
+- Layers forced dynamically on few objects. Fixes gameobject's layer getting overwriten by existing project's layer
 
 ### Changes
 - Added VPS HD services to retrieve HD sites for a user/app using userId/appId
