@@ -24,6 +24,7 @@ namespace SturfeeVPS.SDK
         public double longitude;
         public string ImageUrl;
         public SitePointCloud mesh;
+        public SitePointCloud scanTerrainMesh;
         public SitePointCloud pointCloud;
         public SitePointCloud arFoundationPointCloud;
         public SturfeeCMSAnchor[] anchors;
