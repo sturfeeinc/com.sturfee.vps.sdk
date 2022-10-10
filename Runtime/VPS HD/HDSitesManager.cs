@@ -14,8 +14,7 @@ namespace SturfeeVPS.SDK
         public event SiteSelectedEvent OnHDSiteSelected;
 
         [Header("Config")]
-        [SerializeField]
-        private HDSiteFilter _filter;
+        public HDSiteFilter filter;
         [SerializeField]
         private GameObject _siteItems;
 
@@ -35,19 +34,13 @@ namespace SturfeeVPS.SDK
 
         private async void OnEnable()
         {
-#if UNITY_EDITOR
-            var defaultLocation = new GeoLocation { Latitude = 37.332093d, Longitude = -121.890137d };
-            PlayerPrefs.SetString(PlayerPrefsKeys.EditorFallbackLocation, JsonUtility.ToJson(defaultLocation));
-
-#endif
-
             _hDSitesProvider = new HDSitesProvider();
             await LoadSites();
         }
 
         public async Task LoadSites()
         {
-            if(_filter.SortOptions == SortOptions.Location)
+            if(filter.SortOptions == SortOptions.Location)
             {
                 var location = await GetLocationFromGpsProvider();
                 if(location == null)
@@ -60,13 +53,13 @@ namespace SturfeeVPS.SDK
 #endif                    
                 }
 
-                _filter.Location = location;
+                filter.Location = location;
                 Debug.Log($"HDSitesManager :: HDSItes location filter set to {location.ToFormattedString()}");
             }
 
             try
             {
-                _sites = await _hDSitesProvider.FetchHDSites(_filter);
+                _sites = await _hDSitesProvider.FetchHDSites(filter);
             }
             catch (Exception ex)
             {
