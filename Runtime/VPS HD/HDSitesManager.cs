@@ -14,7 +14,7 @@ namespace SturfeeVPS.SDK
         public event SiteSelectedEvent OnHDSiteSelected;
 
         [Header("Config")]
-        public HDSiteFilter filter;
+        public HDSiteFilter Filter;
         [SerializeField]
         private GameObject _siteItems;
 
@@ -40,7 +40,7 @@ namespace SturfeeVPS.SDK
 
         public async Task LoadSites()
         {
-            if(filter.SortOptions == SortOptions.Location)
+            if(Filter.SortOptions == SortOptions.Location)
             {
                 var location = await GetLocationFromGpsProvider();
                 if(location == null)
@@ -53,13 +53,13 @@ namespace SturfeeVPS.SDK
 #endif                    
                 }
 
-                filter.Location = location;
+                Filter.Location = location;
                 Debug.Log($"HDSitesManager :: HDSItes location filter set to {location.ToFormattedString()}");
             }
 
             try
             {
-                _sites = await _hDSitesProvider.FetchHDSites(filter);
+                _sites = await _hDSitesProvider.FetchHDSites(Filter);
             }
             catch (Exception ex)
             {
