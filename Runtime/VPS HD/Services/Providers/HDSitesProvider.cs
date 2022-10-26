@@ -27,7 +27,7 @@ namespace SturfeeVPS.SDK
             }
             
             string json = await DownloadSitesMetaData(siteFilter.AppId);
-            HDSite[] sites = JsonConvert.DeserializeObject<SiteResponse>(json).Items;
+            HDSite[] sites = JsonConvert.DeserializeObject<SiteResponse>(json,new JsonSerializerSettings {ReferenceLoopHandling = ReferenceLoopHandling.Ignore }).Items;
 
             if(sites == null || sites.Length < 1)
             {

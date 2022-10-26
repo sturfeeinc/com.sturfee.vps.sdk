@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace SturfeeVPS.SDK
 {
@@ -46,7 +47,9 @@ namespace SturfeeVPS.SDK
         public double latitude;
         public double longitude;
         public double altitude;
+        public XrQuaternion rotation;
         public bool useAltitude;
+        public bool useRotation;
         public float heightAboveTerrain;
         public float heading;
         public float scale;
@@ -86,6 +89,15 @@ namespace SturfeeVPS.SDK
     {
         public AnchorType Type;
         public string Data; // json storage of data
+    }
+
+    [Serializable]
+    public class XrQuaternion
+    {
+        public float W { get; set; }
+        public float X { get; set; }
+        public float Y { get; set; }
+        public float Z { get; set; }
     }
 
     public class SiteMetadata
