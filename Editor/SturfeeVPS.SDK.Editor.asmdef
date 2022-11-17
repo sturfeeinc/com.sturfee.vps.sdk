@@ -1,0 +1,19 @@
+{
+    "name": "SturfeeVPS.SDK.Editor",
+    "rootNamespace": "SturfeeVPS.SDK.Editor",
+    "references": [
+        "GUID:2cbab47f8915e7b41af88def2e9184f0",
+        "GUID:b73836c7c71bf844b8366030ac3db968"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

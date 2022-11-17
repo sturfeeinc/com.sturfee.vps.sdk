@@ -1,0 +1,115 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Projector-Grid
+  m_Shader: {fileID: 4800000, guid: 429866639bdaa0e4ebb11ad39199bc5a, type: 3}
+  m_ShaderKeywords: _ALPHABLEND_ON _NORMALMAP _WIREFRAME_AA _WIREFRAME_ALPHA_TEX_ALPHA_INVERT
+    _WIREFRAME_VISIBILITY_ALPHA
+  m_LightmapFlags: 5
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BumpMap:
+        m_Texture: {fileID: 2800000, guid: a0e1d1f74e240450da837b2a6bdd3598, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailAlbedoMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailNormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 92a972acbb5834842818ed9eb0b347a7, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MetallicGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OcclusionMap:
+        m_Texture: {fileID: 2800000, guid: 1132b50fab77d4031b25220da9cadc46, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ParallaxMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ProjectorFalloffTex:
+        m_Texture: {fileID: 2800000, guid: 766c3156b5513403eb9a54683c0b98e8, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ProjectorTex:
+        m_Texture: {fileID: 2800000, guid: 995ffc3e6c2e34c7aab060fd76bd4359, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _WireframeMaskTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _WireframeTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 4, y: 4}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _BumpScale: 2
+    - _Cutoff: 0.5
+    - _DetailNormalMapScale: 1
+    - _DoubleSide: 0
+    - _DstBlend: 10
+    - _Glossiness: 0.82
+    - _GridRelatedScale: 0
+    - _GridSpacing: 1.5
+    - _GridSpacingScale: 0
+    - _GridUseWorldspace: 0
+    - _GridWorldspace: 0
+    - _Metallic: 0
+    - _Mode: 2
+    - _OcclusionStrength: 1
+    - _Parallax: 0.02
+    - _Shininess: 0.078125
+    - _SrcBlend: 5
+    - _UVSec: 0
+    - _WireframeAA: 1
+    - _WireframeAlpha: 1
+    - _WireframeAlphaCutoff: 0
+    - _WireframeAlphaMode: 2
+    - _WireframeCull: 2
+    - _WireframeDoubleSided: 0
+    - _WireframeLighting: 0
+    - _WireframeMaskUV: 0
+    - _WireframeSize: 1
+    - _WireframeSizeScale: 0
+    - _WireframeTexAniSpeedX: 0.5
+    - _WireframeTexAniSpeedY: 0.5
+    - _WireframeUV: 1
+    - _WireframeWidth: 1
+    - _Wireframe_Alpha: 2
+    - _Wireframe_VISIBILITY: 1
+    - _ZWrite: 0
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _WireframeColor: {r: 0.21176471, g: 1, b: 0.5411765, a: 1}
+  m_BuildTextureStacks: []

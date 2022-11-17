@@ -1,0 +1,78 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1204029646111550069
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1204029646111550056}
+  - component: {fileID: 1204029646111550059}
+  - component: {fileID: 1204029646111550057}
+  m_Layer: 0
+  m_Name: SturfeeXrSession-AR
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1204029646111550056
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1204029646111550069}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1204029646111550059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1204029646111550069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bb84cf20e2e4694c8cbfdc8c46539a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Location:
+    Latitude: 0
+    Longitude: 0
+    Altitude: 0
+  CreateOnStart: 1
+  StartSet: 0
+  ProviderSets:
+  - Name: ARFoundation-AR
+    DisplayName: AR
+    Providers:
+      GpsProvider: {fileID: 7911564249177076410, guid: 6e2109bcd35b27d4bb2a5649ffab3acc, type: 3}
+      PoseProvider: {fileID: 5841765604872950033, guid: 28b04b0a31db7a84db7245fa8d30ed63, type: 3}
+      VideoProvider: {fileID: 8248047827444884446, guid: baac757d18930f44098c6ab263bb5cf6, type: 3}
+      TilesProvider: {fileID: 8624888518375690081, guid: 3eea6ff74c8820b488be3945df0ed31d, type: 3}
+      LocalizationProvider: {fileID: 945477540496697120, guid: dae5513d801344243a5ef1058b857d7e, type: 3}
+  _currentSet: 0
+--- !u!114 &1204029646111550057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1204029646111550069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 704bd10b23009444ea50ee3941a79def, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _arSessionPrefab: {fileID: 8392004814354110345, guid: 8346f1b1af3f4954c8470991361c6b91, type: 3}
+  _aRSessionOriginPrefab: {fileID: 8728062891784829233, guid: 076241e68ccb4dd40941b70a70e6bc56, type: 3}
+  _arPlanePrefab: {fileID: 1585201990951412, guid: aeb7f50ee3ff64a4d9994c643e886eac, type: 3}

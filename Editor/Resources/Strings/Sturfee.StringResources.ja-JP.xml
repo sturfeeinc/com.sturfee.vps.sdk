@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StringResources xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Resources>
+
+		<!--Session-->
+		<StringResource id="NoConnectivity" value="接続なし。インターネットをチェック！"/>
+		<StringResource id="TokenNotAvailable" value="トークンがありません"/>
+		<StringResource id="NotAuthorizedToken" value="不正なトークン"/>
+		<StringResource id="NoCoverageArea" value="この場所ではVPSを利用できません"/>
+		<StringResource id="SessionNotReady" value="セッションの準備ができていない/作成されていない"/>
+
+		<!--Tiles-->
+		<StringResource id="TileLoadingError" value="タイルの読み込みに失敗しました"/>
+		<StringResource id="TileLoadingErrorFromCache" value="タイルの読み込みに失敗しました"/>
+		<StringResource id="TileDownloadingError" value="タイルのダウンロードに失敗しました"/>
+
+		<!--Providers-->
+		<StringResource id="GpsProviderNotSupported" value="GPSはサポートされていません"/>
+		<StringResource id="GpsProviderTimeout" value="GPSタイムアウト"/>
+		<StringResource id="PoseProviderNotSupported" value="ポーズ/IMUはサポートされていません"/>
+		<StringResource id="PoseProviderTimeout" value="ポーズ/IMUタイムアウト"/>
+		<StringResource id="VideoProviderNotSupported" value="ビデオはサポートされていません"/>
+		<StringResource id="VideoProviderTimeout" value="ビデオタイムアウト"/>
+
+		<!--Enable VPS-->
+		<StringResource id="SocketConnectionFail" value="ソケット接続に失敗しました！"/>
+
+		<!--Localization-->
+		<StringResource id="NO_ERROR" value="内部サーバーエラー"/>
+		<StringResource id="UNEXPECTED_SERVER_ERROR" value="内部サーバーエラー"/>
+		<StringResource id="PROTOCOL_ERROR" value="内部サーバーエラー"/>
+		<StringResource id="VALIDATION_ERROR" value="内部サーバーエラー"/>
+		<StringResource id="OUT_OF_COVERAGE_ERROR" value="ローカライズするには機能が不十分です"/>
+		<StringResource id="ServerError" value="内部サーバーエラー"/>
+
+
+		<!--UI-->
+
+		<!--MESSAGES-->
+		<StringResource id="ID_Sturfee_Loading_Bold" value="LOADING"/>
+
+		<!--MAIN BUTTONS-->
+		<StringResource id="ID_Sturfee_Scan_Button" value="スキャンを開始"/>
+		<StringResource id="ID_Sturfee_Stop_Scan_Button" value="スキャンを中止"/>
+
+
+		<!--ERROR MESSAGES-->
+		<StringResource id="ID_Sturfee_Move_Cam_Slow" value="スマートフォンを右へ動かしてください"/>
+		<StringResource id="ID_Sturfee_Move_Cam_Up" value="スマホを上に向けてください"/>
+		<StringResource id="ID_Sturfee_Move_Cam_Down" value="スマホを下に向けてください"/>
+		<StringResource id="ID_Sturfee_Look_Down" value="スマホを下に向けてください"/>
+		<StringResource id="ID_Sturfee_Point_At_Buildings" value="スマートフォンを建物の最上部に向けてください"/>
+
+		<!--GAZE UI-->
+		<StringResource id="ID_Sturfee_Gaze_Look_Here" value="Look Here"/>
+
+		<!--Debug UI-->
+		<StringResource id="ID_Sturfee_Debug_Show_Buildings" value="デバッグビルディングを表示する"/>
+
+	</Resources>
+</StringResources>

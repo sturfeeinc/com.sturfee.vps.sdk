@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StringResources xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Resources>
+    
+
+    <!--Session-->
+    <StringResource id="NoConnectivity" value="No connectivity. Check Internet !"/>
+    <StringResource id="TokenNotAvailable" value="Missing Token"/>
+    <StringResource id="NotAuthorizedToken" value="Unauthorized Token"/>
+    <StringResource id="NoCoverageArea" value="VPS not available at this location"/>
+    <StringResource id="TileLoadingError" value="Tile loading error"/>
+    <StringResource id="TileLoadingErrorFromCache" value="Tile loading failed from cache"/>
+    <StringResource id="TileDownloadingError" value="Tile download failed !"/>
+    <StringResource id="SocketConnectionFail" value="Socket connection failed !"/>
+    <StringResource id="SessionNotReady" value="Session is not ready/created"/>
+
+    <!--Providers-->
+    <StringResource id="GpsProviderNotSupported" value="Gps not supported"/>
+    <StringResource id="GpsProviderTimeout" value="Gps Timeout"/>
+    <StringResource id="PoseProviderNotSupported" value="Pose/IMU not supported"/>
+    <StringResource id="PoseProviderTimeout" value="Pose/IMU timeOut"/>
+    <StringResource id="VideoProviderNotSupported" value="Video not supported"/>
+    <StringResource id="VideoProviderTimeout" value="Video TimeOut"/>
+            
+
+    <!--MESSAGES-->
+    <StringResource id="ID_Sturfee_Loading_Bold" value="LOADING"/>
+    
+    <!--MAIN BUTTONS-->
+    <StringResource id="ID_Sturfee_Scan_Button" value="S C A N"/>
+    <StringResource id="ID_Sturfee_Stop_Scan_Button" value="Stop Scanning"/>
+
+    <!--ERROR MESSAGES-->
+    <StringResource id="ID_Sturfee_Move_Cam_Slow" value="Move Camera Slowly"/>    
+    <StringResource id="ID_Sturfee_Move_Cam_Up" value="Move Camera Up"/>
+    <StringResource id="ID_Sturfee_Move_Cam_Down" value="Move Camera Down"/>
+    <StringResource id="ID_Sturfee_Look_Down" value="Look Down"/>
+    <StringResource id="ID_Sturfee_Point_At_Buildings" value="Point camera up at buildings around you to start"/>
+
+    <!--GAZE UI-->
+    <StringResource id="ID_Sturfee_Gaze_Look_Here" value="Look Here"/>
+
+    <!--Debug UI-->
+    <StringResource id="ID_Sturfee_Debug_Show_Buildings" value="Show Debug Buildings"/>
+		
+		
+	</Resources>
+</StringResources>

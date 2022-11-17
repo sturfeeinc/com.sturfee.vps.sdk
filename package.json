@@ -1,10 +1,10 @@
 {
   "name": "com.sturfee.vps.sdk",
-  "version": "3.2.0-pre.8",
+  "version": "4.0.0",
   "displayName": "Sturfee VPS SDK",
-  "description": "Copyright (c) 2020, Sturfee Inc.\n\nThe SturfeeVPS SDK provides functionality for building immersive outdoor AR experiences. \nUsing Sturfee's proprietary Visual Processing System (VPS), the SDK can provide precise localization (position and orientation) through imagery from the device camera.\n\nVisit https://sturfee.com/product for more information.\n\nOfficial documentation can be found at https://developer.sturfee.com/documentation\n\nNOTE: this SDK requires an Access Key for use.",
-  "unity": "2020.3",
-  "unityRelease": "11f1",
+  "description": "Core library for Sturfee VPS SDK",
+  "unity": "2021.3",
+  "unityRelease": "9f1",
   "keywords": [
     "sturfee",
     "vps",
@@ -16,10 +16,8 @@
     "email": "contact@sturfee.com",
     "url": "https://sturfee.com"
   },
+  "type": "library",
   "dependencies": {
-    "com.unity.xr.arfoundation": "4.1.7",
-    "com.unity.textmeshpro": "3.0.6",
-    "com.sturfee.vps.core": "3.2.0"
-  },
-  "type": "library"
+    "com.unity.xr.arfoundation": "4.2.7"
+  }
 }
