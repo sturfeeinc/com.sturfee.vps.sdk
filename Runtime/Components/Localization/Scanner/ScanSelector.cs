@@ -25,8 +25,9 @@ namespace SturfeeVPS.SDK
             if(Scanners.Count == 1)
             {
                 onScanSelected?.Invoke(Scanners.First());
+                return;
             }
-
+            Debug.Log(GetInstanceID());
             
             if(Scanners.Count > 1)
             {
@@ -34,6 +35,7 @@ namespace SturfeeVPS.SDK
                 HashSet<ScanType> scanTypes = new HashSet<ScanType>();  
                 foreach(var scanner in Scanners)
                 {
+                    Debug.Log(scanner.name);
                     if(scanTypes.Contains(scanner.ScanType))
                     {
                         throw new Exception("Duplicate scanners added");

@@ -10,7 +10,8 @@ namespace SturfeeVPS.SDK
         public int MoveSpeed = 5;
         public int RotateSpeed = 60;
         public float HeightFromGround = 1.5f;
-
+        [SerializeField]
+        private ProviderStatus _providerStatus;
         private void Update()
         {
             transform.Translate(0, 0, Input.GetAxis("Vertical") * MoveSpeed * Time.deltaTime);
@@ -30,7 +31,7 @@ namespace SturfeeVPS.SDK
 
         public override ProviderStatus GetProviderStatus()
         {
-            return ProviderStatus.Ready;
+            return _providerStatus;
         }
 
         public override Quaternion GetRotation()

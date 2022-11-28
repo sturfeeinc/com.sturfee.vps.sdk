@@ -6,6 +6,7 @@ namespace SturfeeVPS.SDK
 {
     public static class SturfeeLayers
     {
+        public static readonly string Background = "SturfeeBackground";
         public static readonly string SturgBuilding = "SturgBuilding";
         public static readonly string SturgTerrain = "SturgTerrain";
         public static readonly string HDSiteBuilding = "SiteBuilding";

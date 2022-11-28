@@ -102,15 +102,19 @@ namespace SturfeeVPS.SDK
             }
             catch(Exception e)
             {
+                Debug.LogException(e);
+                SturfeeDebug.LogError(e.Message);
                 VpsButton.CurrentInstance.SetState(VpsScanState.Off);
-
-                if(e is IdException ex)
+                
+                string localizedError;
+                if (e is IdException ex)
                 {
-                    string localizedError = SturfeeLocalizationProvider.Instance.GetString($"{ex.Id}", ex.Message);
+                    localizedError = SturfeeLocalizationProvider.Instance.GetString($"{ex.Id}", ex.Message);
                     TriggerLocalizationFailEvent(localizedError);
                     return;
                 }
-                TriggerLocalizationFailEvent(e.Message);
+                localizedError = SturfeeLocalizationProvider.Instance.GetString(ErrorMessages.ScanInitializationError.Item1, ErrorMessages.ScanInitializationError.Item2);
+                TriggerLocalizationFailEvent(localizedError);
             }
         }
 

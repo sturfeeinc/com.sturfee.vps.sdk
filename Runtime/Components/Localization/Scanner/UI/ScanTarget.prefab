@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8601123092000001852}
   - component: {fileID: 8601123092000001855}
   - component: {fileID: 8601123092000001853}
+  - component: {fileID: 1449351408142508642}
   m_Layer: 5
   m_Name: ScanTarget
   m_TagString: Untagged
@@ -90,3 +91,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _image: {fileID: 8601123092000001855}
+--- !u!114 &1449351408142508642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8601123092000001793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26e4cd23820a9eb45bd117c959c802ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Primary
+  Alpha: 1

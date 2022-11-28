@@ -20,6 +20,9 @@ namespace SturfeeVPS.SDK
             await _localizationService.Connect(_serviceUrl, TokenUtils.GetVpsToken(), location.Latitude, location.Longitude);                            
 
             await base.Initialize(requestNum);
+
+            SturfeeDebug.Log($"{ScanType}Scanner initialized");
+
         }
 
         protected override async Task WaitForSessionProviders()

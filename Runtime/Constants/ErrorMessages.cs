@@ -23,6 +23,25 @@ namespace SturfeeVPS.SDK
         public static (string, string) LocalizationService_OutOfCoverageError = ("OutOfCoverageError", "requested location is out of coverage");
 
 
+        public static (string, string) ScanInitializationError = ("scan-init-error", "Error while initializing scan. Try agian later");
+
+        #region Providers
+        public static (string, string) ProvidersTimeout = ("ProvidersTimeout", " Session TimeOut");
+
+        public static (string, string) GpsNotReadyForScan = ("GpsNotreadyForScan", " GPS Provider not ready for scan");
+        public static (string, string) GpsProviderNotSupported = ("GpsProviderNotSupported", " GPS Error");
+        public static (string, string) GpsProviderTimeout = ("GpsProviderTimeout", " GPS TimeOut");
+
+        public static (string, string) PoseNotReadyForScan = ("PoseNotreadyForScan", " Pose Provider not ready for scan");
+        public static (string, string) PoseProviderNotSupported = ("PoseProviderNotSupported", " IMU Error");
+        public static (string, string) PoseProviderTimeout = ("PoseProviderTimeout", " Pose/IMU TimeOut");
+
+        public static (string, string) VideoNotReadyForScan = ("VideoNotreadyForScan", " Video Provider not ready for scan");
+        public static (string, string) VideoProviderNotSupported = ("VideoProviderNotSupported", " Camera Error");
+        public static (string, string) VideoProviderTimeout = ("VideoProviderTimeout", " Video Camera TimeOut");
+
+        #endregion
+
         #region Http
         public static (string, string) Error400 = ("Error400", "Invalid URL request parameters");
         public static (string, string) Error403 = ("Error403", "Invalid Token !");

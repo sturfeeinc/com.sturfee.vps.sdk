@@ -1,4 +1,5 @@
 using SturfeeVPS.Core;
+using SturfeeVPS.UI;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -64,6 +65,11 @@ namespace SturfeeVPS.SDK.Providers
             }
             catch (Exception ex)
             {
+                Debug.LogException(ex);
+
+                _displayToggle?.gameObject.SetActive(false);
+                _occlusionToggle?.gameObject.SetActive(false);
+
                 if (ex is HttpException httpException)
                 {
                     if (httpException.ErrorCode == 501)
@@ -73,11 +79,10 @@ namespace SturfeeVPS.SDK.Providers
                         _providerStatus = ProviderStatus.NotSupported;
                         return;
                     }
+
+                    string localizedError = SturfeeLocalizationProvider.Instance.GetString(ErrorMessages.TileLoadingError.Item1, ErrorMessages.TileLoadingError.Item2);
+                    TriggerTileLoadingFailEvent(localizedError);
                 }
-
-                _displayToggle?.gameObject.SetActive(false);
-                _occlusionToggle?.gameObject.SetActive(false);
-
                 throw;
             }
         }

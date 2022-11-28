@@ -11,7 +11,7 @@ namespace SturfeeVPS.SDK.Editor
 {
     public class SturfeeObjectsCreator : MonoBehaviour
     {
-        [MenuItem("GameObject/SturfeeXR/SturfeeXRSession")]
+        [MenuItem("GameObject/SturfeeXR/SturfeeXRSession", false, 1)]
         public static void CreateSturfeeXrSession()
         {
             var prefab = Resources.Load<SturfeeXrSession>($"Prefabs/{SturfeeObjects.SturfeeXrSession}");
@@ -22,11 +22,11 @@ namespace SturfeeVPS.SDK.Editor
                 return;
             }
 
-            var go = Instantiate(prefab);
+            var go = PrefabUtility.InstantiatePrefab(prefab);
             go.name = SturfeeObjects.SturfeeXrSession;
         }
 
-        [MenuItem("GameObject/SturfeeXR/SturfeeXRSession-AR")]
+        [MenuItem("GameObject/SturfeeXR/SturfeeXRSession-AR", false, 1)]
         public static void CreateSturfeeXrSessionAR()
         {
             var prefab = Resources.Load<SturfeeXrSession>($"Prefabs/{SturfeeObjects.SturfeeXrSessionAR}");
@@ -37,11 +37,11 @@ namespace SturfeeVPS.SDK.Editor
             }
 
 
-            var go = Instantiate(prefab);
+            var go = PrefabUtility.InstantiatePrefab(prefab);
             go.name = SturfeeObjects.SturfeeXrSessionAR;
         }
 
-        [MenuItem("GameObject/SturfeeXR/XrCamera")]
+        [MenuItem("GameObject/SturfeeXR/XrCamera", false, 1)]
         public static void CreateXrCamera()
         {
             var prefab = Resources.Load<XrCamera>($"Prefabs/{SturfeeObjects.XrCamera}");
@@ -51,12 +51,12 @@ namespace SturfeeVPS.SDK.Editor
                 return;
             }
 
-            var go = Instantiate(prefab);
+            var go = PrefabUtility.InstantiatePrefab(prefab);
             go.name = SturfeeObjects.XrCamera;
 
         }
 
-        [MenuItem("GameObject/SturfeeXR/SturfeeUI")]
+        [MenuItem("GameObject/SturfeeXR/SturfeeUI", false, 1)]
         public static void CreateSturfeeUI()
         {
             var prefab = Resources.Load<SturfeeUIManager>($"Prefabs/{SturfeeObjects.SturfeeUI}");
@@ -66,11 +66,11 @@ namespace SturfeeVPS.SDK.Editor
                 return;
             }
 
-            var go = Instantiate(prefab);
+            var go = PrefabUtility.InstantiatePrefab(prefab);
             go.name = SturfeeObjects.SturfeeUI;
         }
 
-        [MenuItem("GameObject/SturfeeXR/XrLight")]
+        [MenuItem("GameObject/SturfeeXR/XrLight", false, 1)]
         public static void CreateXrLight()
         {
             var prefab = Resources.Load<Light>($"Prefabs/{SturfeeObjects.XrLight}");
@@ -80,8 +80,8 @@ namespace SturfeeVPS.SDK.Editor
                 return;
             }
 
-            var go = Instantiate(prefab);
-            go.name = SturfeeObjects.XrCamera;
+            var go = PrefabUtility.InstantiatePrefab(prefab);
+            go.name = SturfeeObjects.XrLight;
 
         }
 

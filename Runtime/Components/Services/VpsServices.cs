@@ -19,6 +19,8 @@ namespace SturfeeVPS.SDK
             unityWebRequest.SetRequestHeader("latitude", location.Latitude.ToString());
             unityWebRequest.SetRequestHeader("longitude", location.Longitude.ToString());
 
+            SturfeeDebug.Log(unityWebRequest.url);
+
             await unityWebRequest.SendWebRequest();
 
             if (!string.IsNullOrEmpty(unityWebRequest.error))
@@ -36,6 +38,8 @@ namespace SturfeeVPS.SDK
             UnityWebRequest unityWebRequest = UnityWebRequest.Get($"{SturfeeConstants.STURFEE_API}/status/?accessToken={token}");
             unityWebRequest.timeout = 3;
             unityWebRequest.SetRequestHeader("Authorization", "Bearer " + token);
+
+            SturfeeDebug.Log(unityWebRequest.url);
 
             await unityWebRequest.SendWebRequest();
 

@@ -20,6 +20,11 @@ namespace SturfeeVPS.SDK
             {
                 int numOfSets = sturfeeXrSession.ProviderSets.Length;
 
+                if(numOfSets <= 1)
+                {
+                    _dropdown.gameObject.SetActive(false);
+                }
+
                 List<TMP_Dropdown.OptionData> dropdownOptions = new List<TMP_Dropdown.OptionData>();                
                 for(int i =0; i < numOfSets; i++)
                 {

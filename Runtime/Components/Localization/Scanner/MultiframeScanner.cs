@@ -257,6 +257,8 @@ namespace SturfeeVPS.SDK
             }
             catch (Exception e)
             {
+                Debug.LogException(e);
+
                 if (e is HttpException)
                 {
                     var ex = (HttpException)e;
@@ -311,12 +313,15 @@ namespace SturfeeVPS.SDK
             var provider = xrsession.GetProvider<T>();
             if (provider == null)
             {
-                throw new Exception($" Cannot Scan. {typeof(T).Name} not registered to session.");
+                HandleProviderNotRegistered<T>();
+                return;
             }
+
             switch (provider.GetProviderStatus())
             {
                 case ProviderStatus.NotSupported:
-                    throw new Exception($" Cannot Scan. {provider.GetType().Name} is not supported.");
+                    HandleProviderNotSupported(provider);
+                    break;
                 case ProviderStatus.Stopped:
                     // wait till timeout 
                     break;
@@ -338,13 +343,55 @@ namespace SturfeeVPS.SDK
 
                 if (Time.time - start > 10)
                 {
-                    throw new Exception($"{provider.GetType().Name} timed out");
+                    HandleProviderTimeout(provider);
+                    return;
                 }
 
                 SturfeeDebug.Log($" Waiting 1 second for {provider.GetType().Name}. Current status : {provider.GetProviderStatus()}");
                 await Task.Delay(1000);
             }
         }
+
+        protected virtual void HandleProviderNotRegistered<T>() where T : IProvider
+        {
+            Dictionary<Type, int> typeDict = new Dictionary<Type, int>
+            {
+                {typeof(IGpsProvider),0},
+                {typeof(IPoseProvider),1},
+                {typeof(IVideoProvider),2}
+            };
+
+            switch (typeDict[typeof(T)])
+            {
+                case 0: throw new IdException(ErrorMessages.GpsProviderNotSupported);
+                case 1: throw new IdException(ErrorMessages.PoseProviderNotSupported);
+                case 2: throw new IdException(ErrorMessages.VideoProviderNotSupported);
+            }
+        }
+
+
+        protected virtual void HandleProviderNotSupported<T>(T provider) where T : IProvider
+        {
+            switch (provider)
+            {
+                case IGpsProvider: throw new IdException(ErrorMessages.GpsProviderNotSupported);
+                case IPoseProvider: throw new IdException(ErrorMessages.PoseProviderNotSupported);
+                case IVideoProvider: throw new IdException(ErrorMessages.VideoProviderNotSupported);
+                default: Debug.Log("test"); break;
+            }
+        }
+
+        protected virtual void HandleProviderTimeout<T>(T provider) where T : IProvider
+        {            
+            switch (provider)
+            {
+                case IGpsProvider: throw new IdException(ErrorMessages.GpsProviderTimeout);
+                case IPoseProvider: throw new IdException(ErrorMessages.PoseProviderTimeout);
+                case IVideoProvider: throw new IdException(ErrorMessages.VideoProviderTimeout);
+            }
+        }
+
+
 
         protected virtual float GetYawDiff(float yaw1, float yaw2)
         {            

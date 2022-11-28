@@ -47,3 +47,4 @@ MonoBehaviour:
   MoveSpeed: 5
   RotateSpeed: 60
   HeightFromGround: 1.5
+  _providerStatus: 3

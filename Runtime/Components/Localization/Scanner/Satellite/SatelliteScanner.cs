@@ -25,6 +25,9 @@ namespace SturfeeVPS.SDK
             }
 
             await base.Initialize(requestNum);
+
+            SturfeeDebug.Log($"{ScanType}Scanner initialized");
+
         }
     }
 }

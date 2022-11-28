@@ -10,6 +10,7 @@ namespace SturfeeVPS.SDK
     public abstract class BaseTilesProvider : BaseProvider, ITilesProvider
     {
         public event TilesLoadedAction OnTileLoaded;
+        public event TilesLoadingFailAction OnTileLoadingFail;
 
         public abstract float GetElevation(GeoLocation location);
         public abstract Task<GameObject> GetTiles(GeoLocation location, float radius = 0, CancellationToken cancellationToken = default);
@@ -33,6 +34,11 @@ namespace SturfeeVPS.SDK
         protected virtual void TriggerTileLoadEvent()
         {
             OnTileLoaded?.Invoke();
+        }
+
+        protected virtual void TriggerTileLoadingFailEvent(string error)
+        {
+            OnTileLoadingFail?.Invoke(error);
         }
     }
 }

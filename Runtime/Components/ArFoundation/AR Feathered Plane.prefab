@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 114999847245811208}
   - component: {fileID: 114750936167521158}
   - component: {fileID: 2699474239164548561}
-  m_Layer: 12
+  m_Layer: 10
   m_Name: AR Feathered Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -80,7 +80,7 @@ MeshRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 672bffed1fafb47e69038446a7f4fce5, type: 2}
+  - {fileID: 2100000, guid: 2e3cbc3ccf8e5fd4f98496544ac8b877, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -139,7 +139,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1585201990951412}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ecdf458b4d7be4249bfb650708077d1c, type: 3}
+  m_Script: {fileID: 11500000, guid: 4a17c4a010a39bf45a20bd4827b2502f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_FeatheringWidth: 0.2

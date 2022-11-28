@@ -24,10 +24,10 @@ namespace SturfeeVPS.SDK.Editor
         protected string[] _tabs = new string[] {"Auth", "Config"};
 
         // paths
-        private static string _editorPath = @"Packages/com.sturfee.vps.sdk/Editor";
-        private static string _runtimePath = @"Packages/com.sturfee.vps.sdk/Runtime";
-        private static string _packagePath = @"Packages/com.sturfee.vps.sdk";
-        private static int _currentTab = 0;
+        protected static string _editorPath = @"Packages/com.sturfee.vps.sdk/Editor";
+        protected static string _runtimePath = @"Packages/com.sturfee.vps.sdk/Runtime";
+        protected static string _packagePath = @"Packages/com.sturfee.vps.sdk";
+        protected static int _currentTab = 0;
 
         private SturfeeWindowAuth _sturfeeWindowAuth;
         private SturfeeWindowConfig _sturfeeWindowConfig;
@@ -73,10 +73,9 @@ namespace SturfeeVPS.SDK.Editor
             _currentTab = GUILayout.Toolbar(_currentTab, _tabs);
             switch (_currentTab)
             {
-                case 0:OnAuthTab(); break;
-                case 1:OnConfigTab(); break;  
-            }
-            
+                case 0:CreateTab(OnAuthTab); break;
+                case 1:CreateTab(OnConfigTab); break;  
+            }            
         }
 
         protected virtual void ShowHeader()
@@ -127,31 +126,13 @@ namespace SturfeeVPS.SDK.Editor
 
         protected virtual void OnAuthTab()
         {
-            EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
-
-            EditorGUILayout.Space();
-
-            EditorGUILayout.BeginVertical();
-            {
-                HandleVpsToken();
-
-            }
-            EditorGUILayout.EndVertical();
-
+            HandleVpsToken();
         }
-
+        
         protected virtual void OnConfigTab()
         {
-            EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
-
-            EditorGUILayout.Space();
-
-            EditorGUILayout.BeginVertical();
-            {
-                HandleTheme();
-                HandleEditorFallbackLocation();
-            }
-            EditorGUILayout.EndVertical();
+            HandleTheme();
+            HandleEditorFallbackLocation();            
         }
 
         protected virtual void HandleVpsToken()
@@ -306,7 +287,20 @@ namespace SturfeeVPS.SDK.Editor
                 _loadingTokenValidation = false;
             }
         }
-         
+
+        private void CreateTab(Action onTabCreated)
+        {
+            EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
+
+            EditorGUILayout.Space();
+
+            EditorGUILayout.BeginVertical();
+            {
+                onTabCreated();
+            }
+            EditorGUILayout.EndVertical();
+        }
+        
         private Texture2D MakeTex(int width, int height, Color col)
         {
             Color[] pix = new Color[width * height];
@@ -319,8 +313,6 @@ namespace SturfeeVPS.SDK.Editor
             result.Apply();
             return result;
         }
-
-
     }
 
     [Serializable]

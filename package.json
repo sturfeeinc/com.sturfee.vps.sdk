@@ -19,5 +19,12 @@
   "type": "library",
   "dependencies": {
     "com.unity.xr.arfoundation": "4.2.7"
-  }
+  },
+  "samples": [
+    {
+      "displayName": "Samples",
+      "description": "Example scenes",
+      "path": "Samples~/Sample"
+    }
+  ]
 }

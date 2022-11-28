@@ -46,5 +46,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Location:
     Latitude: 37.33209228515625
-    Longitude: -121.89013671875
+    Longitude: -121.189013671875
     Altitude: 0
