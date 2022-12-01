@@ -30,7 +30,7 @@ namespace SturfeeVPS.SDK
 
         private void Start()
         {
-            var credentials = new CognitoAWSCredentials("us-east-1:e7cb8a9e-8224-4015-94ab-1c156b3c94df", Amazon.RegionEndpoint.USEast1);
+            var credentials = new CognitoAWSCredentials("COGNITO_ID", Amazon.RegionEndpoint.USEast1);
             _s3Service = new S3Service(credentials, Amazon.RegionEndpoint.USEast1);
         }
 

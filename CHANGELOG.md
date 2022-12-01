@@ -1,5 +1,14 @@
 # Changelog
 
+## [4.0.0] - 2022-12-01
+
+### Changes
+
+- First 4.0 release
+- XrSession is agnostic to AR/VR 
+- Added all the necessary providers that can be injected into XrSession depending upon session requirements
+- ARFoundation related providers included in SDK
+
 ## [3.2.0] - 2022-09-16
 
 ### Fixes
