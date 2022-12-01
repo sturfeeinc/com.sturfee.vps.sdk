@@ -127,24 +127,18 @@ namespace SturfeeVPS.SDK
             switch (provider)
             {
                 case BaseGpsProvider gps:
-                    //var instance = ReplacePrefab(gps);          
-                    //Debug.Log(instance.GetInstanceID());
                     XrSessionManager.GetSession().RegisterProvider<IGpsProvider>(ReplacePrefab(gps));
                     break;
                 case BasePoseProvider pose:
-                    //ReplacePrefab(pose);
                     XrSessionManager.GetSession().RegisterProvider<IPoseProvider>(ReplacePrefab(pose));
                     break;
                 case BaseVideoProvider video:
-                    //ReplacePrefab(video);
                     XrSessionManager.GetSession().RegisterProvider<IVideoProvider>(ReplacePrefab(video));
                     break;
                 case BaseTilesProvider tiles:
-                    //ReplacePrefab(tiles);
                     XrSessionManager.GetSession().RegisterProvider<ITilesProvider>(ReplacePrefab(tiles));
                     break;
                 case BaseLocalizationProvider localization:
-                    //ReplacePrefab(localization);
                     XrSessionManager.GetSession().RegisterProvider<ILocalizationProvider>(ReplacePrefab(localization));
                     break;
                 default:

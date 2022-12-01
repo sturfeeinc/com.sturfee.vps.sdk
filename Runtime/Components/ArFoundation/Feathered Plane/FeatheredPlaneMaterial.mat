@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: FeatheredPlaneMaterial
-  m_Shader: {fileID: 4800000, guid: 9b989c81462e144eb95a232bec4719d5, type: 3}
+  m_Shader: {fileID: 4800000, guid: a41c9f11f2351c04cadf77c76df2b983, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords:
   - _ALPHAPREMULTIPLY_ON
@@ -42,7 +42,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: af6bcea09b8134831b6599e2900aef81, type: 3}
+        m_Texture: {fileID: 2800000, guid: f36e3e16669a2194f9c9368a65560a3c, type: 3}
         m_Scale: {x: 2, y: 2}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
