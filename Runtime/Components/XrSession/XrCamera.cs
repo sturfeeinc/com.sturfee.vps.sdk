@@ -72,15 +72,9 @@ namespace SturfeeVPS.SDK
             }
 
             // update local Pose of camera based on sensor readings(PoseProvider)
-            var poseProvider = xrSession.GetProvider<IPoseProvider>();
-            if (poseProvider != null && poseProvider.GetProviderStatus() == ProviderStatus.Ready)
-            {
-                var sensorPosition = poseProvider.GetPosition(out _);
-                var sensorRotation = poseProvider.GetRotation();
-                _camera.transform.localPosition = Converters.WorldToUnityPosition(sensorPosition);
-                _camera.transform.localRotation = Converters.WorldToUnityRotation(sensorRotation);
-            }
-
+            _camera.transform.localPosition = Converters.WorldToUnityPosition(Position);
+            _camera.transform.localRotation = Converters.WorldToUnityRotation(Rotation);            
+            
             // update projection matrix based on sensor readings (VideoProvider)
             var videoProvider = xrSession.GetProvider<IVideoProvider>();
             if (videoProvider != null && videoProvider.GetProviderStatus() == ProviderStatus.Ready)
@@ -94,6 +88,34 @@ namespace SturfeeVPS.SDK
         private void OnDestroy()
         {
             _instance = null;
+        }
+
+        private Vector3 Position
+        {
+            get
+            {
+                var poseProvider = XrSessionManager.GetSession().GetProvider<IPoseProvider>();
+                if (poseProvider != null && poseProvider.GetProviderStatus() == ProviderStatus.Ready)
+                {
+                    return poseProvider.GetPosition(out _);                    
+                }
+
+                return Vector3.zero;
+            }
+        }
+
+        private Quaternion Rotation
+        {
+            get
+            {
+                var poseProvider = XrSessionManager.GetSession().GetProvider<IPoseProvider>();
+                if (poseProvider != null && poseProvider.GetProviderStatus() == ProviderStatus.Ready)
+                {
+                    return poseProvider.GetRotation();
+                }
+
+                return Converters.UnityToWorldRotation(Quaternion.identity);
+            }
         }
 
         private void ApplyOffsets()

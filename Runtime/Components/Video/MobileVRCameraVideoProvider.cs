@@ -8,9 +8,10 @@ namespace SturfeeVPS.SDK
     public class MobileVRCameraVideoProvider : BaseVideoProvider
     {        
         [SerializeField]
-        private Camera _vrCamera;
+        private MobileVRCameraController _vrCamera;
         [SerializeField]
-        private Camera _vrCameraPrefab;
+        private MobileVRCameraController _vrCameraPrefab;
+
 
         public override void OnRegister()
         {
@@ -36,7 +37,7 @@ namespace SturfeeVPS.SDK
 
         public override float GetFOV()
         {
-            return _vrCamera.fieldOfView;
+            return _vrCamera.Camera.fieldOfView;
         }
 
         public override int GetHeight()
@@ -46,7 +47,7 @@ namespace SturfeeVPS.SDK
 
         public override Matrix4x4 GetProjectionMatrix()
         {
-            return _vrCamera.projectionMatrix;
+            return _vrCamera.Camera.projectionMatrix;
         }
 
         public override ProviderStatus GetProviderStatus()

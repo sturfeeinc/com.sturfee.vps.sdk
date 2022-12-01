@@ -13,6 +13,8 @@ namespace SturfeeVPS.SDK
         public abstract Quaternion RollOffset { protected set; get; }
         public abstract Vector3 EulerOffset { protected set; get; }
 
+        public abstract Scanner Scanner { protected set; get; }
+
         public event LocalizationRequestedAction OnLocalizationRequested;
         public event LocalizationStartAction OnLocalizationStart;
         public event LocalizationStopAction OnLocalizationStop;

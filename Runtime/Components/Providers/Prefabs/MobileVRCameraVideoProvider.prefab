@@ -45,4 +45,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _vrCamera: {fileID: 0}
-  _vrCameraPrefab: {fileID: 1804690127652536331, guid: 26ee79b0fc7144044aba48540f41b37f, type: 3}
+  _vrCameraPrefab: {fileID: 9103717254272245020, guid: 26ee79b0fc7144044aba48540f41b37f, type: 3}

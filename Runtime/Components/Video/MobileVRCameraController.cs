@@ -6,6 +6,8 @@ namespace SturfeeVPS.SDK
 {
     public class MobileVRCameraController : MonoBehaviour
     {
+        public Camera Camera;
+
         private void Update()
         {
             transform.position = XrCamera.Pose.Position;

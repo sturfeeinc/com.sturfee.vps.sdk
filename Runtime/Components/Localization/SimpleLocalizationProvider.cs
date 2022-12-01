@@ -28,6 +28,7 @@ namespace SturfeeVPS.SDK
         public override Quaternion PitchOffset { get => _pitchOffset; protected set => throw new System.NotImplementedException(); }
         public override Quaternion RollOffset { get => _rollOfset; protected set => throw new System.NotImplementedException(); }
         public override Vector3 EulerOffset { get => _eulerOffset; protected set => throw new System.NotImplementedException(); }
+        public override Scanner Scanner { get => throw new System.NotImplementedException(); protected set => throw new System.NotImplementedException(); }
 
         private void Update()
         {

@@ -49,6 +49,12 @@ namespace SturfeeVPS.SDK
             }
         }
 
+        public void SetValue(int val)
+        {
+            _dropdown.value = val;
+            _dropdown.onValueChanged?.Invoke(val);
+        }
+
         private void OnDropDownChange(int value)
         {
             var sturfeeXrSession = FindObjectOfType<SturfeeXrSession>();

@@ -48,7 +48,7 @@ CharacterController:
   m_Height: 2
   m_Radius: 0.5
   m_SlopeLimit: 45
-  m_StepOffset: 0.3
+  m_StepOffset: 1
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: -0.5, z: 0}
@@ -71,7 +71,7 @@ MonoBehaviour:
   pitchClampMax: 45
   _invertPitch: 1
   _invertYaw: 0
-  _jumpSpeed: 2
+  _jumpSpeed: 1
 --- !u!1 &9188087490171820311
 GameObject:
   m_ObjectHideFlags: 0
@@ -120,6 +120,8 @@ MonoBehaviour:
   _joystick: {fileID: 9188087488976327455}
   _characterController: {fileID: 9188087488976327453}
   _elevation: 0
+  _lastPosition: {x: 0, y: 0, z: 0}
+  _lastRotation: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &9188087490287219790
 GameObject:
   m_ObjectHideFlags: 0

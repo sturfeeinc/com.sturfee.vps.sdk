@@ -53,6 +53,8 @@ namespace SturfeeVPS.SDK
             _hDSitesProvider = new HDSitesProvider();
             await Task.Yield();
             await LoadSites();
+
+            DispaySites(false);
         }
 
         public async Task LoadSites(GeoLocation location = null)

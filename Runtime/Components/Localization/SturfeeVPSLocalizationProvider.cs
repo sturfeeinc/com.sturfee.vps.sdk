@@ -30,7 +30,7 @@ namespace SturfeeVPS.SDK
         public override Quaternion YawOffset { protected set; get; }
         public override Quaternion PitchOffset { protected set; get; }
         public override Quaternion RollOffset { protected set; get; }
-        public override Vector3 EulerOffset { protected set; get; }        
+        public override Vector3 EulerOffset { protected set; get; }
 
         public override void EnableLocalization()
         {
@@ -67,7 +67,7 @@ namespace SturfeeVPS.SDK
 
         #region Scanner
 
-        public Scanner Scanner => _scanner;
+        public override Scanner Scanner { get => _scanner; protected set { } }
 
         public void SetScanner(Scanner scanner)
         {

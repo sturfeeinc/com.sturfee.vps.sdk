@@ -39,11 +39,13 @@ public class AlertDialog : MonoBehaviour
 
     public void Show()
     {
+        Debug.Log("AlertDialog :: show");
         _container.DOScale(1, AnimationSpeed).From(0);
     }
 
     public void Hide(bool immediate = false)
     {
+        Debug.Log("AlertDialog :: hide");
         _container.DOScale(0, immediate ? 0 : AnimationSpeed);
     }
 }

@@ -15,7 +15,11 @@ namespace SturfeeVPS.SDK
         [Space(5)]
         [SerializeField][ReadOnly]
         private float _elevation;
-        
+        [SerializeField][ReadOnly]
+        private Vector3 _lastPosition;
+        [SerializeField][ReadOnly]
+        private Quaternion _lastRotation;
+
         private void OnEnable()
         {
             SturfeeEventManager.OnTilesLoaded += OnTilesLoaded;
@@ -29,8 +33,31 @@ namespace SturfeeVPS.SDK
         public override void OnRegister()
         {
             base.OnRegister();
-            _joystick.position = XrCamera.Pose.Position;
-            _joystick.rotation = XrCamera.Pose.Rotation;
+
+
+            var distance = Vector3.Distance(XrCamera.Pose.Position, Vector3.zero);
+            if (distance < 300)     // 300 => range of tiles. TODO: have this number coming from tileprovider
+            {
+                _joystick.position = XrCamera.Pose.Position;
+                _joystick.rotation = XrCamera.Pose.Rotation;
+            }
+            else
+            {
+                _joystick.position = _lastPosition;
+                _joystick.rotation = _lastRotation;
+            }
+
+            _joystick.position = new Vector3(_joystick.position.x, _elevation, _joystick.position.z);
+
+            SturfeeDebug.Log($" Initial Joystick position : {_joystick.position}");
+        }
+
+        public override void OnUnregister()
+        {            
+            _lastPosition = _joystick.transform.position;
+            _lastRotation = _joystick.transform.rotation;
+
+            base.OnUnregister();    
         }
 
         public override float GetHeightFromGround()
