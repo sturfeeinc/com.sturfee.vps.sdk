@@ -1,19 +1,23 @@
 using UnityEngine;
 
-public class SceneSingleton<T> : MonoBehaviour where T : MonoBehaviour
+namespace SturfeeVPS.SDK
 {
-    // singleton only in the current scene
-    private static T _instance;
-    public static T CurrentInstance
+    public class SceneSingleton<T> : MonoBehaviour where T : MonoBehaviour
     {
-        get
+        // singleton only in the current scene
+        private static T _instance;
+        public static T CurrentInstance
         {
-            if (_instance == null)
+            get
             {
-                _instance = GameObject.FindObjectOfType<T>();
-            }
+                if (_instance == null)
+                {
+                    _instance = GameObject.FindObjectOfType<T>();
+                }
 
-            return _instance;
+                return _instance;
+            }
         }
     }
+
 }

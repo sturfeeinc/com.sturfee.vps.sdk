@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 704bd10b23009444ea50ee3941a79def
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - _arSessionPrefab: {instanceID: 0}
+  - _aRSessionOriginPrefab: {instanceID: 0}
+  - _arPlanePrefab: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
