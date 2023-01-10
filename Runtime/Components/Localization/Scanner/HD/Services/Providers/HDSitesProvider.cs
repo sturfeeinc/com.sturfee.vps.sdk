@@ -17,7 +17,7 @@ namespace SturfeeVPS.SDK
 
     public class HDSitesProvider : IHDSitesProvider
     {
-        private string _baseUrl = "https://vps-hd.s3.us-west-1.amazonaws.com/sites";
+        private string _baseUrl = "https://sharedspaces-api.sturfee.com/hd-sites/group";
 
         public async Task<HDSite[]> FetchHDSites(HDSiteFilter siteFilter)
         {
@@ -26,7 +26,8 @@ namespace SturfeeVPS.SDK
                 throw new Exception("AppId is NULL. Enter an appId/userId in HDSitesManager");
             }
             
-            string json = await DownloadSitesMetaData(siteFilter.AppId);
+            string json = await ServicesDownloadSitesMeta(siteFilter.AppId);
+
             HDSite[] sites = JsonConvert.DeserializeObject<SiteResponse>(json,new JsonSerializerSettings {ReferenceLoopHandling = ReferenceLoopHandling.Ignore }).Items;
 
             if(sites == null || sites.Length < 1)
@@ -82,6 +83,31 @@ namespace SturfeeVPS.SDK
             SturfeeDebug.Log($"Downloading sites meta data for userId= {userId}");
 
             UnityWebRequest request = UnityWebRequest.Get($"{_baseUrl}/{userId}.txt");
+            await request.SendWebRequest();
+
+            SturfeeDebug.Log($"Request => {request.uri}");
+
+
+            if (string.IsNullOrEmpty(request.error))
+            {
+                return request.downloadHandler.text;
+            }
+
+            SturfeeDebug.LogError($" {request.responseCode} Error : {request.error}");
+
+            if (request.responseCode == 404 || request.responseCode == 403)
+            {
+                throw new Exception("No sites avaialble for this user");
+            }
+
+            throw new Exception("Internal Error! Please try again later.");
+        }
+
+        private async Task<string> ServicesDownloadSitesMeta(string userId)
+        {
+            SturfeeDebug.Log($"Downloading sites meta data for userId= {userId}");
+
+            UnityWebRequest request = UnityWebRequest.Get($"{_baseUrl}/{userId}");
             await request.SendWebRequest();
 
             SturfeeDebug.Log($"Request => {request.uri}");

@@ -63,7 +63,7 @@ namespace SturfeeVPS.SDK
             base.OnUnregister();    
 
             // Enable Avatar Mesh
-            SturfeeEventManager.AvatarOn = false;
+            // SturfeeEventManager.AvatarOn = false;
         }
 
         public override float GetHeightFromGround()
@@ -93,8 +93,15 @@ namespace SturfeeVPS.SDK
         private void OnTilesLoaded()
         {
             var location = Converters.UnityToGeoLocation(transform.position);
+            
+            // FOR DEBUG
+            Debug.Log($"[MobileJoystickPoseProvider.cs] Location: {Converters.GeoToUnityPosition(location)}");
+
             var tilesProvider = XrSessionManager.GetSession().GetProvider<ITilesProvider>();
             _elevation = tilesProvider.GetElevation(location) + GetHeightFromGround();
+
+            // FOR DEBUG
+            Debug.Log($"[MobileJoystickPoseProvider.cs] Elevation: {_elevation}");
 
             Vector3 pos = _joystick.transform.position;
             pos.y = _elevation + GetHeightFromGround();

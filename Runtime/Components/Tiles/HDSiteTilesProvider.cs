@@ -92,7 +92,7 @@ namespace SturfeeVPS.SDK
         public async Task DownloadAsync()
         {
             string dir = Path.Combine(CacheDir, Site.siteId, "Mesh");
-            string meshFile = Path.Combine(dir, Path.GetFileName(Site.mesh.ply));
+            string meshFile = Path.Combine(dir, Path.GetFileName(Site.mesh.ply.Split('?')[0]));
 
             // mesh
             var mesh = await DownloadMesh(Site.mesh.ply);
@@ -126,7 +126,7 @@ namespace SturfeeVPS.SDK
             await Task.Yield();
 
             string dir = Path.Combine(CacheDir, Site.siteId, "Mesh");
-            string meshFile = Path.Combine(dir, Path.GetFileName(Site.mesh.ply));
+            string meshFile = Path.Combine(dir, Path.GetFileName(Site.mesh.ply.Split('?')[0]));
 
             SiteMesh siteMesh = new GameObject(Site.siteName).AddComponent<SiteMesh>();
             siteMesh.SiteId = Site.siteId;
@@ -162,7 +162,7 @@ namespace SturfeeVPS.SDK
                 Directory.CreateDirectory(dir);
 
             // mesh
-            var meshFile = Path.Combine(dir, Path.GetFileName(Site.mesh.ply));
+            var meshFile = Path.Combine(dir, Path.GetFileName(Site.mesh.ply.Split('?')[0]));
 
             return File.Exists(meshFile);
         }

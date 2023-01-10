@@ -11,6 +11,9 @@ using UnityEngine.Events;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 
+// FOR DEBUG
+using Newtonsoft.Json.Linq;
+
 namespace SturfeeVPS.SDK
 {
     public class MultiframeScanner : Scanner, IScanner
@@ -49,7 +52,7 @@ namespace SturfeeVPS.SDK
             IsScanning = true;
                         
             _scannerUI.StartScan(ScanConfig);
-            _requestId = (_requestNum * 10) + (int)OperationMessages.Alignment;
+            _requestId = (_requestNum * 10) + (int)Request.Types.OperationMessages.Alignment;
             _requestNum++;
 
             CaptureAndSendAsync();
@@ -77,7 +80,7 @@ namespace SturfeeVPS.SDK
             int numOfFrames = ScanConfig.TargetCount;
             float currentTargetYaw = 0;
             int diff = ScanType == ScanType.HD ? 1 : 3;
-            _requestId = (_requestNum * 10) + (int)OperationMessages.Alignment;
+            _requestId = (_requestNum * 10) + (int)Request.Types.OperationMessages.Alignment;
 
             await Task.Yield();
 
@@ -159,6 +162,9 @@ namespace SturfeeVPS.SDK
 
         protected virtual void OnResponse(ResponseMessage responseMessage)
         {
+            // FOR DEBUG
+            SturfeeDebug.Log("[MultiframeScanner.cs, OnResponse] "+Newtonsoft.Json.JsonConvert.SerializeObject(responseMessage));
+
             _scannerUI.ScanComplete();
 
             LocalizationResponseMessage localizationResponseMessage = LocalizationResponseMessage.ParseProtobufResponseMessage(responseMessage);
@@ -171,7 +177,7 @@ namespace SturfeeVPS.SDK
 
             Request request = new Request
             {
-                Operation = OperationMessages.Alignment,
+                Operation = Request.Types.OperationMessages.Alignment,
                 RequestId = _requestId,
                 ExternalParameters = new Core.Proto.ExternalParameters
                 {

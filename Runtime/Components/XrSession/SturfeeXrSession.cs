@@ -45,12 +45,14 @@ namespace SturfeeVPS.SDK
 #if UNITY_EDITOR
                 Location = EditorUtils.EditorFallbackLocation;
 #else
+                // FOR DEBUG
+                SturfeeDebug.Log($"[SturfeeXrSession.cs] Latitude: {Location.Latitude}, Longitude: {Location.Longitude}");
                 await InitLocation();
                 Location = new GeoLocation
                 {
                     Latitude = Input.location.lastData.latitude,
                     Longitude = Input.location.lastData.longitude
-                };
+                };    
 #endif
             }
 
@@ -79,6 +81,9 @@ namespace SturfeeVPS.SDK
         public void RegisterProviders()
         {
             var providerSet = ProviderSets[_currentSet];
+
+            // FOR DEBUG
+            // Debug.Log($"[SturfeeXrSession.cs] Current Set: {_currentSet}");
 
             RegisterProvider<IGpsProvider>(providerSet.Providers.GpsProvider);
             RegisterProvider<IPoseProvider>(providerSet.Providers.PoseProvider);
