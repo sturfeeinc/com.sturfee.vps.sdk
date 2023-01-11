@@ -9,6 +9,9 @@ namespace SturfeeVPS.SDK
     {
         private void OnEnable()
         {
+            if (FindObjectsOfType<SturfeeUIManager>().Length > 1)
+                Destroy(this.gameObject);
+
             SturfeeEventManager.OnLocalizationFail += OnLocalizationFail;
             SturfeeEventManager.OnTileLoadingFail += OnTileLoadingFail;
         }        

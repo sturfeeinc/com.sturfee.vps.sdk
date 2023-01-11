@@ -60,6 +60,7 @@ public class MobileToastManager : SimpleSingleton<MobileToastManager>
         }
 
         ShowToast(_totalTimeout);
+        
         //StartCoroutine(ShowToastCo(_totalTimeout));
     }
 

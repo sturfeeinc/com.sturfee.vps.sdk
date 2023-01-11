@@ -95,13 +95,13 @@ namespace SturfeeVPS.SDK
             var location = Converters.UnityToGeoLocation(transform.position);
             
             // FOR DEBUG
-            Debug.Log($"[MobileJoystickPoseProvider.cs] Location: {Converters.GeoToUnityPosition(location)}");
+            // Debug.Log($"[MobileJoystickPoseProvider.cs] Location: {Converters.GeoToUnityPosition(location)}");
 
             var tilesProvider = XrSessionManager.GetSession().GetProvider<ITilesProvider>();
             _elevation = tilesProvider.GetElevation(location) + GetHeightFromGround();
 
             // FOR DEBUG
-            Debug.Log($"[MobileJoystickPoseProvider.cs] Elevation: {_elevation}");
+            // Debug.Log($"[MobileJoystickPoseProvider.cs] Elevation: {_elevation}");
 
             Vector3 pos = _joystick.transform.position;
             pos.y = _elevation + GetHeightFromGround();
