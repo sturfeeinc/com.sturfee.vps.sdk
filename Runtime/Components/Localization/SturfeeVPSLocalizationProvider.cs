@@ -31,6 +31,7 @@ namespace SturfeeVPS.SDK
         public override Quaternion PitchOffset { protected set; get; }
         public override Quaternion RollOffset { protected set; get; }
         public override Vector3 EulerOffset { protected set; get; }
+        public override string trackingID { protected set; get; }
 
         public override void EnableLocalization()
         {
@@ -172,6 +173,8 @@ namespace SturfeeVPS.SDK
                 SturfeeDebug.Log(JsonUtility.ToJson(responseMessage));
 
                 _providerStatus = ProviderStatus.Ready;
+                
+                trackingID = responseMessage.trackingId;
 
                 TriggerLocalizationSuccessfulEvent();
             }

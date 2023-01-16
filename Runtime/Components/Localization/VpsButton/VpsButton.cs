@@ -110,6 +110,12 @@ namespace SturfeeVPS.SDK
             OnVpsButtonScanStateChanged?.Invoke(_currentState);
         }
 
+        // For Photo App
+        public void _HandleClick()
+        {
+            HandleClick();
+        }
+
         private void HandleClick()
         {
             switch (_currentState)
