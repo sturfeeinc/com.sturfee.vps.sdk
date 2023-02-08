@@ -567,7 +567,7 @@ MonoBehaviour:
     ScanType: 1
     OffsetType: 1
   _scannerUI: {fileID: 2843213245493200731}
-  _serviceUrl: wss://roll.devsturfee.com/api/0.2.0/alignment/ws
+  _serviceUrl: wss://fullground.devsturfee.com/api/0.2.0/alignment/ws
   IsScanning: 0
   _requestNum: 0
   _requestId: 0
