@@ -20,7 +20,7 @@ namespace SturfeeVPS.SDK.Editor
         }
 
 
-        [MenuItem("Sturfee/DigitalTwin/Set Layers")]
+        [MenuItem("Sturfee/VPS/Install Layers")]
         public static void InstallLayers()
         {
             SerializedObject tagManager = new SerializedObject(AssetDatabase.LoadAllAssetsAtPath("ProjectSettings/TagManager.asset")[0]);
