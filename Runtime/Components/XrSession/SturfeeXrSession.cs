@@ -17,6 +17,7 @@ namespace SturfeeVPS.SDK
         public int StartSet;        
         public ProviderSet[] ProviderSets;
 
+        public int CurrentProviderSet => _currentSet;
         [SerializeField][ReadOnly]
         private int _currentSet;
 
