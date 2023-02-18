@@ -20,6 +20,8 @@ namespace SturfeeVPS.SDK
     public interface IThumbnailProvider
     {
         Task<Texture> GetThumbnail(Guid id, ImageFileType ext = ImageFileType.png);
+        Task<Texture> GetThumbnailByUrl(string ScanId, string url, ImageFileType ext = ImageFileType.png);
+
     }
     public class ThumbnailProvider : IThumbnailProvider
     {
@@ -65,6 +67,45 @@ namespace SturfeeVPS.SDK
                     // save to file system
                     byte[] bytes = ext == ImageFileType.png ? image.EncodeToPNG() : image.EncodeToJPG();
                     File.WriteAllBytes($"{baseDirectory}/{id}.{ext}", bytes);
+
+                    return image;
+                }
+            }
+
+            return null;
+        }
+
+        public async Task<Texture> GetThumbnailByUrl(string ScanId, string url, ImageFileType ext = ImageFileType.png)
+        {
+            var baseDirectory = Path.Combine(Application.persistentDataPath, "Thumbnails");
+            if (!Directory.Exists(baseDirectory)) { Directory.CreateDirectory(baseDirectory); }
+
+            // try to get thumbnail locally
+            var thumbFile = $"{baseDirectory}/{ScanId}.{ext}";
+
+            if (File.Exists(thumbFile))
+            {
+                var fileData = File.ReadAllBytes(thumbFile);
+                var image = new Texture2D(2, 2, TextureFormat.ARGB32, false);
+                image.LoadImage(fileData); // ..this will auto-resize the texture dimensions.
+                return image;
+            }
+            else
+            {
+                UnityWebRequest uwr = UnityWebRequestTexture.GetTexture(url);
+                await uwr.SendWebRequest();
+
+                if (uwr.result == UnityWebRequest.Result.ConnectionError) //uwr.isNetworkError || uwr.isHttpError)
+                {
+                    return null;
+                }
+                else if (uwr.result == UnityWebRequest.Result.Success)
+                {
+                    var image = ((DownloadHandlerTexture)uwr.downloadHandler).texture;
+
+                    // save to file system
+                    byte[] bytes = ext == ImageFileType.png ? image.EncodeToPNG() : image.EncodeToJPG();
+                    File.WriteAllBytes($"{baseDirectory}/{ScanId}.{ext}", bytes);
 
                     return image;
                 }

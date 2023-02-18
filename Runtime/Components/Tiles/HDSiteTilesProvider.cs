@@ -9,6 +9,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Networking;
 using UnityGLTF;
 using UnityGLTF.Loader;
 
@@ -92,8 +93,17 @@ namespace SturfeeVPS.SDK
         public async Task DownloadAsync()
         {
             string dir = Path.Combine(CacheDir, Site.siteId, "Mesh");
-            string meshFile = Path.Combine(dir, Path.GetFileName(Site.mesh.ply.Split('?')[0]));
+            string meshFile = Path.Combine(dir, Site.siteId + ".glb");
+            
 
+            if (HDSitesManager.CurrentInstance.UseDtHdId)
+            {
+                Debug.Log($"DOWNLOADING!: {Site.mesh.ply}");
+                DownloadFile(Site.mesh.ply, meshFile);
+                return;
+            }
+
+            meshFile = Path.Combine(dir, Path.GetFileName(Site.mesh.ply.Split('?')[0]));
             // mesh
             var mesh = await DownloadMesh(Site.mesh.ply);
             File.WriteAllBytes(meshFile, mesh);
@@ -114,6 +124,7 @@ namespace SturfeeVPS.SDK
             if (!AvailableInCache())
             {
                 await DownloadAsync();
+                Debug.Log("DOWNLOADING!");
             }
 
             var siteMesh = await LoadAsync();
@@ -125,8 +136,19 @@ namespace SturfeeVPS.SDK
             ClearAll();
             await Task.Yield();
 
-            string dir = Path.Combine(CacheDir, Site.siteId, "Mesh");
-            string meshFile = Path.Combine(dir, Path.GetFileName(Site.mesh.ply.Split('?')[0]));
+            string dir;
+            string meshFile;
+
+            if (HDSitesManager.CurrentInstance.UseDtHdId)
+            {
+                dir = Path.Combine(CacheDir, Site.siteId, "Mesh");
+                meshFile = Path.Combine(dir, Site.siteId + ".glb");
+            }
+            else
+            {
+                dir = Path.Combine(CacheDir, Site.siteId, "Mesh");
+                meshFile = Path.Combine(dir, Path.GetFileName(Site.mesh.ply.Split('?')[0]));
+            }
 
             SiteMesh siteMesh = new GameObject(Site.siteName).AddComponent<SiteMesh>();
             siteMesh.SiteId = Site.siteId;
@@ -136,21 +158,24 @@ namespace SturfeeVPS.SDK
             var meshGO = await LoadGlb(meshFile);
             meshGO.transform.parent = siteMesh.transform;
 
-            // terrain
-            if (Site.scanTerrainMesh != null && !string.IsNullOrEmpty(Site.scanTerrainMesh.ply))
+            if (!HDSitesManager.CurrentInstance.UseDtHdId)
             {
-                string terrainFile = Path.Combine(dir, Path.GetFileName(Site.scanTerrainMesh.ply));
-
-                Debug.Log($" Loading terrain mesh (glb) {Path.GetFileName(terrainFile)} from {terrainFile}");
-
-                var terrainGO = await LoadGlb(terrainFile);
-                foreach (var mr in terrainGO.GetComponentsInChildren<MeshRenderer>())
+                // terrain
+                if (Site.scanTerrainMesh != null && !string.IsNullOrEmpty(Site.scanTerrainMesh.ply))
                 {
-                    mr.gameObject.layer = LayerMask.NameToLayer(SturfeeLayers.HDSiteTerrain);
-                }
-                terrainGO.transform.parent = siteMesh.transform;
-            }
+                    string terrainFile = Path.Combine(dir, Path.GetFileName(Site.scanTerrainMesh.ply));
 
+                    Debug.Log($" Loading terrain mesh (glb) {Path.GetFileName(terrainFile)} from {terrainFile}");
+
+                    var terrainGO = await LoadGlb(terrainFile);
+                    foreach (var mr in terrainGO.GetComponentsInChildren<MeshRenderer>())
+                    {
+                        mr.gameObject.layer = LayerMask.NameToLayer(SturfeeLayers.HDSiteTerrain);
+                    }
+                    terrainGO.transform.parent = siteMesh.transform;
+                }
+            }
+            
             siteMesh.transform.parent = transform;
             return siteMesh.gameObject;
         }
@@ -229,6 +254,34 @@ namespace SturfeeVPS.SDK
                 Debug.Log($"HDSiteTilesProvider :: Downloading complete");
                 _providerStatus = ProviderStatus.Ready;
                 return meshFile;
+            }
+            catch (Exception e)
+            {
+                Debug.LogException(e);
+                throw;
+            }
+        }
+
+        private async Task DownloadFile(string url, string file)
+        {
+            try
+            {
+                if (File.Exists($"{file}")) throw new Exception($"File already downloaded ({file})");
+
+                var uwr = new UnityWebRequest(url);
+
+                uwr.method = UnityWebRequest.kHttpVerbGET;
+                var dh = new DownloadHandlerFile($"{file}");
+                dh.removeFileOnAbort = true;
+                uwr.downloadHandler = dh;
+                await uwr.SendWebRequest();
+
+                if (uwr.result != UnityWebRequest.Result.Success) //(uwr.result == UnityWebRequest.Result.ConnectionError) //uwr.isNetworkError || uwr.isHttpError)
+                {
+                }
+                else
+                {
+                }
             }
             catch (Exception e)
             {
