@@ -94,69 +94,67 @@ namespace SturfeeVPS.SDK
                 }
                 else if (UseDtHdId)
                 {
-                    var baseFolder = Path.Combine(Application.persistentDataPath, "DTHD", DtHdId);
-                    var dataFilePath = Path.Combine(baseFolder, "data.json");
-                    if (File.Exists(dataFilePath))
+                    DtHdLayout_SDK layoutData = new DtHdLayout_SDK();
+                    try
                     {
-                        DtHdLayout_SDK layoutData = new DtHdLayout_SDK();
-                        try
+                        var uwr = new UnityWebRequest(Path.Combine("https://digitaltwin.sturfee.com/hd/layout", DtHdId, "?full_details=true"));
+
+                        var dh = new DownloadHandlerBuffer();
+                        uwr.downloadHandler = dh;
+
+                        uwr.method = UnityWebRequest.kHttpVerbGET;
+                        await uwr.SendWebRequest();
+
+                        if (uwr.result == UnityWebRequest.Result.ConnectionError) //uwr.isNetworkError || uwr.isHttpError)
                         {
-                            var uwr = new UnityWebRequest(Path.Combine("https://digitaltwin.sturfee.com/hd/layout", DtHdId, "?full_details=true"));
-
-                            var dh = new DownloadHandlerBuffer();
-                            uwr.downloadHandler = dh;
-
-                            uwr.method = UnityWebRequest.kHttpVerbGET;
-                            await uwr.SendWebRequest();
-
-                            if (uwr.result == UnityWebRequest.Result.ConnectionError) //uwr.isNetworkError || uwr.isHttpError)
-                            {
-                                Debug.Log("error downloading");
-                            }
-                            else
-                            {
-                                layoutData = JsonConvert.DeserializeObject<DtHdLayout_SDK>(uwr.downloadHandler.text);
-                                Debug.Log(uwr.downloadHandler.text);
-                            }
-
+                            Debug.Log("error downloading");
                         }
-                        catch (Exception e)
+                        else
                         {
+                            Debug.Log($"Data: {uwr.downloadHandler.text}");
+                            layoutData = JsonConvert.DeserializeObject<DtHdLayout_SDK>(uwr.downloadHandler.text, new JsonSerializerSettings {
+                                NullValueHandling = NullValueHandling.Ignore
+                            });   
                         }
-                        
-                        _sites = new HDSite[layoutData.ScanMeshes.Count];
-                        int counter = 0;
-                        foreach (ScanMesh_SDK i in layoutData.ScanMeshes)
-                        {
-                            var hdsite = i.VpsHdSite;
-                            var site = new HDSite();
 
-                            site.siteName = hdsite.siteInfo.name;
-                            site.siteId = hdsite.siteInfo.site_id;
-                            site.latitude = hdsite.siteInfo.latitude;
-                            site.longitude = hdsite.siteInfo.longitude;
-                            site.ImageUrl = hdsite.thumbnailUrl;
-                            site.mesh = new SitePointCloud();
-                            site.mesh.ply = i.ScanMeshUrl;
-                            site.mesh.centerRef = new CenterRef();
-                            site.mesh.centerRef.x = i.RefX;
-                            site.mesh.centerRef.y = i.RefY;
-                            site.mesh.heightOffset = 0;
+                    }
+                    catch (Exception e)
+                    {
+                        Debug.LogException(e);
+                    }
+                    
+                    _sites = new HDSite[layoutData.ScanMeshes.Count];
+                    int counter = 0;
+                    foreach (ScanMesh_SDK i in layoutData.ScanMeshes)
+                    {
+                        var hdsite = i.VpsHdSite;
+                        var site = new HDSite();
+
+                        site.siteName = hdsite.siteInfo.name;
+                        site.siteId = hdsite.siteInfo.site_id;
+                        site.latitude = hdsite.siteInfo.latitude;
+                        site.longitude = hdsite.siteInfo.longitude;
+                        site.ImageUrl = hdsite.thumbnailUrl;
+                        site.mesh = new SitePointCloud();
+                        site.mesh.ply = i.ScanMeshUrl;
+                        site.mesh.centerRef = new CenterRef();
+                        site.mesh.centerRef.x = i.RefX;
+                        site.mesh.centerRef.y = i.RefY;
+                        site.mesh.heightOffset = 0;
 
 
-                            site.site_meta_data = new SiteMetadata();
-                            site.site_meta_data.UserId = layoutData.UserId;
-                            // site.site_meta_data.RefId
-                            site.site_meta_data.ThumbId = hdsite.siteInfo.thumbnail_id;
-                            site.site_meta_data.CreatedDate = hdsite.siteInfo.createdDate.ToString();
-                            if (hdsite.siteInfo.isIndoor)
-                                site.site_meta_data.SpaceType = "Indoor";
-                            else
-                                site.site_meta_data.SpaceType = "Outdoor";
+                        site.site_meta_data = new SiteMetadata();
+                        site.site_meta_data.UserId = layoutData.UserId;
+                        // site.site_meta_data.RefId
+                        site.site_meta_data.ThumbId = hdsite.siteInfo.thumbnail_id;
+                        site.site_meta_data.CreatedDate = hdsite.siteInfo.createdDate.ToString();
+                        if (hdsite.siteInfo.isIndoor)
+                            site.site_meta_data.SpaceType = "Indoor";
+                        else
+                            site.site_meta_data.SpaceType = "Outdoor";
 
-                            _sites[counter] = site;
-                            counter++;
-                        }
+                        _sites[counter] = site;
+                        counter++;
                     }
                 }
                 else

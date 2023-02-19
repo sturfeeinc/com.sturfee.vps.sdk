@@ -41,6 +41,12 @@ namespace SturfeeVPS.SDK.Examples
             _site = site;
             _title.text = site.siteName;
             _hdTilesProvider.SetSite(_site);
+
+            if (_hdTilesProvider.AvailableInCache())
+            {
+                _download.SetActive(false);
+            }
+            
             // FOR DEBUG; UNCOMMENT
             if (HDSitesManager.CurrentInstance.UseDtHdId)
             {
@@ -67,10 +73,7 @@ namespace SturfeeVPS.SDK.Examples
                 }
             }
 
-            if (_hdTilesProvider.AvailableInCache())
-            {
-                _download.SetActive(false);
-            }
+            
         }
 
         public async void OnSiteSelected()

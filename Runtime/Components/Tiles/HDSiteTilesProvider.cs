@@ -182,12 +182,20 @@ namespace SturfeeVPS.SDK
 
         public bool AvailableInCache()
         {
-            var dir = Path.Combine(Application.persistentDataPath, "Sites", Site.siteId, "Mesh");
+            var dir = Path.Combine(CacheDir, Site.siteId, "Mesh");
+            var meshFile = Path.Combine(dir, Site.siteId + ".glb");
+            if (HDSitesManager.CurrentInstance.UseDtHdId)
+            {
+                // Debug.Log($"File Exists: {File.Exists(meshFile)}");
+                return File.Exists(meshFile);
+            }
+
+            dir = Path.Combine(Application.persistentDataPath, "Sites", Site.siteId, "Mesh");
             if (!Directory.Exists(dir))
                 Directory.CreateDirectory(dir);
 
             // mesh
-            var meshFile = Path.Combine(dir, Path.GetFileName(Site.mesh.ply.Split('?')[0]));
+            meshFile = Path.Combine(dir, Path.GetFileName(Site.mesh.ply.Split('?')[0]));
 
             return File.Exists(meshFile);
         }
