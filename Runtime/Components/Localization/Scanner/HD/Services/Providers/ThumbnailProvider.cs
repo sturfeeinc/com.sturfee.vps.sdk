@@ -82,6 +82,8 @@ namespace SturfeeVPS.SDK
 
             // try to get thumbnail locally
             var thumbFile = $"{baseDirectory}/{ScanId}.{ext}";
+            
+            Debug.Log($"[ThumbnailProvider] {thumbFile}");
 
             if (File.Exists(thumbFile))
             {
@@ -92,8 +94,11 @@ namespace SturfeeVPS.SDK
             }
             else
             {
+                url = EnsureHttpsUrl(url);
                 UnityWebRequest uwr = UnityWebRequestTexture.GetTexture(url);
+                
                 await uwr.SendWebRequest();
+
 
                 if (uwr.result == UnityWebRequest.Result.ConnectionError) //uwr.isNetworkError || uwr.isHttpError)
                 {
@@ -102,7 +107,7 @@ namespace SturfeeVPS.SDK
                 else if (uwr.result == UnityWebRequest.Result.Success)
                 {
                     var image = ((DownloadHandlerTexture)uwr.downloadHandler).texture;
-
+                    
                     // save to file system
                     byte[] bytes = ext == ImageFileType.png ? image.EncodeToPNG() : image.EncodeToJPG();
                     File.WriteAllBytes($"{baseDirectory}/{ScanId}.{ext}", bytes);
@@ -112,6 +117,15 @@ namespace SturfeeVPS.SDK
             }
 
             return null;
+        }
+
+        string EnsureHttpsUrl(string url)
+        {
+            if (url.StartsWith("http://"))
+            {
+                url = "https://" + url.Substring(7);
+            }
+            return url;
         }
     }
 }

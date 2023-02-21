@@ -39,6 +39,7 @@ namespace SturfeeVPS.SDK.Examples
         public async void SetSite(HDSite site)
         {
             _site = site;
+
             _title.text = site.siteName;
             _hdTilesProvider.SetSite(_site);
 
@@ -47,7 +48,6 @@ namespace SturfeeVPS.SDK.Examples
                 _download.SetActive(false);
             }
             
-            // FOR DEBUG; UNCOMMENT
             if (HDSitesManager.CurrentInstance.UseDtHdId)
             {
                 var thumbnail = await GetThumbnailByUrl(site.siteId, site.ImageUrl);
