@@ -39,22 +39,41 @@ namespace SturfeeVPS.SDK.Examples
         public async void SetSite(HDSite site)
         {
             _site = site;
+
             _title.text = site.siteName;
             _hdTilesProvider.SetSite(_site);
-            var thumbnail = await DownloadThumbnail(Guid.Parse(site.site_meta_data.ThumbId));
-            if (thumbnail != null)
-            {
-                _thumbnail.texture = thumbnail;
-            }
-            else
-            {
-                Debug.LogError($"Could not get thumbnail for site {_site.siteName}");
-            }
-            
+
             if (_hdTilesProvider.AvailableInCache())
             {
                 _download.SetActive(false);
             }
+            
+            if (HDSitesManager.CurrentInstance.UseDtHdId)
+            {
+                var thumbnail = await GetThumbnailByUrl(site.siteId, site.ImageUrl);
+                if (thumbnail != null)
+                {
+                    _thumbnail.texture = thumbnail;
+                }
+                else
+                {
+                    Debug.LogError($"Could not get thumbnail for site {_site.siteName}");
+                }
+            }
+            else
+            { 
+                var thumbnail = await DownloadThumbnail(Guid.Parse(site.site_meta_data.ThumbId));
+                if (thumbnail != null)
+                {
+                    _thumbnail.texture = thumbnail;
+                }
+                else
+                {
+                    Debug.LogError($"Could not get thumbnail for site {_site.siteName}");
+                }
+            }
+
+            
         }
 
         public async void OnSiteSelected()
@@ -105,6 +124,22 @@ namespace SturfeeVPS.SDK.Examples
             try
             {
                 var texture = await _thumbnailProvider.GetThumbnail(id, ImageFileType.jpg);
+                return texture;
+            }
+            catch (Exception ex)
+            {
+                Debug.LogException(ex);
+
+            }
+
+            return null;
+        }
+
+        private async Task<Texture> GetThumbnailByUrl(string ScanId, string url)
+        {
+            try
+            {
+                var texture = await _thumbnailProvider.GetThumbnailByUrl(ScanId, url, ImageFileType.jpg);
                 return texture;
             }
             catch (Exception ex)

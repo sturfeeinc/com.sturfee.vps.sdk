@@ -1,9 +1,12 @@
+using Newtonsoft.Json;
+using System.IO;
 using SturfeeVPS.Core;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Networking;
 using UnityEngine.UI;
 
 namespace SturfeeVPS.SDK
@@ -18,6 +21,11 @@ namespace SturfeeVPS.SDK
         public HDSiteFilter Filter;
         [SerializeField]
         private GameObject _siteItems;
+
+        public bool UseAppId = false;
+        public bool UseDtHdId = false;
+        public string DtHdId;
+        public string UserId;
 
         [Header("SiteTile")]
         [SerializeField]
@@ -52,7 +60,6 @@ namespace SturfeeVPS.SDK
         {
             _hDSitesProvider = new HDSitesProvider();
             await Task.Yield();
-            await LoadSites();
 
             DispaySites(false);
         }
@@ -81,7 +88,89 @@ namespace SturfeeVPS.SDK
             }
             try
             {
-                _sites = await _hDSitesProvider.FetchHDSites(Filter);
+                if (UseAppId)
+                {
+                    _sites = await _hDSitesProvider.FetchHDSites(Filter);
+                }
+                else if (UseDtHdId)
+                {
+                    DtHdLayout_SDK layoutData = new DtHdLayout_SDK();
+                    try
+                    {
+                        var uwr = new UnityWebRequest(Path.Combine("https://digitaltwin.sturfee.com/hd/layout", DtHdId, "?full_details=true"));
+
+                        var dh = new DownloadHandlerBuffer();
+                        uwr.downloadHandler = dh;
+
+                        uwr.method = UnityWebRequest.kHttpVerbGET;
+                        await uwr.SendWebRequest();
+
+                        if (uwr.result == UnityWebRequest.Result.ConnectionError) //uwr.isNetworkError || uwr.isHttpError)
+                        {
+                            Debug.Log("error downloading");
+                        }
+                        else
+                        {
+                            Debug.Log($"Data: {uwr.downloadHandler.text}");
+                            layoutData = JsonConvert.DeserializeObject<DtHdLayout_SDK>(uwr.downloadHandler.text, new JsonSerializerSettings {
+                                NullValueHandling = NullValueHandling.Ignore
+                            });   
+                        }
+
+                    }
+                    catch (Exception e)
+                    {
+                        Debug.LogException(e);
+                    }
+                    
+                    List<HDSite> siteList = new List<HDSite>();
+
+                    foreach (ScanMesh_SDK i in layoutData.ScanMeshes)
+                    {
+                        var hdsite = i.VpsHdSite;
+                        if (hdsite == null) continue;
+
+                        var site = new HDSite();
+
+                        site.siteName = hdsite.siteInfo.name;
+                        site.siteId = hdsite.siteInfo.site_id;
+                        site.latitude = hdsite.siteInfo.latitude;
+                        site.longitude = hdsite.siteInfo.longitude;
+                        site.ImageUrl = hdsite.thumbnailUrl;
+                        site.mesh = new SitePointCloud();
+                        site.mesh.ply = i.ScanMeshUrl;
+                        site.mesh.centerRef = new CenterRef();
+                        site.mesh.centerRef.x = i.RefX;
+                        site.mesh.centerRef.y = i.RefY;
+                        site.mesh.heightOffset = 0;
+
+
+                        site.site_meta_data = new SiteMetadata();
+                        site.site_meta_data.UserId = layoutData.UserId;
+                        // site.site_meta_data.RefId
+                        site.site_meta_data.ThumbId = hdsite.siteInfo.thumbnail_id;
+                        site.site_meta_data.CreatedDate = hdsite.siteInfo.createdDate.ToString();
+                        if (hdsite.siteInfo.isIndoor)
+                            site.site_meta_data.SpaceType = "Indoor";
+                        else
+                            site.site_meta_data.SpaceType = "Outdoor";
+
+                        siteList.Add(site);
+                    }
+
+                    _sites = new HDSite[siteList.Count];
+                    for (int i=0; i<siteList.Count; i++)
+                    {
+                        _sites[i] = siteList[i];
+                    }
+                    
+
+                }
+                else
+                {
+                    _sites = await _hDSitesProvider.FetchHDSites(UserId);
+                }
+
             }
             catch (Exception ex)
             {
@@ -112,8 +201,14 @@ namespace SturfeeVPS.SDK
             _siteItems.SetActive(show);
         }
 
-        public void ShowSitesBrowser(Action<HDSite> callback)
+        public async void ShowSitesBrowser(Action<HDSite> callback)
         {
+            // Debug.Log($"[Card Management] Showing Sites Browser for {_sites}");
+            // while (_sites.Length < 1)
+            // {
+            //     await Task.Yield();
+            // }
+            // Debug.Log($"[Card Management] Showing Sites Browser for {_sites}");
             _siteItems.SetActive(true);
             _onSiteSelectedCallback = callback;
         }
