@@ -1,6 +1,6 @@
 {
   "name": "com.sturfee.vps.sdk",
-  "version": "2.1.2",
+  "version": "2.1.3",
   "displayName": "Sturfee VPS SDK",
   "description": "Core library for Sturfee VPS SDK",
   "unity": "2021.3",

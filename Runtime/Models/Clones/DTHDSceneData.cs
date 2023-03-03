@@ -239,6 +239,7 @@ namespace SturfeeVPS.SDK
         public float ColorB;
 
         public float Intensity;
+        public float ShadowStrength;
         public ShadowType_SDK ShadowType;
         public LightMode_SDK LightMode;
 
