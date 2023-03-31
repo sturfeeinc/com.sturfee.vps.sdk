@@ -5,6 +5,9 @@ using Quaternion = UnityEngine.Quaternion;
 
 namespace SturfeeVPS.SDK
 {
+    /// <summary>
+    /// Data structure for localization request. 4x4 projection matrix is stored in InternalParameters
+    /// </summary> 
     [Serializable]
     public class LocalizationRequest
     {

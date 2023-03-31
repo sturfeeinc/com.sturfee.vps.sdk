@@ -13,6 +13,9 @@ namespace SturfeeVPS.SDK
     public delegate void SocketErrorDelegate(string error);
     public delegate void SocketReceiveDelegate();
 
+    /// <summary>
+    /// Network interface for VPS localization services
+    /// </summary>
     public class LocalizationService
     {        
         public event SocketOpenDelegate OnSocketOpen;

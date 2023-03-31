@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace SturfeeVPS.SDK
 {
+    /// <summary>
+    /// Input handler for VR joystick controller
+    /// </summary>
     public class JoystickController : MonoBehaviour
     {
         [SerializeField]

@@ -9,6 +9,9 @@ using UnityEngine;
 
 namespace SturfeeVPS.SDK
 {
+    /// <summary>
+    /// Filtering options for HD site cards.
+    /// </summary>
     [Serializable]
     public class HDSiteFilter
     {

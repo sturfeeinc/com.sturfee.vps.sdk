@@ -5,6 +5,9 @@ using UnityEngine;
 
 namespace SturfeeVPS.SDK
 {
+    /// <summary>
+    /// Controls XrCamera of the XR session using positional and rotational information from XrSessionPoseManager. 
+    /// </summary>
     public class XrCamera : MonoBehaviour
     {
         private static XrCamera _instance;

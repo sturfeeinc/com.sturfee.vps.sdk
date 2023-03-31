@@ -5,6 +5,9 @@ using UnityEngine;
 
 namespace SturfeeVPS.SDK
 {
+    /// <summary>
+    /// Video provider for VR mode
+    /// </summary>
     public class MobileVRCameraVideoProvider : BaseVideoProvider
     {        
         [SerializeField]

@@ -4,6 +4,9 @@ using System.Threading.Tasks;
 
 namespace SturfeeVPS.SDK
 {
+    /// <summary>
+    /// VPS HD Scanner
+    /// </summary>
     public class HDScanner : MultiframeScanner
     {
         public override async Task Initialize(uint requestNum)

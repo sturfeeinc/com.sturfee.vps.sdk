@@ -6,13 +6,30 @@ using UnityEngine;
 
 namespace SturfeeVPS.SDK
 {
+    /// <summary>
+    /// Event fired when scan is started.
+    /// </summary>
     public delegate void ScanStartEvent();
     public delegate void ScanErrorEvent(string error);
+    /// <summary>
+    /// Event fired when a single scan is captured.
+    /// </summary>
+    /// <param name="localizationRequest">Localization request</param>
     public delegate void ScanCaptureEvent(LocalizationRequest localizationRequest);
     public delegate void ScanLoadingEvent();
+    /// <summary>
+    /// Event fired when scan is prematurely stopped.
+    /// </summary>
     public delegate void ScanStopEvent();
+    /// <summary>
+    /// Event fired when scan is successfully completed.
+    /// </summary>
+    /// <param name="localizationResponse">Localization response message</param>
     public delegate void ScanCompleteEvent(LocalizationResponseMessage localizationResponse);
 
+    /// <summary>
+    /// Scanner interface
+    /// </summary>
     public interface IScanner
     {
         OffsetType OffsetType { get; }
@@ -26,6 +43,9 @@ namespace SturfeeVPS.SDK
         event ScanCompleteEvent OnScanComplete;
     }
 
+    /// <summary>
+    /// Base scanner class
+    /// </summary>
     public class Scanner : MonoBehaviour, IScanner
     {
         public virtual OffsetType OffsetType => throw new System.NotImplementedException();
@@ -39,16 +59,24 @@ namespace SturfeeVPS.SDK
         public event ScanCompleteEvent OnScanComplete;
         public event ScanErrorEvent OnScanError;
 
+        /// <summary>
+        /// Scanner initialization sequence
+        /// </summary>
         public virtual async Task Initialize(uint requestNum)
         {
             throw new System.NotImplementedException();
         }
-
+        /// <summary>
+        /// Scanner start sequence
+        /// </summary>
         public virtual void StartScan()
         {
             throw new System.NotImplementedException();
         }
-
+        /// <summary>
+        /// Scanner stop sequence
+        /// </summary>
+        /// <exception cref="System.NotImplementedException"></exception>
         public virtual void StopScan()
         {
             throw new System.NotImplementedException();
