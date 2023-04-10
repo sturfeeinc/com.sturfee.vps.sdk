@@ -1,6 +1,8 @@
 using Newtonsoft.Json;
 using System.IO;
 using SturfeeVPS.Core;
+using SturfeeVPS.Core.Models;
+using SturfeeVPS.Core.Constants;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -13,8 +15,14 @@ namespace SturfeeVPS.SDK
 {
     public delegate void SiteSelectedEvent(HDSite hDSite);
 
+    /// <summary>
+    /// Manager for HD sites.
+    /// </summary>
     public class HDSitesManager : SceneSingleton<HDSitesManager>
     {        
+        /// <summary>
+        /// Event fired when HD site card is selected.
+        /// </summary>
         public event SiteSelectedEvent OnHDSiteSelected;
 
         [Header("Config")]
@@ -94,7 +102,7 @@ namespace SturfeeVPS.SDK
                 }
                 else if (UseDtHdId)
                 {
-                    DtHdLayout_SDK layoutData = new DtHdLayout_SDK();
+                    DtHdLayout layoutData = new DtHdLayout();
                     try
                     {
                         var uwr = new UnityWebRequest(Path.Combine("https://digitaltwin.sturfee.com/hd/layout", DtHdId, "?full_details=true"));
@@ -112,7 +120,7 @@ namespace SturfeeVPS.SDK
                         else
                         {
                             Debug.Log($"Data: {uwr.downloadHandler.text}");
-                            layoutData = JsonConvert.DeserializeObject<DtHdLayout_SDK>(uwr.downloadHandler.text, new JsonSerializerSettings {
+                            layoutData = JsonConvert.DeserializeObject<DtHdLayout>(uwr.downloadHandler.text, new JsonSerializerSettings {
                                 NullValueHandling = NullValueHandling.Ignore
                             });   
                         }
@@ -125,7 +133,7 @@ namespace SturfeeVPS.SDK
                     
                     List<HDSite> siteList = new List<HDSite>();
 
-                    foreach (ScanMesh_SDK i in layoutData.ScanMeshes)
+                    foreach (ScanMesh i in layoutData.ScanMeshes)
                     {
                         var hdsite = i.VpsHdSite;
                         if (hdsite == null) continue;

@@ -17,6 +17,9 @@ namespace SturfeeVPS.SDK
         public XrSessionProviders Providers;
     }
 
+    /// <summary>
+    /// Providers used during an XR session: GPS, Pose, Video, Tiles and Localization providers. They are registered to SturfeeEventManager at the start of XR session or when provider set is switched.
+    /// </summary>
     [Serializable]
     public class XrSessionProviders
     {

@@ -6,6 +6,9 @@ using UnityEngine;
 
 namespace SturfeeVPS.SDK
 {
+    /// <summary>
+    /// Positions XR assets of a space to it's geo-location in the Unity scene
+    /// </summary>
     public class WorldAnchor : MonoBehaviour
     {
         public GeoLocation Location;
@@ -25,6 +28,9 @@ namespace SturfeeVPS.SDK
             }
         }
 
+        /// <summary>
+        /// Called in update loop to set the position of the asset. Geo-location is passed through SturfeeVPS.SDK.Converters.GeoToUnityPosition to get position of the asset in Unity space.
+        /// </summary>
         public void UpdatePosition()
         {
             if(PositioningUtils.GetReferenceUTM == null)
@@ -42,6 +48,9 @@ namespace SturfeeVPS.SDK
             transform.position = Converters.GeoToUnityPosition(Location);
         }
 
+        /// <summary>
+        /// Called in update loop if _editLocation is set to True. It synchronizes Location variable to the asset's current position. 
+        /// </summary>
         public void UpdateLocation()
         {
             if (PositioningUtils.GetReferenceUTM == null)

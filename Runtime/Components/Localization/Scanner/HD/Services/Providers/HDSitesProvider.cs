@@ -10,11 +10,17 @@ using UnityEngine.Networking;
 
 namespace SturfeeVPS.SDK
 {
+    /// <summary>
+    /// HD sites provider interface
+    /// </summary>
     public interface IHDSitesProvider
     {
         Task<HDSite[]> FetchHDSites(HDSiteFilter siteFilter);
     }
 
+    /// <summary>
+    /// Provider class for HD sites
+    /// </summary>
     public class HDSitesProvider : IHDSitesProvider
     {
         private string _baseUrl = "https://sharedspaces-api.sturfee.com/hd-sites/group";

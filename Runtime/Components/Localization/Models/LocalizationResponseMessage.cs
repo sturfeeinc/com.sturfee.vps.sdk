@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace SturfeeVPS.SDK
 {
+    /// <summary>
+    /// Server response for localization request
+    /// </summary>
     [Serializable]
     public class LocalizationResponseMessage
     {

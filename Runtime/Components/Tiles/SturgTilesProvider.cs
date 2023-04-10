@@ -54,6 +54,9 @@ namespace SturfeeVPS.SDK.Providers
             _providerStatus = ProviderStatus.Initializing;
 
             // load tiles at 0,0,0
+            //
+            // NOTE: PositioningUtils.Init(location), which is used by Converters, is performed before registering a provider set (but only before the first provider set).
+            // This makes geo-location calculations in Converters during "OnRegister" phase valid.
             var location = Converters.UnityToGeoLocation(Vector3.zero);
             try
             {

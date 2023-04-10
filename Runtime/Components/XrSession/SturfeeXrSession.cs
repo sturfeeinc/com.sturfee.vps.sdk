@@ -10,13 +10,30 @@ using UnityEngine;
 
 namespace SturfeeVPS.SDK
 {
+    /// <summary>
+    /// XR Session
+    /// </summary>
     public class SturfeeXrSession : MonoBehaviour
     {
+        /// <summary>
+        /// Central geo-location of Sturfee XR Session.
+        /// </summary>
         public GeoLocation Location;
+        /// <summary>
+        /// Set true if XR session should be created on start of the scene. Set false if using a custom game manager to handle XR session creation.
+        /// </summary>
         public bool CreateOnStart;
-        public int StartSet;        
+        /// <summary>
+        /// Starting provider set index.
+        /// </summary>
+        public int StartSet;
+        /// <summary>
+        /// Provider sets.
+        /// </summary>
         public ProviderSet[] ProviderSets;
-
+        /// <summary>
+        /// Current provider set index
+        /// </summary>
         public int CurrentProviderSet => _currentSet;
         [SerializeField][ReadOnly]
         private int _currentSet;
@@ -37,6 +54,9 @@ namespace SturfeeVPS.SDK
             XrSessionManager.DestroySession();
         }
 
+        /// <summary>
+        /// Initializes XR session; Sets location and registers initial provider set. Location set here is registered at PositioningUtils which is the central point of reference for digital twin positioning. <br> <i>Refer to SturfeeVPS.SDK.Converters for positioning calculations.</i>
+        /// </summary>
         public async void CreateSession()
         {
             _currentSet = StartSet;
@@ -67,6 +87,10 @@ namespace SturfeeVPS.SDK
             RegisterProviders();
         }   
 
+        /// <summary>
+        /// Switches provider set (i.e. VR to AR and vice-versa).
+        /// </summary>
+        /// <param name="index">Provider set index</param>
         public void SwitchProviderSet(int index)
         {
             if (_currentSet == index)
@@ -79,6 +103,9 @@ namespace SturfeeVPS.SDK
             RegisterProviders();
         }
 
+        /// <summary>
+        /// Registers providers to SturfeeEventManager.
+        /// </summary>
         public void RegisterProviders()
         {
             var providerSet = ProviderSets[_currentSet];
@@ -93,6 +120,9 @@ namespace SturfeeVPS.SDK
             RegisterProvider<ILocalizationProvider>(providerSet.Providers.LocalizationProvider);
         }
 
+        /// <summary>
+        /// Unregisters current providers from SturfeeEventManager.
+        /// </summary>
         public void UnRegisterProviders()
         {
             // Gps

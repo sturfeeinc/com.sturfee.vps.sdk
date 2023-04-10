@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace SturfeeVPS.SDK
 {
+    /// <summary>
+    /// Controls VR scene camera's transform
+    /// </summary>
     public class MobileVRCameraController : MonoBehaviour
     {
         public Camera Camera;

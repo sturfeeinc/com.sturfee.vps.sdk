@@ -16,6 +16,9 @@ using Newtonsoft.Json.Linq;
 
 namespace SturfeeVPS.SDK
 {
+    /// <summary>
+    /// \brief Base multiframe scanner class. \details Currently derived by SturfeeVPS.SDK.HDScanner and SturfeeVPS.SDK.SatelliteScanner.
+    /// </summary>
     public class MultiframeScanner : Scanner, IScanner
     {
         [SerializeField]
@@ -163,7 +166,7 @@ namespace SturfeeVPS.SDK
         protected virtual void OnResponse(ResponseMessage responseMessage)
         {
             // FOR DEBUG
-            SturfeeDebug.Log("[MultiframeScanner.cs, OnResponse] "+Newtonsoft.Json.JsonConvert.SerializeObject(responseMessage));
+            // SturfeeDebug.Log("[MultiframeScanner.cs, OnResponse] "+Newtonsoft.Json.JsonConvert.SerializeObject(responseMessage));
 
             _scannerUI.ScanComplete();
 

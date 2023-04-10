@@ -9,6 +9,9 @@ using UnityEngine;
 
 namespace SturfeeVPS.SDK
 {
+    /// <summary>
+    /// Intermediate between a multiframe scanner (SturfeeVPS.SDK.MultiframeScanner) and a pose manager (XrSessionPoseManager). It receives positional and rotational offset information from the scanner, which is then stored for use by the pose manager.
+    /// </summary>
     public class SturfeeVPSLocalizationProvider : BaseLocalizationProvider
     {
         [SerializeField]

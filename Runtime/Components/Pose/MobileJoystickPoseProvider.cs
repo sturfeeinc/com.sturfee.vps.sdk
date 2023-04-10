@@ -5,6 +5,9 @@ using UnityEngine;
 
 namespace SturfeeVPS.SDK
 {
+    /// <summary>
+    /// Pose provider for VR mode
+    /// </summary>
     public class MobileJoystickPoseProvider : BasePoseProvider
     {
         [SerializeField]

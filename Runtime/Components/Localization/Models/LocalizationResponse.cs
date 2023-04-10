@@ -6,6 +6,9 @@ using Quaternion = UnityEngine.Quaternion;
 
 namespace SturfeeVPS.SDK
 {
+    /// <summary>
+    /// Data structure for localization response
+    /// </summary>
     [Serializable]
     public class LocalizationResponse
     {
