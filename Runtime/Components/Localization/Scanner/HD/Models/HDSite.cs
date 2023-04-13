@@ -15,7 +15,9 @@ namespace SturfeeVPS.SDK
         public HDSite[] Items;
         public string Version;
     }
-
+    /// <summary>
+    /// Data structure for an HD site meta-data.  
+    /// </summary>/
     [Serializable]
     public class HDSite
     {
@@ -62,6 +64,9 @@ namespace SturfeeVPS.SDK
     [Serializable]
     public class SitePointCloud
     {
+        /// <summary>
+        /// point cloud (ply) file currently stores URL to anchormesh (glb) instead. To be revised soon.
+        /// </summary>
         public string ply;
         public string csv;
         public CenterRef centerRef;

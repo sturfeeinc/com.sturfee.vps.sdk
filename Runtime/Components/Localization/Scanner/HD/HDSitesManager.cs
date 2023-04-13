@@ -105,7 +105,7 @@ namespace SturfeeVPS.SDK
                     DtHdLayout layoutData = new DtHdLayout();
                     try
                     {
-                        var uwr = new UnityWebRequest(Path.Combine("https://digitaltwin.sturfee.com/hd/layout", DtHdId, "?full_details=true"));
+                        var uwr = new UnityWebRequest(Path.Combine(DtConstants.DTHD_LAYOUT, DtHdId, "?full_details=true"));
 
                         var dh = new DownloadHandlerBuffer();
                         uwr.downloadHandler = dh;
@@ -146,7 +146,7 @@ namespace SturfeeVPS.SDK
                         site.longitude = hdsite.siteInfo.longitude;
                         site.ImageUrl = hdsite.thumbnailUrl;
                         site.mesh = new SitePointCloud();
-                        site.mesh.ply = i.ScanMeshUrl;
+                        site.mesh.ply = i.VpsHdSite.anchorMesh;
                         site.mesh.centerRef = new CenterRef();
                         site.mesh.centerRef.x = i.RefX;
                         site.mesh.centerRef.y = i.RefY;

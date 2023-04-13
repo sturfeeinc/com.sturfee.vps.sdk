@@ -75,7 +75,9 @@ namespace SturfeeVPS.SDK.Examples
 
             
         }
-
+        /// <summary>
+        /// function called when an HD card is selected.
+        /// </summary>
         public async void OnSiteSelected()
         {
             HDSitesManager.CurrentInstance.SetCurrentSite(_site);
