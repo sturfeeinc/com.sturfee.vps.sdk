@@ -52,7 +52,7 @@ namespace SturfeeVPS.SDK
         private HDSite[] _sites;
         [SerializeField][ReadOnly]
         private GameObject _currentTile;
-        [SerializeField][ReadOnly]
+        [SerializeField]//[ReadOnly]
         private Material _tileMaterial;
 
 
