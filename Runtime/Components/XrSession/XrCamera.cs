@@ -5,9 +5,6 @@ using UnityEngine;
 
 namespace SturfeeVPS.SDK
 {
-    /// <summary>
-    /// Controls XrCamera of the XR session using positional and rotational information from XrSessionPoseManager. 
-    /// </summary>
     public class XrCamera : MonoBehaviour
     {
         private static XrCamera _instance;
@@ -88,8 +85,13 @@ namespace SturfeeVPS.SDK
             }
 
             // update local Pose of camera based on sensor readings(PoseProvider)
-            _camera.transform.localPosition = Converters.WorldToUnityPosition(Position);
-            _camera.transform.localRotation = Converters.WorldToUnityRotation(Rotation);         
+            // _camera.transform.localPosition = Converters.WorldToUnityPosition(Position);
+            // FOR DEBUG
+            _camera.transform.localPosition = Converters.WorldToUnityPosition(Position)-Converters.WorldToUnityPosition(xrSession.Shift);
+
+            // _camera.transform.localRotation = Converters.WorldToUnityRotation(Rotation);
+            // FOR DEBUG
+            _camera.transform.localRotation = Converters.WorldToUnityRotation(Rotation * xrSession.PitchOffset);           
 
             // FOR DEBUG
             if (PrintDebug)
@@ -161,7 +163,9 @@ namespace SturfeeVPS.SDK
             Quaternion worldOrigin = Converters.UnityToWorldRotation(Quaternion.identity);
 
             // offset recieved from XRSession
-            Quaternion worldOffset = xrSession.RotationOffset;
+            // Quaternion worldOffset = xrSession.RotationOffset;
+            // FOR DEBUG
+            Quaternion worldOffset = xrSession.YawOffset;
 
             // Apply offset to worldOrgin and convert the result into Unity Coordinate System
             transform.rotation = Converters.WorldToUnityRotation(worldOffset * worldOrigin);
