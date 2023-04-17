@@ -52,7 +52,7 @@ namespace SturfeeVPS.SDK
         private HDSite[] _sites;
         [SerializeField][ReadOnly]
         private GameObject _currentTile;
-        [SerializeField][ReadOnly]
+        [SerializeField]//[ReadOnly]
         private Material _tileMaterial;
 
 
@@ -237,7 +237,9 @@ namespace SturfeeVPS.SDK
 
             _currentTile = tile;
             _currentTile.transform.parent = transform;
-            _tileMaterial = tile.GetComponentInChildren<MeshRenderer>().material;
+            if (_tileMaterial == null) {
+                _tileMaterial = tile.GetComponentInChildren<MeshRenderer>().material;
+            }            
 
             _displayToggle.gameObject.SetActive(_showTileUI);
             _occlusionToggle.gameObject.SetActive(_showTileUI);
