@@ -20,10 +20,10 @@ namespace SturfeeVPS.SDK.Providers
             Longitude = -121.890137
         };
 
-        private bool _locationReady;
-        private ProviderStatus _providerStatus;
+        protected bool _locationReady;
+        protected ProviderStatus _providerStatus;
 
-        private void Update()
+        protected void Update()
         {
             if (!_locationReady || _providerStatus != ProviderStatus.Ready)
             {
