@@ -88,13 +88,8 @@ namespace SturfeeVPS.SDK
             }
 
             // update local Pose of camera based on sensor readings(PoseProvider)
-            // _camera.transform.localPosition = Converters.WorldToUnityPosition(Position);
-            // FOR DEBUG
-            _camera.transform.localPosition = Converters.WorldToUnityPosition(Position)-Converters.WorldToUnityPosition(xrSession.Shift);
-
-            // _camera.transform.localRotation = Converters.WorldToUnityRotation(Rotation);
-            // FOR DEBUG
-            _camera.transform.localRotation = Converters.WorldToUnityRotation(Rotation * xrSession.PitchOffset);           
+            _camera.transform.localPosition = Converters.WorldToUnityPosition(Position);
+            _camera.transform.localRotation = Converters.WorldToUnityRotation(Rotation);         
 
             // FOR DEBUG
             if (PrintDebug)
@@ -110,6 +105,39 @@ namespace SturfeeVPS.SDK
             ApplyOffsets();
 
         }
+
+        // private void Update2() // Jay's change
+        // {
+        //     var xrSession = XrSessionManager.GetSession();
+
+        //     if (xrSession == null)// || xrSession.Status < XRSessionStatus.Ready)
+        //     {
+        //         return;
+        //     }
+
+        //     // update local Pose of camera based on sensor readings(PoseProvider)
+        //     // _camera.transform.localPosition = Converters.WorldToUnityPosition(Position);
+        //     // FOR DEBUG
+        //     _camera.transform.localPosition = Converters.WorldToUnityPosition(Position)-Converters.WorldToUnityPosition(xrSession.Shift);
+
+        //     // _camera.transform.localRotation = Converters.WorldToUnityRotation(Rotation);
+        //     // FOR DEBUG
+        //     _camera.transform.localRotation = Converters.WorldToUnityRotation(Rotation * xrSession.PitchOffset);           
+
+        //     // FOR DEBUG
+        //     if (PrintDebug)
+        //         SturfeeDebug.Log($"[XrCamera.cs] [DEBUG BUTTON PRESS] Position: {Position}, Rotation: {Rotation}");   
+            
+        //     // update projection matrix based on sensor readings (VideoProvider)
+        //     var videoProvider = xrSession.GetProvider<IVideoProvider>();
+        //     if (videoProvider != null && videoProvider.GetProviderStatus() == ProviderStatus.Ready)
+        //     {
+        //         _camera.projectionMatrix = videoProvider.GetProjectionMatrix();
+        //     }
+
+        //     ApplyOffsets();
+
+        // }
 
         private void OnDestroy()
         {
@@ -166,9 +194,9 @@ namespace SturfeeVPS.SDK
             Quaternion worldOrigin = Converters.UnityToWorldRotation(Quaternion.identity);
 
             // offset recieved from XRSession
-            // Quaternion worldOffset = xrSession.RotationOffset;
+            Quaternion worldOffset = xrSession.RotationOffset;
             // FOR DEBUG
-            Quaternion worldOffset = xrSession.YawOffset;
+            // Quaternion worldOffset = xrSession.YawOffset; // Jay's change
 
             // Apply offset to worldOrgin and convert the result into Unity Coordinate System
             transform.rotation = Converters.WorldToUnityRotation(worldOffset * worldOrigin);
