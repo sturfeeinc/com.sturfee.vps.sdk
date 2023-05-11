@@ -9,57 +9,64 @@ using pb = global::Google.Protobuf;
 using pbc = global::Google.Protobuf.Collections;
 using pbr = global::Google.Protobuf.Reflection;
 using scg = global::System.Collections.Generic;
-namespace SturfeeVPS.Core.Proto {
+namespace SturfeeVPS.Core.Proto
+{
 
-  /// <summary>Holder for reflection information generated from params.proto</summary>
-  public static partial class ParamsReflection {
+    /// <summary>Holder for reflection information generated from params.proto</summary>
+    public static partial class ParamsReflection
+    {
 
-    #region Descriptor
-    /// <summary>File descriptor for params.proto</summary>
-    public static pbr::FileDescriptor Descriptor {
-      get { return descriptor; }
-    }
-    private static pbr::FileDescriptor descriptor;
+        #region Descriptor
+        /// <summary>File descriptor for params.proto</summary>
+        public static pbr::FileDescriptor Descriptor
+        {
+            get { return descriptor; }
+        }
+        private static pbr::FileDescriptor descriptor;
 
-    static ParamsReflection() {
-      byte[] descriptorData = global::System.Convert.FromBase64String(
-          string.Concat(
-            "CgxwYXJhbXMucHJvdG8SCnByb3RvTW9kZWwiZwoSSW50ZXJuYWxQYXJhbWV0",
-            "ZXJzEhQKDHNjZW5lX2hlaWdodBgBIAEoDRITCgtzY2VuZV93aWR0aBgCIAEo",
-            "DRILCgNmb3YYAyABKAISGQoRcHJvamVjdGlvbl9tYXRyaXgYBCADKAEiSQoL",
-            "T2Zmc2V0RXVsZXISEQoJeWF3T2Zmc2V0GAEgASgBEhIKCnJvbGxPZmZzZXQY",
-            "AiABKAESEwoLcGl0Y2hPZmZzZXQYAyABKAEiNAoIUG9zaXRpb24SCwoDbGF0",
-            "GAEgASgBEgsKA2xvbhgCIAEoARIOCgZoZWlnaHQYAyABKAEiaAoSRXh0ZXJu",
-            "YWxQYXJhbWV0ZXJzEiYKCHBvc2l0aW9uGAEgASgLMhQucHJvdG9Nb2RlbC5Q",
-            "b3NpdGlvbhIqCgpxdWF0ZXJuaW9uGAIgASgLMhYucHJvdG9Nb2RlbC5RdWF0",
-            "ZXJuaW9uIjgKClF1YXRlcm5pb24SCQoBeRgBIAEoARIJCgF4GAIgASgBEgkK",
-            "AXoYAyABKAESCQoBdxgEIAEoASKTAwoHUmVxdWVzdBI4CglvcGVyYXRpb24Y",
-            "ASABKA4yJS5wcm90b01vZGVsLlJlcXVlc3QuT3BlcmF0aW9uTWVzc2FnZXMS",
-            "EgoKcmVxdWVzdF9pZBgCIAEoDRI7ChNleHRlcm5hbF9wYXJhbWV0ZXJzGAMg",
-            "ASgLMh4ucHJvdG9Nb2RlbC5FeHRlcm5hbFBhcmFtZXRlcnMSOwoTaW50ZXJu",
-            "YWxfcGFyYW1ldGVycxgEIAEoCzIeLnByb3RvTW9kZWwuSW50ZXJuYWxQYXJh",
-            "bWV0ZXJzEhsKE3RvdGFsX251bV9vZl9mcmFtZXMYBSABKA0SEwoLZnJhbWVf",
-            "b3JkZXIYBiABKA0SEwoLdHJhY2tpbmdfaWQYByABKAkSFAoMc291cmNlX2lt",
-            "YWdlGAkgASgMEg8KB3NpdGVfaWQYCiABKAkSEgoKZGV2X3JhZGl1cxgUIAEo",
-            "AyI+ChFPcGVyYXRpb25NZXNzYWdlcxIPCgtVTlNVUFBPUlRFRBAAEg0KCUFM",
-            "SUdOTUVOVBAEEgkKBVJFTE9DEAUihAEKD1Jlc3BvbnNlTWVzc2FnZRISCgpy",
-            "ZXF1ZXN0X2lkGAEgASgNEhMKC3RyYWNraW5nX2lkGAIgASgJEiYKCHJlc3Bv",
-            "bnNlGAMgASgLMhQucHJvdG9Nb2RlbC5SZXNwb25zZRIgCgVlcnJvchgEIAEo",
-            "CzIRLnByb3RvTW9kZWwuRXJyb3Ii0QEKCFJlc3BvbnNlEiYKCHBvc2l0aW9u",
-            "GAEgASgLMhQucHJvdG9Nb2RlbC5Qb3NpdGlvbhI1ChV5YXdfb2Zmc2V0X3F1",
-            "YXRlcm5pb24YAiABKAsyFi5wcm90b01vZGVsLlF1YXRlcm5pb24SNwoXcGl0",
-            "Y2hfb2Zmc2V0X3F1YXRlcm5pb24YAyABKAsyFi5wcm90b01vZGVsLlF1YXRl",
-            "cm5pb24SLQoMZXVsZXJfb2Zmc2V0GAQgASgLMhcucHJvdG9Nb2RlbC5PZmZz",
-            "ZXRFdWxlciLuAQoFRXJyb3ISKgoEY29kZRgBIAEoDjIcLnByb3RvTW9kZWwu",
-            "RXJyb3IuRXJyb3JDb2RlcxIPCgdtZXNzYWdlGAIgASgJIqcBCgpFcnJvckNv",
-            "ZGVzEgwKCE5PX0VSUk9SEAASHAoXVU5FWFBFQ1RFRF9TRVJWRVJfRVJST1IQ",
-            "2ygSEwoOUFJPVE9DT0xfRVJST1IQ3CgSFQoQVkFMSURBVElPTl9FUlJPUhDd",
-            "KBIaChVPVVRfT0ZfQ09WRVJBR0VfRVJST1IQ3igSJQogR1JPVU5EX05PVF9F",
-            "Tk9VR0hfRkVBVFVSRVNfRVJST1IQ3yhCEloQcHJvdG9Nb2RlbC9tb2RlbGIG",
-            "cHJvdG8z"));
-      descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
-          new pbr::FileDescriptor[] { },
-          new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
+        static ParamsReflection()
+        {
+            byte[] descriptorData = global::System.Convert.FromBase64String(
+                string.Concat(
+                  "CgxwYXJhbXMucHJvdG8SCnByb3RvTW9kZWwiZwoSSW50ZXJuYWxQYXJhbWV0",
+                  "ZXJzEhQKDHNjZW5lX2hlaWdodBgBIAEoDRITCgtzY2VuZV93aWR0aBgCIAEo",
+                  "DRILCgNmb3YYAyABKAISGQoRcHJvamVjdGlvbl9tYXRyaXgYBCADKAEiSQoL",
+                  "T2Zmc2V0RXVsZXISEQoJeWF3T2Zmc2V0GAEgASgBEhIKCnJvbGxPZmZzZXQY",
+                  "AiABKAESEwoLcGl0Y2hPZmZzZXQYAyABKAEiNAoIUG9zaXRpb24SCwoDbGF0",
+                  "GAEgASgBEgsKA2xvbhgCIAEoARIOCgZoZWlnaHQYAyABKAEiaAoSRXh0ZXJu",
+                  "YWxQYXJhbWV0ZXJzEiYKCHBvc2l0aW9uGAEgASgLMhQucHJvdG9Nb2RlbC5Q",
+                  "b3NpdGlvbhIqCgpxdWF0ZXJuaW9uGAIgASgLMhYucHJvdG9Nb2RlbC5RdWF0",
+                  "ZXJuaW9uIjgKClF1YXRlcm5pb24SCQoBeRgBIAEoARIJCgF4GAIgASgBEgkK",
+                  "AXoYAyABKAESCQoBdxgEIAEoASKTAwoHUmVxdWVzdBI4CglvcGVyYXRpb24Y",
+                  "ASABKA4yJS5wcm90b01vZGVsLlJlcXVlc3QuT3BlcmF0aW9uTWVzc2FnZXMS",
+                  "EgoKcmVxdWVzdF9pZBgCIAEoDRI7ChNleHRlcm5hbF9wYXJhbWV0ZXJzGAMg",
+                  "ASgLMh4ucHJvdG9Nb2RlbC5FeHRlcm5hbFBhcmFtZXRlcnMSOwoTaW50ZXJu",
+                  "YWxfcGFyYW1ldGVycxgEIAEoCzIeLnByb3RvTW9kZWwuSW50ZXJuYWxQYXJh",
+                  "bWV0ZXJzEhsKE3RvdGFsX251bV9vZl9mcmFtZXMYBSABKA0SEwoLZnJhbWVf",
+                  "b3JkZXIYBiABKA0SEwoLdHJhY2tpbmdfaWQYByABKAkSFAoMc291cmNlX2lt",
+                  "YWdlGAkgASgMEg8KB3NpdGVfaWQYCiABKAkSEgoKZGV2X3JhZGl1cxgUIAEo",
+                  "AyI+ChFPcGVyYXRpb25NZXNzYWdlcxIPCgtVTlNVUFBPUlRFRBAAEg0KCUFM",
+                  "SUdOTUVOVBAEEgkKBVJFTE9DEAUihAEKD1Jlc3BvbnNlTWVzc2FnZRISCgpy",
+                  "ZXF1ZXN0X2lkGAEgASgNEhMKC3RyYWNraW5nX2lkGAIgASgJEiYKCHJlc3Bv",
+                  "bnNlGAMgASgLMhQucHJvdG9Nb2RlbC5SZXNwb25zZRIgCgVlcnJvchgEIAEo",
+                  "CzIRLnByb3RvTW9kZWwuRXJyb3Ii1wIKCFJlc3BvbnNlEiYKCHBvc2l0aW9u",
+                  "GAEgASgLMhQucHJvdG9Nb2RlbC5Qb3NpdGlvbhI1ChV5YXdfb2Zmc2V0X3F1",
+                  "YXRlcm5pb24YAiABKAsyFi5wcm90b01vZGVsLlF1YXRlcm5pb24SNwoXcGl0",
+                  "Y2hfb2Zmc2V0X3F1YXRlcm5pb24YAyABKAsyFi5wcm90b01vZGVsLlF1YXRl",
+                  "cm5pb24SLQoMZXVsZXJfb2Zmc2V0GAQgASgLMhcucHJvdG9Nb2RlbC5PZmZz",
+                  "ZXRFdWxlchI2ChZyb2xsX29mZnNldF9xdWF0ZXJuaW9uGAUgASgLMhYucHJv",
+                  "dG9Nb2RlbC5RdWF0ZXJuaW9uEjEKEW9mZnNldF9xdWF0ZXJuaW9uGAYgASgL",
+                  "MhYucHJvdG9Nb2RlbC5RdWF0ZXJuaW9uEhkKEXNlbGVjdGVkX2ZyYW1lX2lk",
+                  "GAcgASgNIu4BCgVFcnJvchIqCgRjb2RlGAEgASgOMhwucHJvdG9Nb2RlbC5F",
+                  "cnJvci5FcnJvckNvZGVzEg8KB21lc3NhZ2UYAiABKAkipwEKCkVycm9yQ29k",
+                  "ZXMSDAoITk9fRVJST1IQABIcChdVTkVYUEVDVEVEX1NFUlZFUl9FUlJPUhDb",
+                  "KBITCg5QUk9UT0NPTF9FUlJPUhDcKBIVChBWQUxJREFUSU9OX0VSUk9SEN0o",
+                  "EhoKFU9VVF9PRl9DT1ZFUkFHRV9FUlJPUhDeKBIlCiBHUk9VTkRfTk9UX0VO",
+                  "T1VHSF9GRUFUVVJFU19FUlJPUhDfKEISWhBwcm90b01vZGVsL21vZGVsYgZw",
+                  "cm90bzM="));
+            descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
+                new pbr::FileDescriptor[] { },
+                new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::SturfeeVPS.Core.Proto.InternalParameters), global::SturfeeVPS.Core.Proto.InternalParameters.Parser, new[]{ "SceneHeight", "SceneWidth", "Fov", "ProjectionMatrix" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SturfeeVPS.Core.Proto.OffsetEuler), global::SturfeeVPS.Core.Proto.OffsetEuler.Parser, new[]{ "YawOffset", "RollOffset", "PitchOffset" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SturfeeVPS.Core.Proto.Position), global::SturfeeVPS.Core.Proto.Position.Parser, new[]{ "Lat", "Lon", "Height" }, null, null, null, null),
@@ -67,156 +74,176 @@ namespace SturfeeVPS.Core.Proto {
             new pbr::GeneratedClrTypeInfo(typeof(global::SturfeeVPS.Core.Proto.Quaternion), global::SturfeeVPS.Core.Proto.Quaternion.Parser, new[]{ "Y", "X", "Z", "W" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SturfeeVPS.Core.Proto.Request), global::SturfeeVPS.Core.Proto.Request.Parser, new[]{ "Operation", "RequestId", "ExternalParameters", "InternalParameters", "TotalNumOfFrames", "FrameOrder", "TrackingId", "SourceImage", "SiteId", "DevRadius" }, null, new[]{ typeof(global::SturfeeVPS.Core.Proto.Request.Types.OperationMessages) }, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SturfeeVPS.Core.Proto.ResponseMessage), global::SturfeeVPS.Core.Proto.ResponseMessage.Parser, new[]{ "RequestId", "TrackingId", "Response", "Error" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SturfeeVPS.Core.Proto.Response), global::SturfeeVPS.Core.Proto.Response.Parser, new[]{ "Position", "YawOffsetQuaternion", "PitchOffsetQuaternion", "EulerOffset" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SturfeeVPS.Core.Proto.Response), global::SturfeeVPS.Core.Proto.Response.Parser, new[]{ "Position", "YawOffsetQuaternion", "PitchOffsetQuaternion", "EulerOffset", "RollOffsetQuaternion", "OffsetQuaternion", "SelectedFrameId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SturfeeVPS.Core.Proto.Error), global::SturfeeVPS.Core.Proto.Error.Parser, new[]{ "Code", "Message" }, null, new[]{ typeof(global::SturfeeVPS.Core.Proto.Error.Types.ErrorCodes) }, null, null)
-          }));
-    }
-    #endregion
+                }));
+        }
+        #endregion
 
-  }
-  #region Messages
-  public sealed partial class InternalParameters : pb::IMessage<InternalParameters>
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    }
+    #region Messages
+    public sealed partial class InternalParameters : pb::IMessage<InternalParameters>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
-  #endif
-  {
-    private static readonly pb::MessageParser<InternalParameters> _parser = new pb::MessageParser<InternalParameters>(() => new InternalParameters());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<InternalParameters> Parser { get { return _parser; } }
+#endif
+    {
+        private static readonly pb::MessageParser<InternalParameters> _parser = new pb::MessageParser<InternalParameters>(() => new InternalParameters());
+        private pb::UnknownFieldSet _unknownFields;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public static pb::MessageParser<InternalParameters> Parser { get { return _parser; } }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::SturfeeVPS.Core.Proto.ParamsReflection.Descriptor.MessageTypes[0]; }
-    }
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public static pbr::MessageDescriptor Descriptor
+        {
+            get { return global::SturfeeVPS.Core.Proto.ParamsReflection.Descriptor.MessageTypes[0]; }
+        }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        pbr::MessageDescriptor pb::IMessage.Descriptor
+        {
+            get { return Descriptor; }
+        }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public InternalParameters() {
-      OnConstruction();
-    }
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public InternalParameters()
+        {
+            OnConstruction();
+        }
 
-    partial void OnConstruction();
+        partial void OnConstruction();
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public InternalParameters(InternalParameters other) : this() {
-      sceneHeight_ = other.sceneHeight_;
-      sceneWidth_ = other.sceneWidth_;
-      fov_ = other.fov_;
-      projectionMatrix_ = other.projectionMatrix_.Clone();
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public InternalParameters(InternalParameters other) : this()
+        {
+            sceneHeight_ = other.sceneHeight_;
+            sceneWidth_ = other.sceneWidth_;
+            fov_ = other.fov_;
+            projectionMatrix_ = other.projectionMatrix_.Clone();
+            _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+        }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public InternalParameters Clone() {
-      return new InternalParameters(this);
-    }
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public InternalParameters Clone()
+        {
+            return new InternalParameters(this);
+        }
 
-    /// <summary>Field number for the "scene_height" field.</summary>
-    public const int SceneHeightFieldNumber = 1;
-    private uint sceneHeight_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public uint SceneHeight {
-      get { return sceneHeight_; }
-      set {
-        sceneHeight_ = value;
-      }
-    }
+        /// <summary>Field number for the "scene_height" field.</summary>
+        public const int SceneHeightFieldNumber = 1;
+        private uint sceneHeight_;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public uint SceneHeight
+        {
+            get { return sceneHeight_; }
+            set
+            {
+                sceneHeight_ = value;
+            }
+        }
 
-    /// <summary>Field number for the "scene_width" field.</summary>
-    public const int SceneWidthFieldNumber = 2;
-    private uint sceneWidth_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public uint SceneWidth {
-      get { return sceneWidth_; }
-      set {
-        sceneWidth_ = value;
-      }
-    }
+        /// <summary>Field number for the "scene_width" field.</summary>
+        public const int SceneWidthFieldNumber = 2;
+        private uint sceneWidth_;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public uint SceneWidth
+        {
+            get { return sceneWidth_; }
+            set
+            {
+                sceneWidth_ = value;
+            }
+        }
 
-    /// <summary>Field number for the "fov" field.</summary>
-    public const int FovFieldNumber = 3;
-    private float fov_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public float Fov {
-      get { return fov_; }
-      set {
-        fov_ = value;
-      }
-    }
+        /// <summary>Field number for the "fov" field.</summary>
+        public const int FovFieldNumber = 3;
+        private float fov_;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public float Fov
+        {
+            get { return fov_; }
+            set
+            {
+                fov_ = value;
+            }
+        }
 
-    /// <summary>Field number for the "projection_matrix" field.</summary>
-    public const int ProjectionMatrixFieldNumber = 4;
-    private static readonly pb::FieldCodec<double> _repeated_projectionMatrix_codec
-        = pb::FieldCodec.ForDouble(34);
-    private readonly pbc::RepeatedField<double> projectionMatrix_ = new pbc::RepeatedField<double>();
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public pbc::RepeatedField<double> ProjectionMatrix {
-      get { return projectionMatrix_; }
-    }
+        /// <summary>Field number for the "projection_matrix" field.</summary>
+        public const int ProjectionMatrixFieldNumber = 4;
+        private static readonly pb::FieldCodec<double> _repeated_projectionMatrix_codec
+            = pb::FieldCodec.ForDouble(34);
+        private readonly pbc::RepeatedField<double> projectionMatrix_ = new pbc::RepeatedField<double>();
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public pbc::RepeatedField<double> ProjectionMatrix
+        {
+            get { return projectionMatrix_; }
+        }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override bool Equals(object other) {
-      return Equals(other as InternalParameters);
-    }
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public override bool Equals(object other)
+        {
+            return Equals(other as InternalParameters);
+        }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(InternalParameters other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (SceneHeight != other.SceneHeight) return false;
-      if (SceneWidth != other.SceneWidth) return false;
-      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(Fov, other.Fov)) return false;
-      if(!projectionMatrix_.Equals(other.projectionMatrix_)) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public bool Equals(InternalParameters other)
+        {
+            if (ReferenceEquals(other, null))
+            {
+                return false;
+            }
+            if (ReferenceEquals(other, this))
+            {
+                return true;
+            }
+            if (SceneHeight != other.SceneHeight) return false;
+            if (SceneWidth != other.SceneWidth) return false;
+            if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(Fov, other.Fov)) return false;
+            if (!projectionMatrix_.Equals(other.projectionMatrix_)) return false;
+            return Equals(_unknownFields, other._unknownFields);
+        }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (SceneHeight != 0) hash ^= SceneHeight.GetHashCode();
-      if (SceneWidth != 0) hash ^= SceneWidth.GetHashCode();
-      if (Fov != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(Fov);
-      hash ^= projectionMatrix_.GetHashCode();
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public override int GetHashCode()
+        {
+            int hash = 1;
+            if (SceneHeight != 0) hash ^= SceneHeight.GetHashCode();
+            if (SceneWidth != 0) hash ^= SceneWidth.GetHashCode();
+            if (Fov != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(Fov);
+            hash ^= projectionMatrix_.GetHashCode();
+            if (_unknownFields != null)
+            {
+                hash ^= _unknownFields.GetHashCode();
+            }
+            return hash;
+        }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public override string ToString()
+        {
+            return pb::JsonFormatter.ToDiagnosticString(this);
+        }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void WriteTo(pb::CodedOutputStream output) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      output.WriteRawMessage(this);
-    #else
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public void WriteTo(pb::CodedOutputStream output)
+        {
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+            output.WriteRawMessage(this);
+#else
       if (SceneHeight != 0) {
         output.WriteRawTag(8);
         output.WriteUInt32(SceneHeight);
@@ -233,77 +260,93 @@ namespace SturfeeVPS.Core.Proto {
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
-    #endif
-    }
+#endif
+        }
 
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (SceneHeight != 0) {
-        output.WriteRawTag(8);
-        output.WriteUInt32(SceneHeight);
-      }
-      if (SceneWidth != 0) {
-        output.WriteRawTag(16);
-        output.WriteUInt32(SceneWidth);
-      }
-      if (Fov != 0F) {
-        output.WriteRawTag(29);
-        output.WriteFloat(Fov);
-      }
-      projectionMatrix_.WriteTo(ref output, _repeated_projectionMatrix_codec);
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(ref output);
-      }
-    }
-    #endif
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output)
+        {
+            if (SceneHeight != 0)
+            {
+                output.WriteRawTag(8);
+                output.WriteUInt32(SceneHeight);
+            }
+            if (SceneWidth != 0)
+            {
+                output.WriteRawTag(16);
+                output.WriteUInt32(SceneWidth);
+            }
+            if (Fov != 0F)
+            {
+                output.WriteRawTag(29);
+                output.WriteFloat(Fov);
+            }
+            projectionMatrix_.WriteTo(ref output, _repeated_projectionMatrix_codec);
+            if (_unknownFields != null)
+            {
+                _unknownFields.WriteTo(ref output);
+            }
+        }
+#endif
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int CalculateSize() {
-      int size = 0;
-      if (SceneHeight != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(SceneHeight);
-      }
-      if (SceneWidth != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(SceneWidth);
-      }
-      if (Fov != 0F) {
-        size += 1 + 4;
-      }
-      size += projectionMatrix_.CalculateSize(_repeated_projectionMatrix_codec);
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public int CalculateSize()
+        {
+            int size = 0;
+            if (SceneHeight != 0)
+            {
+                size += 1 + pb::CodedOutputStream.ComputeUInt32Size(SceneHeight);
+            }
+            if (SceneWidth != 0)
+            {
+                size += 1 + pb::CodedOutputStream.ComputeUInt32Size(SceneWidth);
+            }
+            if (Fov != 0F)
+            {
+                size += 1 + 4;
+            }
+            size += projectionMatrix_.CalculateSize(_repeated_projectionMatrix_codec);
+            if (_unknownFields != null)
+            {
+                size += _unknownFields.CalculateSize();
+            }
+            return size;
+        }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(InternalParameters other) {
-      if (other == null) {
-        return;
-      }
-      if (other.SceneHeight != 0) {
-        SceneHeight = other.SceneHeight;
-      }
-      if (other.SceneWidth != 0) {
-        SceneWidth = other.SceneWidth;
-      }
-      if (other.Fov != 0F) {
-        Fov = other.Fov;
-      }
-      projectionMatrix_.Add(other.projectionMatrix_);
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public void MergeFrom(InternalParameters other)
+        {
+            if (other == null)
+            {
+                return;
+            }
+            if (other.SceneHeight != 0)
+            {
+                SceneHeight = other.SceneHeight;
+            }
+            if (other.SceneWidth != 0)
+            {
+                SceneWidth = other.SceneWidth;
+            }
+            if (other.Fov != 0F)
+            {
+                Fov = other.Fov;
+            }
+            projectionMatrix_.Add(other.projectionMatrix_);
+            _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+        }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(pb::CodedInputStream input) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      input.ReadRawMessage(this);
-    #else
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public void MergeFrom(pb::CodedInputStream input)
+        {
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+            input.ReadRawMessage(this);
+#else
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
         switch(tag) {
@@ -329,171 +372,197 @@ namespace SturfeeVPS.Core.Proto {
           }
         }
       }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
-            break;
-          case 8: {
-            SceneHeight = input.ReadUInt32();
-            break;
-          }
-          case 16: {
-            SceneWidth = input.ReadUInt32();
-            break;
-          }
-          case 29: {
-            Fov = input.ReadFloat();
-            break;
-          }
-          case 34:
-          case 33: {
-            projectionMatrix_.AddEntriesFrom(ref input, _repeated_projectionMatrix_codec);
-            break;
-          }
+#endif
         }
-      }
+
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input)
+        {
+            uint tag;
+            while ((tag = input.ReadTag()) != 0)
+            {
+                switch (tag)
+                {
+                    default:
+                        _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+                        break;
+                    case 8:
+                        {
+                            SceneHeight = input.ReadUInt32();
+                            break;
+                        }
+                    case 16:
+                        {
+                            SceneWidth = input.ReadUInt32();
+                            break;
+                        }
+                    case 29:
+                        {
+                            Fov = input.ReadFloat();
+                            break;
+                        }
+                    case 34:
+                    case 33:
+                        {
+                            projectionMatrix_.AddEntriesFrom(ref input, _repeated_projectionMatrix_codec);
+                            break;
+                        }
+                }
+            }
+        }
+#endif
+
     }
-    #endif
 
-  }
-
-  public sealed partial class OffsetEuler : pb::IMessage<OffsetEuler>
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    public sealed partial class OffsetEuler : pb::IMessage<OffsetEuler>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
-  #endif
-  {
-    private static readonly pb::MessageParser<OffsetEuler> _parser = new pb::MessageParser<OffsetEuler>(() => new OffsetEuler());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<OffsetEuler> Parser { get { return _parser; } }
+#endif
+    {
+        private static readonly pb::MessageParser<OffsetEuler> _parser = new pb::MessageParser<OffsetEuler>(() => new OffsetEuler());
+        private pb::UnknownFieldSet _unknownFields;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public static pb::MessageParser<OffsetEuler> Parser { get { return _parser; } }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::SturfeeVPS.Core.Proto.ParamsReflection.Descriptor.MessageTypes[1]; }
-    }
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public static pbr::MessageDescriptor Descriptor
+        {
+            get { return global::SturfeeVPS.Core.Proto.ParamsReflection.Descriptor.MessageTypes[1]; }
+        }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        pbr::MessageDescriptor pb::IMessage.Descriptor
+        {
+            get { return Descriptor; }
+        }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public OffsetEuler() {
-      OnConstruction();
-    }
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public OffsetEuler()
+        {
+            OnConstruction();
+        }
 
-    partial void OnConstruction();
+        partial void OnConstruction();
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public OffsetEuler(OffsetEuler other) : this() {
-      yawOffset_ = other.yawOffset_;
-      rollOffset_ = other.rollOffset_;
-      pitchOffset_ = other.pitchOffset_;
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public OffsetEuler(OffsetEuler other) : this()
+        {
+            yawOffset_ = other.yawOffset_;
+            rollOffset_ = other.rollOffset_;
+            pitchOffset_ = other.pitchOffset_;
+            _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+        }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public OffsetEuler Clone() {
-      return new OffsetEuler(this);
-    }
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public OffsetEuler Clone()
+        {
+            return new OffsetEuler(this);
+        }
 
-    /// <summary>Field number for the "yawOffset" field.</summary>
-    public const int YawOffsetFieldNumber = 1;
-    private double yawOffset_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public double YawOffset {
-      get { return yawOffset_; }
-      set {
-        yawOffset_ = value;
-      }
-    }
+        /// <summary>Field number for the "yawOffset" field.</summary>
+        public const int YawOffsetFieldNumber = 1;
+        private double yawOffset_;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public double YawOffset
+        {
+            get { return yawOffset_; }
+            set
+            {
+                yawOffset_ = value;
+            }
+        }
 
-    /// <summary>Field number for the "rollOffset" field.</summary>
-    public const int RollOffsetFieldNumber = 2;
-    private double rollOffset_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public double RollOffset {
-      get { return rollOffset_; }
-      set {
-        rollOffset_ = value;
-      }
-    }
+        /// <summary>Field number for the "rollOffset" field.</summary>
+        public const int RollOffsetFieldNumber = 2;
+        private double rollOffset_;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public double RollOffset
+        {
+            get { return rollOffset_; }
+            set
+            {
+                rollOffset_ = value;
+            }
+        }
 
-    /// <summary>Field number for the "pitchOffset" field.</summary>
-    public const int PitchOffsetFieldNumber = 3;
-    private double pitchOffset_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public double PitchOffset {
-      get { return pitchOffset_; }
-      set {
-        pitchOffset_ = value;
-      }
-    }
+        /// <summary>Field number for the "pitchOffset" field.</summary>
+        public const int PitchOffsetFieldNumber = 3;
+        private double pitchOffset_;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public double PitchOffset
+        {
+            get { return pitchOffset_; }
+            set
+            {
+                pitchOffset_ = value;
+            }
+        }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override bool Equals(object other) {
-      return Equals(other as OffsetEuler);
-    }
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public override bool Equals(object other)
+        {
+            return Equals(other as OffsetEuler);
+        }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(OffsetEuler other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(YawOffset, other.YawOffset)) return false;
-      if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(RollOffset, other.RollOffset)) return false;
-      if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(PitchOffset, other.PitchOffset)) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public bool Equals(OffsetEuler other)
+        {
+            if (ReferenceEquals(other, null))
+            {
+                return false;
+            }
+            if (ReferenceEquals(other, this))
+            {
+                return true;
+            }
+            if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(YawOffset, other.YawOffset)) return false;
+            if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(RollOffset, other.RollOffset)) return false;
+            if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(PitchOffset, other.PitchOffset)) return false;
+            return Equals(_unknownFields, other._unknownFields);
+        }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (YawOffset != 0D) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(YawOffset);
-      if (RollOffset != 0D) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(RollOffset);
-      if (PitchOffset != 0D) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(PitchOffset);
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public override int GetHashCode()
+        {
+            int hash = 1;
+            if (YawOffset != 0D) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(YawOffset);
+            if (RollOffset != 0D) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(RollOffset);
+            if (PitchOffset != 0D) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(PitchOffset);
+            if (_unknownFields != null)
+            {
+                hash ^= _unknownFields.GetHashCode();
+            }
+            return hash;
+        }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public override string ToString()
+        {
+            return pb::JsonFormatter.ToDiagnosticString(this);
+        }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void WriteTo(pb::CodedOutputStream output) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      output.WriteRawMessage(this);
-    #else
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public void WriteTo(pb::CodedOutputStream output)
+        {
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+            output.WriteRawMessage(this);
+#else
       if (YawOffset != 0D) {
         output.WriteRawTag(9);
         output.WriteDouble(YawOffset);
@@ -509,74 +578,90 @@ namespace SturfeeVPS.Core.Proto {
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
-    #endif
-    }
+#endif
+        }
 
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (YawOffset != 0D) {
-        output.WriteRawTag(9);
-        output.WriteDouble(YawOffset);
-      }
-      if (RollOffset != 0D) {
-        output.WriteRawTag(17);
-        output.WriteDouble(RollOffset);
-      }
-      if (PitchOffset != 0D) {
-        output.WriteRawTag(25);
-        output.WriteDouble(PitchOffset);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(ref output);
-      }
-    }
-    #endif
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output)
+        {
+            if (YawOffset != 0D)
+            {
+                output.WriteRawTag(9);
+                output.WriteDouble(YawOffset);
+            }
+            if (RollOffset != 0D)
+            {
+                output.WriteRawTag(17);
+                output.WriteDouble(RollOffset);
+            }
+            if (PitchOffset != 0D)
+            {
+                output.WriteRawTag(25);
+                output.WriteDouble(PitchOffset);
+            }
+            if (_unknownFields != null)
+            {
+                _unknownFields.WriteTo(ref output);
+            }
+        }
+#endif
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int CalculateSize() {
-      int size = 0;
-      if (YawOffset != 0D) {
-        size += 1 + 8;
-      }
-      if (RollOffset != 0D) {
-        size += 1 + 8;
-      }
-      if (PitchOffset != 0D) {
-        size += 1 + 8;
-      }
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public int CalculateSize()
+        {
+            int size = 0;
+            if (YawOffset != 0D)
+            {
+                size += 1 + 8;
+            }
+            if (RollOffset != 0D)
+            {
+                size += 1 + 8;
+            }
+            if (PitchOffset != 0D)
+            {
+                size += 1 + 8;
+            }
+            if (_unknownFields != null)
+            {
+                size += _unknownFields.CalculateSize();
+            }
+            return size;
+        }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(OffsetEuler other) {
-      if (other == null) {
-        return;
-      }
-      if (other.YawOffset != 0D) {
-        YawOffset = other.YawOffset;
-      }
-      if (other.RollOffset != 0D) {
-        RollOffset = other.RollOffset;
-      }
-      if (other.PitchOffset != 0D) {
-        PitchOffset = other.PitchOffset;
-      }
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public void MergeFrom(OffsetEuler other)
+        {
+            if (other == null)
+            {
+                return;
+            }
+            if (other.YawOffset != 0D)
+            {
+                YawOffset = other.YawOffset;
+            }
+            if (other.RollOffset != 0D)
+            {
+                RollOffset = other.RollOffset;
+            }
+            if (other.PitchOffset != 0D)
+            {
+                PitchOffset = other.PitchOffset;
+            }
+            _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+        }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(pb::CodedInputStream input) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      input.ReadRawMessage(this);
-    #else
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public void MergeFrom(pb::CodedInputStream input)
+        {
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+            input.ReadRawMessage(this);
+#else
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
         switch(tag) {
@@ -597,166 +682,191 @@ namespace SturfeeVPS.Core.Proto {
           }
         }
       }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
-            break;
-          case 9: {
-            YawOffset = input.ReadDouble();
-            break;
-          }
-          case 17: {
-            RollOffset = input.ReadDouble();
-            break;
-          }
-          case 25: {
-            PitchOffset = input.ReadDouble();
-            break;
-          }
+#endif
         }
-      }
+
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input)
+        {
+            uint tag;
+            while ((tag = input.ReadTag()) != 0)
+            {
+                switch (tag)
+                {
+                    default:
+                        _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+                        break;
+                    case 9:
+                        {
+                            YawOffset = input.ReadDouble();
+                            break;
+                        }
+                    case 17:
+                        {
+                            RollOffset = input.ReadDouble();
+                            break;
+                        }
+                    case 25:
+                        {
+                            PitchOffset = input.ReadDouble();
+                            break;
+                        }
+                }
+            }
+        }
+#endif
+
     }
-    #endif
 
-  }
-
-  public sealed partial class Position : pb::IMessage<Position>
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    public sealed partial class Position : pb::IMessage<Position>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
-  #endif
-  {
-    private static readonly pb::MessageParser<Position> _parser = new pb::MessageParser<Position>(() => new Position());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<Position> Parser { get { return _parser; } }
+#endif
+    {
+        private static readonly pb::MessageParser<Position> _parser = new pb::MessageParser<Position>(() => new Position());
+        private pb::UnknownFieldSet _unknownFields;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public static pb::MessageParser<Position> Parser { get { return _parser; } }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::SturfeeVPS.Core.Proto.ParamsReflection.Descriptor.MessageTypes[2]; }
-    }
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public static pbr::MessageDescriptor Descriptor
+        {
+            get { return global::SturfeeVPS.Core.Proto.ParamsReflection.Descriptor.MessageTypes[2]; }
+        }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        pbr::MessageDescriptor pb::IMessage.Descriptor
+        {
+            get { return Descriptor; }
+        }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public Position() {
-      OnConstruction();
-    }
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public Position()
+        {
+            OnConstruction();
+        }
 
-    partial void OnConstruction();
+        partial void OnConstruction();
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public Position(Position other) : this() {
-      lat_ = other.lat_;
-      lon_ = other.lon_;
-      height_ = other.height_;
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public Position(Position other) : this()
+        {
+            lat_ = other.lat_;
+            lon_ = other.lon_;
+            height_ = other.height_;
+            _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+        }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public Position Clone() {
-      return new Position(this);
-    }
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public Position Clone()
+        {
+            return new Position(this);
+        }
 
-    /// <summary>Field number for the "lat" field.</summary>
-    public const int LatFieldNumber = 1;
-    private double lat_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public double Lat {
-      get { return lat_; }
-      set {
-        lat_ = value;
-      }
-    }
+        /// <summary>Field number for the "lat" field.</summary>
+        public const int LatFieldNumber = 1;
+        private double lat_;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public double Lat
+        {
+            get { return lat_; }
+            set
+            {
+                lat_ = value;
+            }
+        }
 
-    /// <summary>Field number for the "lon" field.</summary>
-    public const int LonFieldNumber = 2;
-    private double lon_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public double Lon {
-      get { return lon_; }
-      set {
-        lon_ = value;
-      }
-    }
+        /// <summary>Field number for the "lon" field.</summary>
+        public const int LonFieldNumber = 2;
+        private double lon_;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public double Lon
+        {
+            get { return lon_; }
+            set
+            {
+                lon_ = value;
+            }
+        }
 
-    /// <summary>Field number for the "height" field.</summary>
-    public const int HeightFieldNumber = 3;
-    private double height_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public double Height {
-      get { return height_; }
-      set {
-        height_ = value;
-      }
-    }
+        /// <summary>Field number for the "height" field.</summary>
+        public const int HeightFieldNumber = 3;
+        private double height_;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public double Height
+        {
+            get { return height_; }
+            set
+            {
+                height_ = value;
+            }
+        }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override bool Equals(object other) {
-      return Equals(other as Position);
-    }
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public override bool Equals(object other)
+        {
+            return Equals(other as Position);
+        }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(Position other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(Lat, other.Lat)) return false;
-      if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(Lon, other.Lon)) return false;
-      if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(Height, other.Height)) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public bool Equals(Position other)
+        {
+            if (ReferenceEquals(other, null))
+            {
+                return false;
+            }
+            if (ReferenceEquals(other, this))
+            {
+                return true;
+            }
+            if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(Lat, other.Lat)) return false;
+            if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(Lon, other.Lon)) return false;
+            if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(Height, other.Height)) return false;
+            return Equals(_unknownFields, other._unknownFields);
+        }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (Lat != 0D) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(Lat);
-      if (Lon != 0D) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(Lon);
-      if (Height != 0D) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(Height);
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public override int GetHashCode()
+        {
+            int hash = 1;
+            if (Lat != 0D) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(Lat);
+            if (Lon != 0D) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(Lon);
+            if (Height != 0D) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(Height);
+            if (_unknownFields != null)
+            {
+                hash ^= _unknownFields.GetHashCode();
+            }
+            return hash;
+        }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public override string ToString()
+        {
+            return pb::JsonFormatter.ToDiagnosticString(this);
+        }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void WriteTo(pb::CodedOutputStream output) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      output.WriteRawMessage(this);
-    #else
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public void WriteTo(pb::CodedOutputStream output)
+        {
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+            output.WriteRawMessage(this);
+#else
       if (Lat != 0D) {
         output.WriteRawTag(9);
         output.WriteDouble(Lat);
@@ -772,74 +882,90 @@ namespace SturfeeVPS.Core.Proto {
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
-    #endif
-    }
+#endif
+        }
 
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (Lat != 0D) {
-        output.WriteRawTag(9);
-        output.WriteDouble(Lat);
-      }
-      if (Lon != 0D) {
-        output.WriteRawTag(17);
-        output.WriteDouble(Lon);
-      }
-      if (Height != 0D) {
-        output.WriteRawTag(25);
-        output.WriteDouble(Height);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(ref output);
-      }
-    }
-    #endif
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output)
+        {
+            if (Lat != 0D)
+            {
+                output.WriteRawTag(9);
+                output.WriteDouble(Lat);
+            }
+            if (Lon != 0D)
+            {
+                output.WriteRawTag(17);
+                output.WriteDouble(Lon);
+            }
+            if (Height != 0D)
+            {
+                output.WriteRawTag(25);
+                output.WriteDouble(Height);
+            }
+            if (_unknownFields != null)
+            {
+                _unknownFields.WriteTo(ref output);
+            }
+        }
+#endif
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int CalculateSize() {
-      int size = 0;
-      if (Lat != 0D) {
-        size += 1 + 8;
-      }
-      if (Lon != 0D) {
-        size += 1 + 8;
-      }
-      if (Height != 0D) {
-        size += 1 + 8;
-      }
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public int CalculateSize()
+        {
+            int size = 0;
+            if (Lat != 0D)
+            {
+                size += 1 + 8;
+            }
+            if (Lon != 0D)
+            {
+                size += 1 + 8;
+            }
+            if (Height != 0D)
+            {
+                size += 1 + 8;
+            }
+            if (_unknownFields != null)
+            {
+                size += _unknownFields.CalculateSize();
+            }
+            return size;
+        }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(Position other) {
-      if (other == null) {
-        return;
-      }
-      if (other.Lat != 0D) {
-        Lat = other.Lat;
-      }
-      if (other.Lon != 0D) {
-        Lon = other.Lon;
-      }
-      if (other.Height != 0D) {
-        Height = other.Height;
-      }
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public void MergeFrom(Position other)
+        {
+            if (other == null)
+            {
+                return;
+            }
+            if (other.Lat != 0D)
+            {
+                Lat = other.Lat;
+            }
+            if (other.Lon != 0D)
+            {
+                Lon = other.Lon;
+            }
+            if (other.Height != 0D)
+            {
+                Height = other.Height;
+            }
+            _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+        }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(pb::CodedInputStream input) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      input.ReadRawMessage(this);
-    #else
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public void MergeFrom(pb::CodedInputStream input)
+        {
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+            input.ReadRawMessage(this);
+#else
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
         switch(tag) {
@@ -860,151 +986,174 @@ namespace SturfeeVPS.Core.Proto {
           }
         }
       }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
-            break;
-          case 9: {
-            Lat = input.ReadDouble();
-            break;
-          }
-          case 17: {
-            Lon = input.ReadDouble();
-            break;
-          }
-          case 25: {
-            Height = input.ReadDouble();
-            break;
-          }
+#endif
         }
-      }
+
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input)
+        {
+            uint tag;
+            while ((tag = input.ReadTag()) != 0)
+            {
+                switch (tag)
+                {
+                    default:
+                        _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+                        break;
+                    case 9:
+                        {
+                            Lat = input.ReadDouble();
+                            break;
+                        }
+                    case 17:
+                        {
+                            Lon = input.ReadDouble();
+                            break;
+                        }
+                    case 25:
+                        {
+                            Height = input.ReadDouble();
+                            break;
+                        }
+                }
+            }
+        }
+#endif
+
     }
-    #endif
 
-  }
-
-  public sealed partial class ExternalParameters : pb::IMessage<ExternalParameters>
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    public sealed partial class ExternalParameters : pb::IMessage<ExternalParameters>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
-  #endif
-  {
-    private static readonly pb::MessageParser<ExternalParameters> _parser = new pb::MessageParser<ExternalParameters>(() => new ExternalParameters());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<ExternalParameters> Parser { get { return _parser; } }
+#endif
+    {
+        private static readonly pb::MessageParser<ExternalParameters> _parser = new pb::MessageParser<ExternalParameters>(() => new ExternalParameters());
+        private pb::UnknownFieldSet _unknownFields;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public static pb::MessageParser<ExternalParameters> Parser { get { return _parser; } }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::SturfeeVPS.Core.Proto.ParamsReflection.Descriptor.MessageTypes[3]; }
-    }
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public static pbr::MessageDescriptor Descriptor
+        {
+            get { return global::SturfeeVPS.Core.Proto.ParamsReflection.Descriptor.MessageTypes[3]; }
+        }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        pbr::MessageDescriptor pb::IMessage.Descriptor
+        {
+            get { return Descriptor; }
+        }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public ExternalParameters() {
-      OnConstruction();
-    }
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public ExternalParameters()
+        {
+            OnConstruction();
+        }
 
-    partial void OnConstruction();
+        partial void OnConstruction();
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public ExternalParameters(ExternalParameters other) : this() {
-      position_ = other.position_ != null ? other.position_.Clone() : null;
-      quaternion_ = other.quaternion_ != null ? other.quaternion_.Clone() : null;
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public ExternalParameters(ExternalParameters other) : this()
+        {
+            position_ = other.position_ != null ? other.position_.Clone() : null;
+            quaternion_ = other.quaternion_ != null ? other.quaternion_.Clone() : null;
+            _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+        }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public ExternalParameters Clone() {
-      return new ExternalParameters(this);
-    }
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public ExternalParameters Clone()
+        {
+            return new ExternalParameters(this);
+        }
 
-    /// <summary>Field number for the "position" field.</summary>
-    public const int PositionFieldNumber = 1;
-    private global::SturfeeVPS.Core.Proto.Position position_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::SturfeeVPS.Core.Proto.Position Position {
-      get { return position_; }
-      set {
-        position_ = value;
-      }
-    }
+        /// <summary>Field number for the "position" field.</summary>
+        public const int PositionFieldNumber = 1;
+        private global::SturfeeVPS.Core.Proto.Position position_;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public global::SturfeeVPS.Core.Proto.Position Position
+        {
+            get { return position_; }
+            set
+            {
+                position_ = value;
+            }
+        }
 
-    /// <summary>Field number for the "quaternion" field.</summary>
-    public const int QuaternionFieldNumber = 2;
-    private global::SturfeeVPS.Core.Proto.Quaternion quaternion_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::SturfeeVPS.Core.Proto.Quaternion Quaternion {
-      get { return quaternion_; }
-      set {
-        quaternion_ = value;
-      }
-    }
+        /// <summary>Field number for the "quaternion" field.</summary>
+        public const int QuaternionFieldNumber = 2;
+        private global::SturfeeVPS.Core.Proto.Quaternion quaternion_;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public global::SturfeeVPS.Core.Proto.Quaternion Quaternion
+        {
+            get { return quaternion_; }
+            set
+            {
+                quaternion_ = value;
+            }
+        }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override bool Equals(object other) {
-      return Equals(other as ExternalParameters);
-    }
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public override bool Equals(object other)
+        {
+            return Equals(other as ExternalParameters);
+        }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(ExternalParameters other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (!object.Equals(Position, other.Position)) return false;
-      if (!object.Equals(Quaternion, other.Quaternion)) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public bool Equals(ExternalParameters other)
+        {
+            if (ReferenceEquals(other, null))
+            {
+                return false;
+            }
+            if (ReferenceEquals(other, this))
+            {
+                return true;
+            }
+            if (!object.Equals(Position, other.Position)) return false;
+            if (!object.Equals(Quaternion, other.Quaternion)) return false;
+            return Equals(_unknownFields, other._unknownFields);
+        }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (position_ != null) hash ^= Position.GetHashCode();
-      if (quaternion_ != null) hash ^= Quaternion.GetHashCode();
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public override int GetHashCode()
+        {
+            int hash = 1;
+            if (position_ != null) hash ^= Position.GetHashCode();
+            if (quaternion_ != null) hash ^= Quaternion.GetHashCode();
+            if (_unknownFields != null)
+            {
+                hash ^= _unknownFields.GetHashCode();
+            }
+            return hash;
+        }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public override string ToString()
+        {
+            return pb::JsonFormatter.ToDiagnosticString(this);
+        }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void WriteTo(pb::CodedOutputStream output) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      output.WriteRawMessage(this);
-    #else
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public void WriteTo(pb::CodedOutputStream output)
+        {
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+            output.WriteRawMessage(this);
+#else
       if (position_ != null) {
         output.WriteRawTag(10);
         output.WriteMessage(Position);
@@ -1016,70 +1165,85 @@ namespace SturfeeVPS.Core.Proto {
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (position_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Position);
-      }
-      if (quaternion_ != null) {
-        output.WriteRawTag(18);
-        output.WriteMessage(Quaternion);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(ref output);
-      }
-    }
-    #endif
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int CalculateSize() {
-      int size = 0;
-      if (position_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Position);
-      }
-      if (quaternion_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Quaternion);
-      }
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(ExternalParameters other) {
-      if (other == null) {
-        return;
-      }
-      if (other.position_ != null) {
-        if (position_ == null) {
-          Position = new global::SturfeeVPS.Core.Proto.Position();
+#endif
         }
-        Position.MergeFrom(other.Position);
-      }
-      if (other.quaternion_ != null) {
-        if (quaternion_ == null) {
-          Quaternion = new global::SturfeeVPS.Core.Proto.Quaternion();
-        }
-        Quaternion.MergeFrom(other.Quaternion);
-      }
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(pb::CodedInputStream input) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      input.ReadRawMessage(this);
-    #else
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output)
+        {
+            if (position_ != null)
+            {
+                output.WriteRawTag(10);
+                output.WriteMessage(Position);
+            }
+            if (quaternion_ != null)
+            {
+                output.WriteRawTag(18);
+                output.WriteMessage(Quaternion);
+            }
+            if (_unknownFields != null)
+            {
+                _unknownFields.WriteTo(ref output);
+            }
+        }
+#endif
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public int CalculateSize()
+        {
+            int size = 0;
+            if (position_ != null)
+            {
+                size += 1 + pb::CodedOutputStream.ComputeMessageSize(Position);
+            }
+            if (quaternion_ != null)
+            {
+                size += 1 + pb::CodedOutputStream.ComputeMessageSize(Quaternion);
+            }
+            if (_unknownFields != null)
+            {
+                size += _unknownFields.CalculateSize();
+            }
+            return size;
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public void MergeFrom(ExternalParameters other)
+        {
+            if (other == null)
+            {
+                return;
+            }
+            if (other.position_ != null)
+            {
+                if (position_ == null)
+                {
+                    Position = new global::SturfeeVPS.Core.Proto.Position();
+                }
+                Position.MergeFrom(other.Position);
+            }
+            if (other.quaternion_ != null)
+            {
+                if (quaternion_ == null)
+                {
+                    Quaternion = new global::SturfeeVPS.Core.Proto.Quaternion();
+                }
+                Quaternion.MergeFrom(other.Quaternion);
+            }
+            _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public void MergeFrom(pb::CodedInputStream input)
+        {
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+            input.ReadRawMessage(this);
+#else
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
         switch(tag) {
@@ -1102,183 +1266,211 @@ namespace SturfeeVPS.Core.Proto {
           }
         }
       }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
-            break;
-          case 10: {
-            if (position_ == null) {
-              Position = new global::SturfeeVPS.Core.Proto.Position();
-            }
-            input.ReadMessage(Position);
-            break;
-          }
-          case 18: {
-            if (quaternion_ == null) {
-              Quaternion = new global::SturfeeVPS.Core.Proto.Quaternion();
-            }
-            input.ReadMessage(Quaternion);
-            break;
-          }
+#endif
         }
-      }
+
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input)
+        {
+            uint tag;
+            while ((tag = input.ReadTag()) != 0)
+            {
+                switch (tag)
+                {
+                    default:
+                        _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+                        break;
+                    case 10:
+                        {
+                            if (position_ == null)
+                            {
+                                Position = new global::SturfeeVPS.Core.Proto.Position();
+                            }
+                            input.ReadMessage(Position);
+                            break;
+                        }
+                    case 18:
+                        {
+                            if (quaternion_ == null)
+                            {
+                                Quaternion = new global::SturfeeVPS.Core.Proto.Quaternion();
+                            }
+                            input.ReadMessage(Quaternion);
+                            break;
+                        }
+                }
+            }
+        }
+#endif
+
     }
-    #endif
 
-  }
-
-  public sealed partial class Quaternion : pb::IMessage<Quaternion>
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    public sealed partial class Quaternion : pb::IMessage<Quaternion>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
-  #endif
-  {
-    private static readonly pb::MessageParser<Quaternion> _parser = new pb::MessageParser<Quaternion>(() => new Quaternion());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<Quaternion> Parser { get { return _parser; } }
+#endif
+    {
+        private static readonly pb::MessageParser<Quaternion> _parser = new pb::MessageParser<Quaternion>(() => new Quaternion());
+        private pb::UnknownFieldSet _unknownFields;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public static pb::MessageParser<Quaternion> Parser { get { return _parser; } }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::SturfeeVPS.Core.Proto.ParamsReflection.Descriptor.MessageTypes[4]; }
-    }
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public static pbr::MessageDescriptor Descriptor
+        {
+            get { return global::SturfeeVPS.Core.Proto.ParamsReflection.Descriptor.MessageTypes[4]; }
+        }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        pbr::MessageDescriptor pb::IMessage.Descriptor
+        {
+            get { return Descriptor; }
+        }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public Quaternion() {
-      OnConstruction();
-    }
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public Quaternion()
+        {
+            OnConstruction();
+        }
 
-    partial void OnConstruction();
+        partial void OnConstruction();
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public Quaternion(Quaternion other) : this() {
-      y_ = other.y_;
-      x_ = other.x_;
-      z_ = other.z_;
-      w_ = other.w_;
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public Quaternion(Quaternion other) : this()
+        {
+            y_ = other.y_;
+            x_ = other.x_;
+            z_ = other.z_;
+            w_ = other.w_;
+            _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+        }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public Quaternion Clone() {
-      return new Quaternion(this);
-    }
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public Quaternion Clone()
+        {
+            return new Quaternion(this);
+        }
 
-    /// <summary>Field number for the "y" field.</summary>
-    public const int YFieldNumber = 1;
-    private double y_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public double Y {
-      get { return y_; }
-      set {
-        y_ = value;
-      }
-    }
+        /// <summary>Field number for the "y" field.</summary>
+        public const int YFieldNumber = 1;
+        private double y_;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public double Y
+        {
+            get { return y_; }
+            set
+            {
+                y_ = value;
+            }
+        }
 
-    /// <summary>Field number for the "x" field.</summary>
-    public const int XFieldNumber = 2;
-    private double x_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public double X {
-      get { return x_; }
-      set {
-        x_ = value;
-      }
-    }
+        /// <summary>Field number for the "x" field.</summary>
+        public const int XFieldNumber = 2;
+        private double x_;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public double X
+        {
+            get { return x_; }
+            set
+            {
+                x_ = value;
+            }
+        }
 
-    /// <summary>Field number for the "z" field.</summary>
-    public const int ZFieldNumber = 3;
-    private double z_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public double Z {
-      get { return z_; }
-      set {
-        z_ = value;
-      }
-    }
+        /// <summary>Field number for the "z" field.</summary>
+        public const int ZFieldNumber = 3;
+        private double z_;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public double Z
+        {
+            get { return z_; }
+            set
+            {
+                z_ = value;
+            }
+        }
 
-    /// <summary>Field number for the "w" field.</summary>
-    public const int WFieldNumber = 4;
-    private double w_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public double W {
-      get { return w_; }
-      set {
-        w_ = value;
-      }
-    }
+        /// <summary>Field number for the "w" field.</summary>
+        public const int WFieldNumber = 4;
+        private double w_;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public double W
+        {
+            get { return w_; }
+            set
+            {
+                w_ = value;
+            }
+        }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override bool Equals(object other) {
-      return Equals(other as Quaternion);
-    }
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public override bool Equals(object other)
+        {
+            return Equals(other as Quaternion);
+        }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(Quaternion other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(Y, other.Y)) return false;
-      if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(X, other.X)) return false;
-      if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(Z, other.Z)) return false;
-      if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(W, other.W)) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public bool Equals(Quaternion other)
+        {
+            if (ReferenceEquals(other, null))
+            {
+                return false;
+            }
+            if (ReferenceEquals(other, this))
+            {
+                return true;
+            }
+            if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(Y, other.Y)) return false;
+            if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(X, other.X)) return false;
+            if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(Z, other.Z)) return false;
+            if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(W, other.W)) return false;
+            return Equals(_unknownFields, other._unknownFields);
+        }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (Y != 0D) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(Y);
-      if (X != 0D) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(X);
-      if (Z != 0D) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(Z);
-      if (W != 0D) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(W);
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public override int GetHashCode()
+        {
+            int hash = 1;
+            if (Y != 0D) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(Y);
+            if (X != 0D) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(X);
+            if (Z != 0D) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(Z);
+            if (W != 0D) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(W);
+            if (_unknownFields != null)
+            {
+                hash ^= _unknownFields.GetHashCode();
+            }
+            return hash;
+        }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public override string ToString()
+        {
+            return pb::JsonFormatter.ToDiagnosticString(this);
+        }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void WriteTo(pb::CodedOutputStream output) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      output.WriteRawMessage(this);
-    #else
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public void WriteTo(pb::CodedOutputStream output)
+        {
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+            output.WriteRawMessage(this);
+#else
       if (Y != 0D) {
         output.WriteRawTag(9);
         output.WriteDouble(Y);
@@ -1298,84 +1490,103 @@ namespace SturfeeVPS.Core.Proto {
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
-    #endif
-    }
+#endif
+        }
 
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (Y != 0D) {
-        output.WriteRawTag(9);
-        output.WriteDouble(Y);
-      }
-      if (X != 0D) {
-        output.WriteRawTag(17);
-        output.WriteDouble(X);
-      }
-      if (Z != 0D) {
-        output.WriteRawTag(25);
-        output.WriteDouble(Z);
-      }
-      if (W != 0D) {
-        output.WriteRawTag(33);
-        output.WriteDouble(W);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(ref output);
-      }
-    }
-    #endif
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output)
+        {
+            if (Y != 0D)
+            {
+                output.WriteRawTag(9);
+                output.WriteDouble(Y);
+            }
+            if (X != 0D)
+            {
+                output.WriteRawTag(17);
+                output.WriteDouble(X);
+            }
+            if (Z != 0D)
+            {
+                output.WriteRawTag(25);
+                output.WriteDouble(Z);
+            }
+            if (W != 0D)
+            {
+                output.WriteRawTag(33);
+                output.WriteDouble(W);
+            }
+            if (_unknownFields != null)
+            {
+                _unknownFields.WriteTo(ref output);
+            }
+        }
+#endif
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int CalculateSize() {
-      int size = 0;
-      if (Y != 0D) {
-        size += 1 + 8;
-      }
-      if (X != 0D) {
-        size += 1 + 8;
-      }
-      if (Z != 0D) {
-        size += 1 + 8;
-      }
-      if (W != 0D) {
-        size += 1 + 8;
-      }
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public int CalculateSize()
+        {
+            int size = 0;
+            if (Y != 0D)
+            {
+                size += 1 + 8;
+            }
+            if (X != 0D)
+            {
+                size += 1 + 8;
+            }
+            if (Z != 0D)
+            {
+                size += 1 + 8;
+            }
+            if (W != 0D)
+            {
+                size += 1 + 8;
+            }
+            if (_unknownFields != null)
+            {
+                size += _unknownFields.CalculateSize();
+            }
+            return size;
+        }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(Quaternion other) {
-      if (other == null) {
-        return;
-      }
-      if (other.Y != 0D) {
-        Y = other.Y;
-      }
-      if (other.X != 0D) {
-        X = other.X;
-      }
-      if (other.Z != 0D) {
-        Z = other.Z;
-      }
-      if (other.W != 0D) {
-        W = other.W;
-      }
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public void MergeFrom(Quaternion other)
+        {
+            if (other == null)
+            {
+                return;
+            }
+            if (other.Y != 0D)
+            {
+                Y = other.Y;
+            }
+            if (other.X != 0D)
+            {
+                X = other.X;
+            }
+            if (other.Z != 0D)
+            {
+                Z = other.Z;
+            }
+            if (other.W != 0D)
+            {
+                W = other.W;
+            }
+            _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+        }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(pb::CodedInputStream input) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      input.ReadRawMessage(this);
-    #else
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public void MergeFrom(pb::CodedInputStream input)
+        {
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+            input.ReadRawMessage(this);
+#else
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
         switch(tag) {
@@ -1400,275 +1611,315 @@ namespace SturfeeVPS.Core.Proto {
           }
         }
       }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
-            break;
-          case 9: {
-            Y = input.ReadDouble();
-            break;
-          }
-          case 17: {
-            X = input.ReadDouble();
-            break;
-          }
-          case 25: {
-            Z = input.ReadDouble();
-            break;
-          }
-          case 33: {
-            W = input.ReadDouble();
-            break;
-          }
+#endif
         }
-      }
+
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input)
+        {
+            uint tag;
+            while ((tag = input.ReadTag()) != 0)
+            {
+                switch (tag)
+                {
+                    default:
+                        _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+                        break;
+                    case 9:
+                        {
+                            Y = input.ReadDouble();
+                            break;
+                        }
+                    case 17:
+                        {
+                            X = input.ReadDouble();
+                            break;
+                        }
+                    case 25:
+                        {
+                            Z = input.ReadDouble();
+                            break;
+                        }
+                    case 33:
+                        {
+                            W = input.ReadDouble();
+                            break;
+                        }
+                }
+            }
+        }
+#endif
+
     }
-    #endif
 
-  }
-
-  public sealed partial class Request : pb::IMessage<Request>
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    public sealed partial class Request : pb::IMessage<Request>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
-  #endif
-  {
-    private static readonly pb::MessageParser<Request> _parser = new pb::MessageParser<Request>(() => new Request());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<Request> Parser { get { return _parser; } }
+#endif
+    {
+        private static readonly pb::MessageParser<Request> _parser = new pb::MessageParser<Request>(() => new Request());
+        private pb::UnknownFieldSet _unknownFields;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public static pb::MessageParser<Request> Parser { get { return _parser; } }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::SturfeeVPS.Core.Proto.ParamsReflection.Descriptor.MessageTypes[5]; }
-    }
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public static pbr::MessageDescriptor Descriptor
+        {
+            get { return global::SturfeeVPS.Core.Proto.ParamsReflection.Descriptor.MessageTypes[5]; }
+        }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        pbr::MessageDescriptor pb::IMessage.Descriptor
+        {
+            get { return Descriptor; }
+        }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public Request() {
-      OnConstruction();
-    }
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public Request()
+        {
+            OnConstruction();
+        }
 
-    partial void OnConstruction();
+        partial void OnConstruction();
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public Request(Request other) : this() {
-      operation_ = other.operation_;
-      requestId_ = other.requestId_;
-      externalParameters_ = other.externalParameters_ != null ? other.externalParameters_.Clone() : null;
-      internalParameters_ = other.internalParameters_ != null ? other.internalParameters_.Clone() : null;
-      totalNumOfFrames_ = other.totalNumOfFrames_;
-      frameOrder_ = other.frameOrder_;
-      trackingId_ = other.trackingId_;
-      sourceImage_ = other.sourceImage_;
-      siteId_ = other.siteId_;
-      devRadius_ = other.devRadius_;
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public Request(Request other) : this()
+        {
+            operation_ = other.operation_;
+            requestId_ = other.requestId_;
+            externalParameters_ = other.externalParameters_ != null ? other.externalParameters_.Clone() : null;
+            internalParameters_ = other.internalParameters_ != null ? other.internalParameters_.Clone() : null;
+            totalNumOfFrames_ = other.totalNumOfFrames_;
+            frameOrder_ = other.frameOrder_;
+            trackingId_ = other.trackingId_;
+            sourceImage_ = other.sourceImage_;
+            siteId_ = other.siteId_;
+            devRadius_ = other.devRadius_;
+            _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+        }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public Request Clone() {
-      return new Request(this);
-    }
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public Request Clone()
+        {
+            return new Request(this);
+        }
 
-    /// <summary>Field number for the "operation" field.</summary>
-    public const int OperationFieldNumber = 1;
-    private global::SturfeeVPS.Core.Proto.Request.Types.OperationMessages operation_ = global::SturfeeVPS.Core.Proto.Request.Types.OperationMessages.Unsupported;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::SturfeeVPS.Core.Proto.Request.Types.OperationMessages Operation {
-      get { return operation_; }
-      set {
-        operation_ = value;
-      }
-    }
+        /// <summary>Field number for the "operation" field.</summary>
+        public const int OperationFieldNumber = 1;
+        private global::SturfeeVPS.Core.Proto.Request.Types.OperationMessages operation_ = global::SturfeeVPS.Core.Proto.Request.Types.OperationMessages.Unsupported;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public global::SturfeeVPS.Core.Proto.Request.Types.OperationMessages Operation
+        {
+            get { return operation_; }
+            set
+            {
+                operation_ = value;
+            }
+        }
 
-    /// <summary>Field number for the "request_id" field.</summary>
-    public const int RequestIdFieldNumber = 2;
-    private uint requestId_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public uint RequestId {
-      get { return requestId_; }
-      set {
-        requestId_ = value;
-      }
-    }
+        /// <summary>Field number for the "request_id" field.</summary>
+        public const int RequestIdFieldNumber = 2;
+        private uint requestId_;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public uint RequestId
+        {
+            get { return requestId_; }
+            set
+            {
+                requestId_ = value;
+            }
+        }
 
-    /// <summary>Field number for the "external_parameters" field.</summary>
-    public const int ExternalParametersFieldNumber = 3;
-    private global::SturfeeVPS.Core.Proto.ExternalParameters externalParameters_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::SturfeeVPS.Core.Proto.ExternalParameters ExternalParameters {
-      get { return externalParameters_; }
-      set {
-        externalParameters_ = value;
-      }
-    }
+        /// <summary>Field number for the "external_parameters" field.</summary>
+        public const int ExternalParametersFieldNumber = 3;
+        private global::SturfeeVPS.Core.Proto.ExternalParameters externalParameters_;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public global::SturfeeVPS.Core.Proto.ExternalParameters ExternalParameters
+        {
+            get { return externalParameters_; }
+            set
+            {
+                externalParameters_ = value;
+            }
+        }
 
-    /// <summary>Field number for the "internal_parameters" field.</summary>
-    public const int InternalParametersFieldNumber = 4;
-    private global::SturfeeVPS.Core.Proto.InternalParameters internalParameters_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::SturfeeVPS.Core.Proto.InternalParameters InternalParameters {
-      get { return internalParameters_; }
-      set {
-        internalParameters_ = value;
-      }
-    }
+        /// <summary>Field number for the "internal_parameters" field.</summary>
+        public const int InternalParametersFieldNumber = 4;
+        private global::SturfeeVPS.Core.Proto.InternalParameters internalParameters_;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public global::SturfeeVPS.Core.Proto.InternalParameters InternalParameters
+        {
+            get { return internalParameters_; }
+            set
+            {
+                internalParameters_ = value;
+            }
+        }
 
-    /// <summary>Field number for the "total_num_of_frames" field.</summary>
-    public const int TotalNumOfFramesFieldNumber = 5;
-    private uint totalNumOfFrames_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public uint TotalNumOfFrames {
-      get { return totalNumOfFrames_; }
-      set {
-        totalNumOfFrames_ = value;
-      }
-    }
+        /// <summary>Field number for the "total_num_of_frames" field.</summary>
+        public const int TotalNumOfFramesFieldNumber = 5;
+        private uint totalNumOfFrames_;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public uint TotalNumOfFrames
+        {
+            get { return totalNumOfFrames_; }
+            set
+            {
+                totalNumOfFrames_ = value;
+            }
+        }
 
-    /// <summary>Field number for the "frame_order" field.</summary>
-    public const int FrameOrderFieldNumber = 6;
-    private uint frameOrder_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public uint FrameOrder {
-      get { return frameOrder_; }
-      set {
-        frameOrder_ = value;
-      }
-    }
+        /// <summary>Field number for the "frame_order" field.</summary>
+        public const int FrameOrderFieldNumber = 6;
+        private uint frameOrder_;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public uint FrameOrder
+        {
+            get { return frameOrder_; }
+            set
+            {
+                frameOrder_ = value;
+            }
+        }
 
-    /// <summary>Field number for the "tracking_id" field.</summary>
-    public const int TrackingIdFieldNumber = 7;
-    private string trackingId_ = "";
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public string TrackingId {
-      get { return trackingId_; }
-      set {
-        trackingId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
-      }
-    }
+        /// <summary>Field number for the "tracking_id" field.</summary>
+        public const int TrackingIdFieldNumber = 7;
+        private string trackingId_ = "";
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public string TrackingId
+        {
+            get { return trackingId_; }
+            set
+            {
+                trackingId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+            }
+        }
 
-    /// <summary>Field number for the "source_image" field.</summary>
-    public const int SourceImageFieldNumber = 9;
-    private pb::ByteString sourceImage_ = pb::ByteString.Empty;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public pb::ByteString SourceImage {
-      get { return sourceImage_; }
-      set {
-        sourceImage_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
-      }
-    }
+        /// <summary>Field number for the "source_image" field.</summary>
+        public const int SourceImageFieldNumber = 9;
+        private pb::ByteString sourceImage_ = pb::ByteString.Empty;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public pb::ByteString SourceImage
+        {
+            get { return sourceImage_; }
+            set
+            {
+                sourceImage_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+            }
+        }
 
-    /// <summary>Field number for the "site_id" field.</summary>
-    public const int SiteIdFieldNumber = 10;
-    private string siteId_ = "";
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public string SiteId {
-      get { return siteId_; }
-      set {
-        siteId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
-      }
-    }
+        /// <summary>Field number for the "site_id" field.</summary>
+        public const int SiteIdFieldNumber = 10;
+        private string siteId_ = "";
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public string SiteId
+        {
+            get { return siteId_; }
+            set
+            {
+                siteId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+            }
+        }
 
-    /// <summary>Field number for the "dev_radius" field.</summary>
-    public const int DevRadiusFieldNumber = 20;
-    private long devRadius_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public long DevRadius {
-      get { return devRadius_; }
-      set {
-        devRadius_ = value;
-      }
-    }
+        /// <summary>Field number for the "dev_radius" field.</summary>
+        public const int DevRadiusFieldNumber = 20;
+        private long devRadius_;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public long DevRadius
+        {
+            get { return devRadius_; }
+            set
+            {
+                devRadius_ = value;
+            }
+        }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override bool Equals(object other) {
-      return Equals(other as Request);
-    }
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public override bool Equals(object other)
+        {
+            return Equals(other as Request);
+        }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(Request other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (Operation != other.Operation) return false;
-      if (RequestId != other.RequestId) return false;
-      if (!object.Equals(ExternalParameters, other.ExternalParameters)) return false;
-      if (!object.Equals(InternalParameters, other.InternalParameters)) return false;
-      if (TotalNumOfFrames != other.TotalNumOfFrames) return false;
-      if (FrameOrder != other.FrameOrder) return false;
-      if (TrackingId != other.TrackingId) return false;
-      if (SourceImage != other.SourceImage) return false;
-      if (SiteId != other.SiteId) return false;
-      if (DevRadius != other.DevRadius) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public bool Equals(Request other)
+        {
+            if (ReferenceEquals(other, null))
+            {
+                return false;
+            }
+            if (ReferenceEquals(other, this))
+            {
+                return true;
+            }
+            if (Operation != other.Operation) return false;
+            if (RequestId != other.RequestId) return false;
+            if (!object.Equals(ExternalParameters, other.ExternalParameters)) return false;
+            if (!object.Equals(InternalParameters, other.InternalParameters)) return false;
+            if (TotalNumOfFrames != other.TotalNumOfFrames) return false;
+            if (FrameOrder != other.FrameOrder) return false;
+            if (TrackingId != other.TrackingId) return false;
+            if (SourceImage != other.SourceImage) return false;
+            if (SiteId != other.SiteId) return false;
+            if (DevRadius != other.DevRadius) return false;
+            return Equals(_unknownFields, other._unknownFields);
+        }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (Operation != global::SturfeeVPS.Core.Proto.Request.Types.OperationMessages.Unsupported) hash ^= Operation.GetHashCode();
-      if (RequestId != 0) hash ^= RequestId.GetHashCode();
-      if (externalParameters_ != null) hash ^= ExternalParameters.GetHashCode();
-      if (internalParameters_ != null) hash ^= InternalParameters.GetHashCode();
-      if (TotalNumOfFrames != 0) hash ^= TotalNumOfFrames.GetHashCode();
-      if (FrameOrder != 0) hash ^= FrameOrder.GetHashCode();
-      if (TrackingId.Length != 0) hash ^= TrackingId.GetHashCode();
-      if (SourceImage.Length != 0) hash ^= SourceImage.GetHashCode();
-      if (SiteId.Length != 0) hash ^= SiteId.GetHashCode();
-      if (DevRadius != 0L) hash ^= DevRadius.GetHashCode();
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public override int GetHashCode()
+        {
+            int hash = 1;
+            if (Operation != global::SturfeeVPS.Core.Proto.Request.Types.OperationMessages.Unsupported) hash ^= Operation.GetHashCode();
+            if (RequestId != 0) hash ^= RequestId.GetHashCode();
+            if (externalParameters_ != null) hash ^= ExternalParameters.GetHashCode();
+            if (internalParameters_ != null) hash ^= InternalParameters.GetHashCode();
+            if (TotalNumOfFrames != 0) hash ^= TotalNumOfFrames.GetHashCode();
+            if (FrameOrder != 0) hash ^= FrameOrder.GetHashCode();
+            if (TrackingId.Length != 0) hash ^= TrackingId.GetHashCode();
+            if (SourceImage.Length != 0) hash ^= SourceImage.GetHashCode();
+            if (SiteId.Length != 0) hash ^= SiteId.GetHashCode();
+            if (DevRadius != 0L) hash ^= DevRadius.GetHashCode();
+            if (_unknownFields != null)
+            {
+                hash ^= _unknownFields.GetHashCode();
+            }
+            return hash;
+        }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public override string ToString()
+        {
+            return pb::JsonFormatter.ToDiagnosticString(this);
+        }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void WriteTo(pb::CodedOutputStream output) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      output.WriteRawMessage(this);
-    #else
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public void WriteTo(pb::CodedOutputStream output)
+        {
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+            output.WriteRawMessage(this);
+#else
       if (Operation != global::SturfeeVPS.Core.Proto.Request.Types.OperationMessages.Unsupported) {
         output.WriteRawTag(8);
         output.WriteEnum((int) Operation);
@@ -1712,150 +1963,189 @@ namespace SturfeeVPS.Core.Proto {
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (Operation != global::SturfeeVPS.Core.Proto.Request.Types.OperationMessages.Unsupported) {
-        output.WriteRawTag(8);
-        output.WriteEnum((int) Operation);
-      }
-      if (RequestId != 0) {
-        output.WriteRawTag(16);
-        output.WriteUInt32(RequestId);
-      }
-      if (externalParameters_ != null) {
-        output.WriteRawTag(26);
-        output.WriteMessage(ExternalParameters);
-      }
-      if (internalParameters_ != null) {
-        output.WriteRawTag(34);
-        output.WriteMessage(InternalParameters);
-      }
-      if (TotalNumOfFrames != 0) {
-        output.WriteRawTag(40);
-        output.WriteUInt32(TotalNumOfFrames);
-      }
-      if (FrameOrder != 0) {
-        output.WriteRawTag(48);
-        output.WriteUInt32(FrameOrder);
-      }
-      if (TrackingId.Length != 0) {
-        output.WriteRawTag(58);
-        output.WriteString(TrackingId);
-      }
-      if (SourceImage.Length != 0) {
-        output.WriteRawTag(74);
-        output.WriteBytes(SourceImage);
-      }
-      if (SiteId.Length != 0) {
-        output.WriteRawTag(82);
-        output.WriteString(SiteId);
-      }
-      if (DevRadius != 0L) {
-        output.WriteRawTag(160, 1);
-        output.WriteInt64(DevRadius);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(ref output);
-      }
-    }
-    #endif
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int CalculateSize() {
-      int size = 0;
-      if (Operation != global::SturfeeVPS.Core.Proto.Request.Types.OperationMessages.Unsupported) {
-        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Operation);
-      }
-      if (RequestId != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(RequestId);
-      }
-      if (externalParameters_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(ExternalParameters);
-      }
-      if (internalParameters_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(InternalParameters);
-      }
-      if (TotalNumOfFrames != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(TotalNumOfFrames);
-      }
-      if (FrameOrder != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(FrameOrder);
-      }
-      if (TrackingId.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeStringSize(TrackingId);
-      }
-      if (SourceImage.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeBytesSize(SourceImage);
-      }
-      if (SiteId.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeStringSize(SiteId);
-      }
-      if (DevRadius != 0L) {
-        size += 2 + pb::CodedOutputStream.ComputeInt64Size(DevRadius);
-      }
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(Request other) {
-      if (other == null) {
-        return;
-      }
-      if (other.Operation != global::SturfeeVPS.Core.Proto.Request.Types.OperationMessages.Unsupported) {
-        Operation = other.Operation;
-      }
-      if (other.RequestId != 0) {
-        RequestId = other.RequestId;
-      }
-      if (other.externalParameters_ != null) {
-        if (externalParameters_ == null) {
-          ExternalParameters = new global::SturfeeVPS.Core.Proto.ExternalParameters();
+#endif
         }
-        ExternalParameters.MergeFrom(other.ExternalParameters);
-      }
-      if (other.internalParameters_ != null) {
-        if (internalParameters_ == null) {
-          InternalParameters = new global::SturfeeVPS.Core.Proto.InternalParameters();
-        }
-        InternalParameters.MergeFrom(other.InternalParameters);
-      }
-      if (other.TotalNumOfFrames != 0) {
-        TotalNumOfFrames = other.TotalNumOfFrames;
-      }
-      if (other.FrameOrder != 0) {
-        FrameOrder = other.FrameOrder;
-      }
-      if (other.TrackingId.Length != 0) {
-        TrackingId = other.TrackingId;
-      }
-      if (other.SourceImage.Length != 0) {
-        SourceImage = other.SourceImage;
-      }
-      if (other.SiteId.Length != 0) {
-        SiteId = other.SiteId;
-      }
-      if (other.DevRadius != 0L) {
-        DevRadius = other.DevRadius;
-      }
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(pb::CodedInputStream input) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      input.ReadRawMessage(this);
-    #else
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output)
+        {
+            if (Operation != global::SturfeeVPS.Core.Proto.Request.Types.OperationMessages.Unsupported)
+            {
+                output.WriteRawTag(8);
+                output.WriteEnum((int)Operation);
+            }
+            if (RequestId != 0)
+            {
+                output.WriteRawTag(16);
+                output.WriteUInt32(RequestId);
+            }
+            if (externalParameters_ != null)
+            {
+                output.WriteRawTag(26);
+                output.WriteMessage(ExternalParameters);
+            }
+            if (internalParameters_ != null)
+            {
+                output.WriteRawTag(34);
+                output.WriteMessage(InternalParameters);
+            }
+            if (TotalNumOfFrames != 0)
+            {
+                output.WriteRawTag(40);
+                output.WriteUInt32(TotalNumOfFrames);
+            }
+            if (FrameOrder != 0)
+            {
+                output.WriteRawTag(48);
+                output.WriteUInt32(FrameOrder);
+            }
+            if (TrackingId.Length != 0)
+            {
+                output.WriteRawTag(58);
+                output.WriteString(TrackingId);
+            }
+            if (SourceImage.Length != 0)
+            {
+                output.WriteRawTag(74);
+                output.WriteBytes(SourceImage);
+            }
+            if (SiteId.Length != 0)
+            {
+                output.WriteRawTag(82);
+                output.WriteString(SiteId);
+            }
+            if (DevRadius != 0L)
+            {
+                output.WriteRawTag(160, 1);
+                output.WriteInt64(DevRadius);
+            }
+            if (_unknownFields != null)
+            {
+                _unknownFields.WriteTo(ref output);
+            }
+        }
+#endif
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public int CalculateSize()
+        {
+            int size = 0;
+            if (Operation != global::SturfeeVPS.Core.Proto.Request.Types.OperationMessages.Unsupported)
+            {
+                size += 1 + pb::CodedOutputStream.ComputeEnumSize((int)Operation);
+            }
+            if (RequestId != 0)
+            {
+                size += 1 + pb::CodedOutputStream.ComputeUInt32Size(RequestId);
+            }
+            if (externalParameters_ != null)
+            {
+                size += 1 + pb::CodedOutputStream.ComputeMessageSize(ExternalParameters);
+            }
+            if (internalParameters_ != null)
+            {
+                size += 1 + pb::CodedOutputStream.ComputeMessageSize(InternalParameters);
+            }
+            if (TotalNumOfFrames != 0)
+            {
+                size += 1 + pb::CodedOutputStream.ComputeUInt32Size(TotalNumOfFrames);
+            }
+            if (FrameOrder != 0)
+            {
+                size += 1 + pb::CodedOutputStream.ComputeUInt32Size(FrameOrder);
+            }
+            if (TrackingId.Length != 0)
+            {
+                size += 1 + pb::CodedOutputStream.ComputeStringSize(TrackingId);
+            }
+            if (SourceImage.Length != 0)
+            {
+                size += 1 + pb::CodedOutputStream.ComputeBytesSize(SourceImage);
+            }
+            if (SiteId.Length != 0)
+            {
+                size += 1 + pb::CodedOutputStream.ComputeStringSize(SiteId);
+            }
+            if (DevRadius != 0L)
+            {
+                size += 2 + pb::CodedOutputStream.ComputeInt64Size(DevRadius);
+            }
+            if (_unknownFields != null)
+            {
+                size += _unknownFields.CalculateSize();
+            }
+            return size;
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public void MergeFrom(Request other)
+        {
+            if (other == null)
+            {
+                return;
+            }
+            if (other.Operation != global::SturfeeVPS.Core.Proto.Request.Types.OperationMessages.Unsupported)
+            {
+                Operation = other.Operation;
+            }
+            if (other.RequestId != 0)
+            {
+                RequestId = other.RequestId;
+            }
+            if (other.externalParameters_ != null)
+            {
+                if (externalParameters_ == null)
+                {
+                    ExternalParameters = new global::SturfeeVPS.Core.Proto.ExternalParameters();
+                }
+                ExternalParameters.MergeFrom(other.ExternalParameters);
+            }
+            if (other.internalParameters_ != null)
+            {
+                if (internalParameters_ == null)
+                {
+                    InternalParameters = new global::SturfeeVPS.Core.Proto.InternalParameters();
+                }
+                InternalParameters.MergeFrom(other.InternalParameters);
+            }
+            if (other.TotalNumOfFrames != 0)
+            {
+                TotalNumOfFrames = other.TotalNumOfFrames;
+            }
+            if (other.FrameOrder != 0)
+            {
+                FrameOrder = other.FrameOrder;
+            }
+            if (other.TrackingId.Length != 0)
+            {
+                TrackingId = other.TrackingId;
+            }
+            if (other.SourceImage.Length != 0)
+            {
+                SourceImage = other.SourceImage;
+            }
+            if (other.SiteId.Length != 0)
+            {
+                SiteId = other.SiteId;
+            }
+            if (other.DevRadius != 0L)
+            {
+                DevRadius = other.DevRadius;
+            }
+            _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public void MergeFrom(pb::CodedInputStream input)
+        {
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+            input.ReadRawMessage(this);
+#else
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
         switch(tag) {
@@ -1910,229 +2200,267 @@ namespace SturfeeVPS.Core.Proto {
           }
         }
       }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
-            break;
-          case 8: {
-            Operation = (global::SturfeeVPS.Core.Proto.Request.Types.OperationMessages) input.ReadEnum();
-            break;
-          }
-          case 16: {
-            RequestId = input.ReadUInt32();
-            break;
-          }
-          case 26: {
-            if (externalParameters_ == null) {
-              ExternalParameters = new global::SturfeeVPS.Core.Proto.ExternalParameters();
-            }
-            input.ReadMessage(ExternalParameters);
-            break;
-          }
-          case 34: {
-            if (internalParameters_ == null) {
-              InternalParameters = new global::SturfeeVPS.Core.Proto.InternalParameters();
-            }
-            input.ReadMessage(InternalParameters);
-            break;
-          }
-          case 40: {
-            TotalNumOfFrames = input.ReadUInt32();
-            break;
-          }
-          case 48: {
-            FrameOrder = input.ReadUInt32();
-            break;
-          }
-          case 58: {
-            TrackingId = input.ReadString();
-            break;
-          }
-          case 74: {
-            SourceImage = input.ReadBytes();
-            break;
-          }
-          case 82: {
-            SiteId = input.ReadString();
-            break;
-          }
-          case 160: {
-            DevRadius = input.ReadInt64();
-            break;
-          }
+#endif
         }
-      }
+
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input)
+        {
+            uint tag;
+            while ((tag = input.ReadTag()) != 0)
+            {
+                switch (tag)
+                {
+                    default:
+                        _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+                        break;
+                    case 8:
+                        {
+                            Operation = (global::SturfeeVPS.Core.Proto.Request.Types.OperationMessages)input.ReadEnum();
+                            break;
+                        }
+                    case 16:
+                        {
+                            RequestId = input.ReadUInt32();
+                            break;
+                        }
+                    case 26:
+                        {
+                            if (externalParameters_ == null)
+                            {
+                                ExternalParameters = new global::SturfeeVPS.Core.Proto.ExternalParameters();
+                            }
+                            input.ReadMessage(ExternalParameters);
+                            break;
+                        }
+                    case 34:
+                        {
+                            if (internalParameters_ == null)
+                            {
+                                InternalParameters = new global::SturfeeVPS.Core.Proto.InternalParameters();
+                            }
+                            input.ReadMessage(InternalParameters);
+                            break;
+                        }
+                    case 40:
+                        {
+                            TotalNumOfFrames = input.ReadUInt32();
+                            break;
+                        }
+                    case 48:
+                        {
+                            FrameOrder = input.ReadUInt32();
+                            break;
+                        }
+                    case 58:
+                        {
+                            TrackingId = input.ReadString();
+                            break;
+                        }
+                    case 74:
+                        {
+                            SourceImage = input.ReadBytes();
+                            break;
+                        }
+                    case 82:
+                        {
+                            SiteId = input.ReadString();
+                            break;
+                        }
+                    case 160:
+                        {
+                            DevRadius = input.ReadInt64();
+                            break;
+                        }
+                }
+            }
+        }
+#endif
+
+        #region Nested types
+        /// <summary>Container for nested types declared in the Request message type.</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public static partial class Types
+        {
+            public enum OperationMessages
+            {
+                [pbr::OriginalName("UNSUPPORTED")] Unsupported = 0,
+                [pbr::OriginalName("ALIGNMENT")] Alignment = 4,
+                [pbr::OriginalName("RELOC")] Reloc = 5,
+            }
+
+        }
+        #endregion
+
     }
-    #endif
 
-    #region Nested types
-    /// <summary>Container for nested types declared in the Request message type.</summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static partial class Types {
-      public enum OperationMessages {
-        [pbr::OriginalName("UNSUPPORTED")] Unsupported = 0,
-        [pbr::OriginalName("ALIGNMENT")] Alignment = 4,
-        [pbr::OriginalName("RELOC")] Reloc = 5,
-      }
-
-    }
-    #endregion
-
-  }
-
-  public sealed partial class ResponseMessage : pb::IMessage<ResponseMessage>
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    public sealed partial class ResponseMessage : pb::IMessage<ResponseMessage>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
-  #endif
-  {
-    private static readonly pb::MessageParser<ResponseMessage> _parser = new pb::MessageParser<ResponseMessage>(() => new ResponseMessage());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<ResponseMessage> Parser { get { return _parser; } }
+#endif
+    {
+        private static readonly pb::MessageParser<ResponseMessage> _parser = new pb::MessageParser<ResponseMessage>(() => new ResponseMessage());
+        private pb::UnknownFieldSet _unknownFields;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public static pb::MessageParser<ResponseMessage> Parser { get { return _parser; } }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::SturfeeVPS.Core.Proto.ParamsReflection.Descriptor.MessageTypes[6]; }
-    }
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public static pbr::MessageDescriptor Descriptor
+        {
+            get { return global::SturfeeVPS.Core.Proto.ParamsReflection.Descriptor.MessageTypes[6]; }
+        }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        pbr::MessageDescriptor pb::IMessage.Descriptor
+        {
+            get { return Descriptor; }
+        }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public ResponseMessage() {
-      OnConstruction();
-    }
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public ResponseMessage()
+        {
+            OnConstruction();
+        }
 
-    partial void OnConstruction();
+        partial void OnConstruction();
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public ResponseMessage(ResponseMessage other) : this() {
-      requestId_ = other.requestId_;
-      trackingId_ = other.trackingId_;
-      response_ = other.response_ != null ? other.response_.Clone() : null;
-      error_ = other.error_ != null ? other.error_.Clone() : null;
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public ResponseMessage(ResponseMessage other) : this()
+        {
+            requestId_ = other.requestId_;
+            trackingId_ = other.trackingId_;
+            response_ = other.response_ != null ? other.response_.Clone() : null;
+            error_ = other.error_ != null ? other.error_.Clone() : null;
+            _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+        }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public ResponseMessage Clone() {
-      return new ResponseMessage(this);
-    }
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public ResponseMessage Clone()
+        {
+            return new ResponseMessage(this);
+        }
 
-    /// <summary>Field number for the "request_id" field.</summary>
-    public const int RequestIdFieldNumber = 1;
-    private uint requestId_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public uint RequestId {
-      get { return requestId_; }
-      set {
-        requestId_ = value;
-      }
-    }
+        /// <summary>Field number for the "request_id" field.</summary>
+        public const int RequestIdFieldNumber = 1;
+        private uint requestId_;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public uint RequestId
+        {
+            get { return requestId_; }
+            set
+            {
+                requestId_ = value;
+            }
+        }
 
-    /// <summary>Field number for the "tracking_id" field.</summary>
-    public const int TrackingIdFieldNumber = 2;
-    private string trackingId_ = "";
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public string TrackingId {
-      get { return trackingId_; }
-      set {
-        trackingId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
-      }
-    }
+        /// <summary>Field number for the "tracking_id" field.</summary>
+        public const int TrackingIdFieldNumber = 2;
+        private string trackingId_ = "";
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public string TrackingId
+        {
+            get { return trackingId_; }
+            set
+            {
+                trackingId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+            }
+        }
 
-    /// <summary>Field number for the "response" field.</summary>
-    public const int ResponseFieldNumber = 3;
-    private global::SturfeeVPS.Core.Proto.Response response_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::SturfeeVPS.Core.Proto.Response Response {
-      get { return response_; }
-      set {
-        response_ = value;
-      }
-    }
+        /// <summary>Field number for the "response" field.</summary>
+        public const int ResponseFieldNumber = 3;
+        private global::SturfeeVPS.Core.Proto.Response response_;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public global::SturfeeVPS.Core.Proto.Response Response
+        {
+            get { return response_; }
+            set
+            {
+                response_ = value;
+            }
+        }
 
-    /// <summary>Field number for the "error" field.</summary>
-    public const int ErrorFieldNumber = 4;
-    private global::SturfeeVPS.Core.Proto.Error error_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::SturfeeVPS.Core.Proto.Error Error {
-      get { return error_; }
-      set {
-        error_ = value;
-      }
-    }
+        /// <summary>Field number for the "error" field.</summary>
+        public const int ErrorFieldNumber = 4;
+        private global::SturfeeVPS.Core.Proto.Error error_;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public global::SturfeeVPS.Core.Proto.Error Error
+        {
+            get { return error_; }
+            set
+            {
+                error_ = value;
+            }
+        }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override bool Equals(object other) {
-      return Equals(other as ResponseMessage);
-    }
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public override bool Equals(object other)
+        {
+            return Equals(other as ResponseMessage);
+        }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(ResponseMessage other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (RequestId != other.RequestId) return false;
-      if (TrackingId != other.TrackingId) return false;
-      if (!object.Equals(Response, other.Response)) return false;
-      if (!object.Equals(Error, other.Error)) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public bool Equals(ResponseMessage other)
+        {
+            if (ReferenceEquals(other, null))
+            {
+                return false;
+            }
+            if (ReferenceEquals(other, this))
+            {
+                return true;
+            }
+            if (RequestId != other.RequestId) return false;
+            if (TrackingId != other.TrackingId) return false;
+            if (!object.Equals(Response, other.Response)) return false;
+            if (!object.Equals(Error, other.Error)) return false;
+            return Equals(_unknownFields, other._unknownFields);
+        }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (RequestId != 0) hash ^= RequestId.GetHashCode();
-      if (TrackingId.Length != 0) hash ^= TrackingId.GetHashCode();
-      if (response_ != null) hash ^= Response.GetHashCode();
-      if (error_ != null) hash ^= Error.GetHashCode();
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public override int GetHashCode()
+        {
+            int hash = 1;
+            if (RequestId != 0) hash ^= RequestId.GetHashCode();
+            if (TrackingId.Length != 0) hash ^= TrackingId.GetHashCode();
+            if (response_ != null) hash ^= Response.GetHashCode();
+            if (error_ != null) hash ^= Error.GetHashCode();
+            if (_unknownFields != null)
+            {
+                hash ^= _unknownFields.GetHashCode();
+            }
+            return hash;
+        }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public override string ToString()
+        {
+            return pb::JsonFormatter.ToDiagnosticString(this);
+        }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void WriteTo(pb::CodedOutputStream output) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      output.WriteRawMessage(this);
-    #else
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public void WriteTo(pb::CodedOutputStream output)
+        {
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+            output.WriteRawMessage(this);
+#else
       if (RequestId != 0) {
         output.WriteRawTag(8);
         output.WriteUInt32(RequestId);
@@ -2152,90 +2480,111 @@ namespace SturfeeVPS.Core.Proto {
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (RequestId != 0) {
-        output.WriteRawTag(8);
-        output.WriteUInt32(RequestId);
-      }
-      if (TrackingId.Length != 0) {
-        output.WriteRawTag(18);
-        output.WriteString(TrackingId);
-      }
-      if (response_ != null) {
-        output.WriteRawTag(26);
-        output.WriteMessage(Response);
-      }
-      if (error_ != null) {
-        output.WriteRawTag(34);
-        output.WriteMessage(Error);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(ref output);
-      }
-    }
-    #endif
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int CalculateSize() {
-      int size = 0;
-      if (RequestId != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(RequestId);
-      }
-      if (TrackingId.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeStringSize(TrackingId);
-      }
-      if (response_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Response);
-      }
-      if (error_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Error);
-      }
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(ResponseMessage other) {
-      if (other == null) {
-        return;
-      }
-      if (other.RequestId != 0) {
-        RequestId = other.RequestId;
-      }
-      if (other.TrackingId.Length != 0) {
-        TrackingId = other.TrackingId;
-      }
-      if (other.response_ != null) {
-        if (response_ == null) {
-          Response = new global::SturfeeVPS.Core.Proto.Response();
+#endif
         }
-        Response.MergeFrom(other.Response);
-      }
-      if (other.error_ != null) {
-        if (error_ == null) {
-          Error = new global::SturfeeVPS.Core.Proto.Error();
-        }
-        Error.MergeFrom(other.Error);
-      }
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(pb::CodedInputStream input) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      input.ReadRawMessage(this);
-    #else
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output)
+        {
+            if (RequestId != 0)
+            {
+                output.WriteRawTag(8);
+                output.WriteUInt32(RequestId);
+            }
+            if (TrackingId.Length != 0)
+            {
+                output.WriteRawTag(18);
+                output.WriteString(TrackingId);
+            }
+            if (response_ != null)
+            {
+                output.WriteRawTag(26);
+                output.WriteMessage(Response);
+            }
+            if (error_ != null)
+            {
+                output.WriteRawTag(34);
+                output.WriteMessage(Error);
+            }
+            if (_unknownFields != null)
+            {
+                _unknownFields.WriteTo(ref output);
+            }
+        }
+#endif
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public int CalculateSize()
+        {
+            int size = 0;
+            if (RequestId != 0)
+            {
+                size += 1 + pb::CodedOutputStream.ComputeUInt32Size(RequestId);
+            }
+            if (TrackingId.Length != 0)
+            {
+                size += 1 + pb::CodedOutputStream.ComputeStringSize(TrackingId);
+            }
+            if (response_ != null)
+            {
+                size += 1 + pb::CodedOutputStream.ComputeMessageSize(Response);
+            }
+            if (error_ != null)
+            {
+                size += 1 + pb::CodedOutputStream.ComputeMessageSize(Error);
+            }
+            if (_unknownFields != null)
+            {
+                size += _unknownFields.CalculateSize();
+            }
+            return size;
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public void MergeFrom(ResponseMessage other)
+        {
+            if (other == null)
+            {
+                return;
+            }
+            if (other.RequestId != 0)
+            {
+                RequestId = other.RequestId;
+            }
+            if (other.TrackingId.Length != 0)
+            {
+                TrackingId = other.TrackingId;
+            }
+            if (other.response_ != null)
+            {
+                if (response_ == null)
+                {
+                    Response = new global::SturfeeVPS.Core.Proto.Response();
+                }
+                Response.MergeFrom(other.Response);
+            }
+            if (other.error_ != null)
+            {
+                if (error_ == null)
+                {
+                    Error = new global::SturfeeVPS.Core.Proto.Error();
+                }
+                Error.MergeFrom(other.Error);
+            }
+            _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public void MergeFrom(pb::CodedInputStream input)
+        {
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+            input.ReadRawMessage(this);
+#else
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
         switch(tag) {
@@ -2266,191 +2615,272 @@ namespace SturfeeVPS.Core.Proto {
           }
         }
       }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
-            break;
-          case 8: {
-            RequestId = input.ReadUInt32();
-            break;
-          }
-          case 18: {
-            TrackingId = input.ReadString();
-            break;
-          }
-          case 26: {
-            if (response_ == null) {
-              Response = new global::SturfeeVPS.Core.Proto.Response();
-            }
-            input.ReadMessage(Response);
-            break;
-          }
-          case 34: {
-            if (error_ == null) {
-              Error = new global::SturfeeVPS.Core.Proto.Error();
-            }
-            input.ReadMessage(Error);
-            break;
-          }
+#endif
         }
-      }
+
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input)
+        {
+            uint tag;
+            while ((tag = input.ReadTag()) != 0)
+            {
+                switch (tag)
+                {
+                    default:
+                        _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+                        break;
+                    case 8:
+                        {
+                            RequestId = input.ReadUInt32();
+                            break;
+                        }
+                    case 18:
+                        {
+                            TrackingId = input.ReadString();
+                            break;
+                        }
+                    case 26:
+                        {
+                            if (response_ == null)
+                            {
+                                Response = new global::SturfeeVPS.Core.Proto.Response();
+                            }
+                            input.ReadMessage(Response);
+                            break;
+                        }
+                    case 34:
+                        {
+                            if (error_ == null)
+                            {
+                                Error = new global::SturfeeVPS.Core.Proto.Error();
+                            }
+                            input.ReadMessage(Error);
+                            break;
+                        }
+                }
+            }
+        }
+#endif
+
     }
-    #endif
 
-  }
-
-  public sealed partial class Response : pb::IMessage<Response>
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    public sealed partial class Response : pb::IMessage<Response>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
-  #endif
-  {
-    private static readonly pb::MessageParser<Response> _parser = new pb::MessageParser<Response>(() => new Response());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<Response> Parser { get { return _parser; } }
+#endif
+    {
+        private static readonly pb::MessageParser<Response> _parser = new pb::MessageParser<Response>(() => new Response());
+        private pb::UnknownFieldSet _unknownFields;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public static pb::MessageParser<Response> Parser { get { return _parser; } }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::SturfeeVPS.Core.Proto.ParamsReflection.Descriptor.MessageTypes[7]; }
-    }
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public static pbr::MessageDescriptor Descriptor
+        {
+            get { return global::SturfeeVPS.Core.Proto.ParamsReflection.Descriptor.MessageTypes[7]; }
+        }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        pbr::MessageDescriptor pb::IMessage.Descriptor
+        {
+            get { return Descriptor; }
+        }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public Response() {
-      OnConstruction();
-    }
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public Response()
+        {
+            OnConstruction();
+        }
 
-    partial void OnConstruction();
+        partial void OnConstruction();
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public Response(Response other) : this() {
-      position_ = other.position_ != null ? other.position_.Clone() : null;
-      yawOffsetQuaternion_ = other.yawOffsetQuaternion_ != null ? other.yawOffsetQuaternion_.Clone() : null;
-      pitchOffsetQuaternion_ = other.pitchOffsetQuaternion_ != null ? other.pitchOffsetQuaternion_.Clone() : null;
-      eulerOffset_ = other.eulerOffset_ != null ? other.eulerOffset_.Clone() : null;
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public Response(Response other) : this()
+        {
+            position_ = other.position_ != null ? other.position_.Clone() : null;
+            yawOffsetQuaternion_ = other.yawOffsetQuaternion_ != null ? other.yawOffsetQuaternion_.Clone() : null;
+            pitchOffsetQuaternion_ = other.pitchOffsetQuaternion_ != null ? other.pitchOffsetQuaternion_.Clone() : null;
+            eulerOffset_ = other.eulerOffset_ != null ? other.eulerOffset_.Clone() : null;
+            rollOffsetQuaternion_ = other.rollOffsetQuaternion_ != null ? other.rollOffsetQuaternion_.Clone() : null;
+            offsetQuaternion_ = other.offsetQuaternion_ != null ? other.offsetQuaternion_.Clone() : null;
+            selectedFrameId_ = other.selectedFrameId_;
+            _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+        }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public Response Clone() {
-      return new Response(this);
-    }
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public Response Clone()
+        {
+            return new Response(this);
+        }
 
-    /// <summary>Field number for the "position" field.</summary>
-    public const int PositionFieldNumber = 1;
-    private global::SturfeeVPS.Core.Proto.Position position_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::SturfeeVPS.Core.Proto.Position Position {
-      get { return position_; }
-      set {
-        position_ = value;
-      }
-    }
+        /// <summary>Field number for the "position" field.</summary>
+        public const int PositionFieldNumber = 1;
+        private global::SturfeeVPS.Core.Proto.Position position_;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public global::SturfeeVPS.Core.Proto.Position Position
+        {
+            get { return position_; }
+            set
+            {
+                position_ = value;
+            }
+        }
 
-    /// <summary>Field number for the "yaw_offset_quaternion" field.</summary>
-    public const int YawOffsetQuaternionFieldNumber = 2;
-    private global::SturfeeVPS.Core.Proto.Quaternion yawOffsetQuaternion_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::SturfeeVPS.Core.Proto.Quaternion YawOffsetQuaternion {
-      get { return yawOffsetQuaternion_; }
-      set {
-        yawOffsetQuaternion_ = value;
-      }
-    }
+        /// <summary>Field number for the "yaw_offset_quaternion" field.</summary>
+        public const int YawOffsetQuaternionFieldNumber = 2;
+        private global::SturfeeVPS.Core.Proto.Quaternion yawOffsetQuaternion_;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public global::SturfeeVPS.Core.Proto.Quaternion YawOffsetQuaternion
+        {
+            get { return yawOffsetQuaternion_; }
+            set
+            {
+                yawOffsetQuaternion_ = value;
+            }
+        }
 
-    /// <summary>Field number for the "pitch_offset_quaternion" field.</summary>
-    public const int PitchOffsetQuaternionFieldNumber = 3;
-    private global::SturfeeVPS.Core.Proto.Quaternion pitchOffsetQuaternion_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::SturfeeVPS.Core.Proto.Quaternion PitchOffsetQuaternion {
-      get { return pitchOffsetQuaternion_; }
-      set {
-        pitchOffsetQuaternion_ = value;
-      }
-    }
+        /// <summary>Field number for the "pitch_offset_quaternion" field.</summary>
+        public const int PitchOffsetQuaternionFieldNumber = 3;
+        private global::SturfeeVPS.Core.Proto.Quaternion pitchOffsetQuaternion_;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public global::SturfeeVPS.Core.Proto.Quaternion PitchOffsetQuaternion
+        {
+            get { return pitchOffsetQuaternion_; }
+            set
+            {
+                pitchOffsetQuaternion_ = value;
+            }
+        }
 
-    /// <summary>Field number for the "euler_offset" field.</summary>
-    public const int EulerOffsetFieldNumber = 4;
-    private global::SturfeeVPS.Core.Proto.OffsetEuler eulerOffset_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::SturfeeVPS.Core.Proto.OffsetEuler EulerOffset {
-      get { return eulerOffset_; }
-      set {
-        eulerOffset_ = value;
-      }
-    }
+        /// <summary>Field number for the "euler_offset" field.</summary>
+        public const int EulerOffsetFieldNumber = 4;
+        private global::SturfeeVPS.Core.Proto.OffsetEuler eulerOffset_;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public global::SturfeeVPS.Core.Proto.OffsetEuler EulerOffset
+        {
+            get { return eulerOffset_; }
+            set
+            {
+                eulerOffset_ = value;
+            }
+        }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override bool Equals(object other) {
-      return Equals(other as Response);
-    }
+        /// <summary>Field number for the "roll_offset_quaternion" field.</summary>
+        public const int RollOffsetQuaternionFieldNumber = 5;
+        private global::SturfeeVPS.Core.Proto.Quaternion rollOffsetQuaternion_;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public global::SturfeeVPS.Core.Proto.Quaternion RollOffsetQuaternion
+        {
+            get { return rollOffsetQuaternion_; }
+            set
+            {
+                rollOffsetQuaternion_ = value;
+            }
+        }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(Response other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (!object.Equals(Position, other.Position)) return false;
-      if (!object.Equals(YawOffsetQuaternion, other.YawOffsetQuaternion)) return false;
-      if (!object.Equals(PitchOffsetQuaternion, other.PitchOffsetQuaternion)) return false;
-      if (!object.Equals(EulerOffset, other.EulerOffset)) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
+        /// <summary>Field number for the "offset_quaternion" field.</summary>
+        public const int OffsetQuaternionFieldNumber = 6;
+        private global::SturfeeVPS.Core.Proto.Quaternion offsetQuaternion_;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public global::SturfeeVPS.Core.Proto.Quaternion OffsetQuaternion
+        {
+            get { return offsetQuaternion_; }
+            set
+            {
+                offsetQuaternion_ = value;
+            }
+        }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (position_ != null) hash ^= Position.GetHashCode();
-      if (yawOffsetQuaternion_ != null) hash ^= YawOffsetQuaternion.GetHashCode();
-      if (pitchOffsetQuaternion_ != null) hash ^= PitchOffsetQuaternion.GetHashCode();
-      if (eulerOffset_ != null) hash ^= EulerOffset.GetHashCode();
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
+        /// <summary>Field number for the "selected_frame_id" field.</summary>
+        public const int SelectedFrameIdFieldNumber = 7;
+        private uint selectedFrameId_;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public uint SelectedFrameId
+        {
+            get { return selectedFrameId_; }
+            set
+            {
+                selectedFrameId_ = value;
+            }
+        }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public override bool Equals(object other)
+        {
+            return Equals(other as Response);
+        }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void WriteTo(pb::CodedOutputStream output) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      output.WriteRawMessage(this);
-    #else
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public bool Equals(Response other)
+        {
+            if (ReferenceEquals(other, null))
+            {
+                return false;
+            }
+            if (ReferenceEquals(other, this))
+            {
+                return true;
+            }
+            if (!object.Equals(Position, other.Position)) return false;
+            if (!object.Equals(YawOffsetQuaternion, other.YawOffsetQuaternion)) return false;
+            if (!object.Equals(PitchOffsetQuaternion, other.PitchOffsetQuaternion)) return false;
+            if (!object.Equals(EulerOffset, other.EulerOffset)) return false;
+            if (!object.Equals(RollOffsetQuaternion, other.RollOffsetQuaternion)) return false;
+            if (!object.Equals(OffsetQuaternion, other.OffsetQuaternion)) return false;
+            if (SelectedFrameId != other.SelectedFrameId) return false;
+            return Equals(_unknownFields, other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public override int GetHashCode()
+        {
+            int hash = 1;
+            if (position_ != null) hash ^= Position.GetHashCode();
+            if (yawOffsetQuaternion_ != null) hash ^= YawOffsetQuaternion.GetHashCode();
+            if (pitchOffsetQuaternion_ != null) hash ^= PitchOffsetQuaternion.GetHashCode();
+            if (eulerOffset_ != null) hash ^= EulerOffset.GetHashCode();
+            if (rollOffsetQuaternion_ != null) hash ^= RollOffsetQuaternion.GetHashCode();
+            if (offsetQuaternion_ != null) hash ^= OffsetQuaternion.GetHashCode();
+            if (SelectedFrameId != 0) hash ^= SelectedFrameId.GetHashCode();
+            if (_unknownFields != null)
+            {
+                hash ^= _unknownFields.GetHashCode();
+            }
+            return hash;
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public override string ToString()
+        {
+            return pb::JsonFormatter.ToDiagnosticString(this);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public void WriteTo(pb::CodedOutputStream output)
+        {
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+            output.WriteRawMessage(this);
+#else
       if (position_ != null) {
         output.WriteRawTag(10);
         output.WriteMessage(Position);
@@ -2466,100 +2896,182 @@ namespace SturfeeVPS.Core.Proto {
       if (eulerOffset_ != null) {
         output.WriteRawTag(34);
         output.WriteMessage(EulerOffset);
+      }
+      if (rollOffsetQuaternion_ != null) {
+        output.WriteRawTag(42);
+        output.WriteMessage(RollOffsetQuaternion);
+      }
+      if (offsetQuaternion_ != null) {
+        output.WriteRawTag(50);
+        output.WriteMessage(OffsetQuaternion);
+      }
+      if (SelectedFrameId != 0) {
+        output.WriteRawTag(56);
+        output.WriteUInt32(SelectedFrameId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (position_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Position);
-      }
-      if (yawOffsetQuaternion_ != null) {
-        output.WriteRawTag(18);
-        output.WriteMessage(YawOffsetQuaternion);
-      }
-      if (pitchOffsetQuaternion_ != null) {
-        output.WriteRawTag(26);
-        output.WriteMessage(PitchOffsetQuaternion);
-      }
-      if (eulerOffset_ != null) {
-        output.WriteRawTag(34);
-        output.WriteMessage(EulerOffset);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(ref output);
-      }
-    }
-    #endif
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int CalculateSize() {
-      int size = 0;
-      if (position_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Position);
-      }
-      if (yawOffsetQuaternion_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(YawOffsetQuaternion);
-      }
-      if (pitchOffsetQuaternion_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(PitchOffsetQuaternion);
-      }
-      if (eulerOffset_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(EulerOffset);
-      }
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(Response other) {
-      if (other == null) {
-        return;
-      }
-      if (other.position_ != null) {
-        if (position_ == null) {
-          Position = new global::SturfeeVPS.Core.Proto.Position();
+#endif
         }
-        Position.MergeFrom(other.Position);
-      }
-      if (other.yawOffsetQuaternion_ != null) {
-        if (yawOffsetQuaternion_ == null) {
-          YawOffsetQuaternion = new global::SturfeeVPS.Core.Proto.Quaternion();
-        }
-        YawOffsetQuaternion.MergeFrom(other.YawOffsetQuaternion);
-      }
-      if (other.pitchOffsetQuaternion_ != null) {
-        if (pitchOffsetQuaternion_ == null) {
-          PitchOffsetQuaternion = new global::SturfeeVPS.Core.Proto.Quaternion();
-        }
-        PitchOffsetQuaternion.MergeFrom(other.PitchOffsetQuaternion);
-      }
-      if (other.eulerOffset_ != null) {
-        if (eulerOffset_ == null) {
-          EulerOffset = new global::SturfeeVPS.Core.Proto.OffsetEuler();
-        }
-        EulerOffset.MergeFrom(other.EulerOffset);
-      }
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(pb::CodedInputStream input) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      input.ReadRawMessage(this);
-    #else
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output)
+        {
+            if (position_ != null)
+            {
+                output.WriteRawTag(10);
+                output.WriteMessage(Position);
+            }
+            if (yawOffsetQuaternion_ != null)
+            {
+                output.WriteRawTag(18);
+                output.WriteMessage(YawOffsetQuaternion);
+            }
+            if (pitchOffsetQuaternion_ != null)
+            {
+                output.WriteRawTag(26);
+                output.WriteMessage(PitchOffsetQuaternion);
+            }
+            if (eulerOffset_ != null)
+            {
+                output.WriteRawTag(34);
+                output.WriteMessage(EulerOffset);
+            }
+            if (rollOffsetQuaternion_ != null)
+            {
+                output.WriteRawTag(42);
+                output.WriteMessage(RollOffsetQuaternion);
+            }
+            if (offsetQuaternion_ != null)
+            {
+                output.WriteRawTag(50);
+                output.WriteMessage(OffsetQuaternion);
+            }
+            if (SelectedFrameId != 0)
+            {
+                output.WriteRawTag(56);
+                output.WriteUInt32(SelectedFrameId);
+            }
+            if (_unknownFields != null)
+            {
+                _unknownFields.WriteTo(ref output);
+            }
+        }
+#endif
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public int CalculateSize()
+        {
+            int size = 0;
+            if (position_ != null)
+            {
+                size += 1 + pb::CodedOutputStream.ComputeMessageSize(Position);
+            }
+            if (yawOffsetQuaternion_ != null)
+            {
+                size += 1 + pb::CodedOutputStream.ComputeMessageSize(YawOffsetQuaternion);
+            }
+            if (pitchOffsetQuaternion_ != null)
+            {
+                size += 1 + pb::CodedOutputStream.ComputeMessageSize(PitchOffsetQuaternion);
+            }
+            if (eulerOffset_ != null)
+            {
+                size += 1 + pb::CodedOutputStream.ComputeMessageSize(EulerOffset);
+            }
+            if (rollOffsetQuaternion_ != null)
+            {
+                size += 1 + pb::CodedOutputStream.ComputeMessageSize(RollOffsetQuaternion);
+            }
+            if (offsetQuaternion_ != null)
+            {
+                size += 1 + pb::CodedOutputStream.ComputeMessageSize(OffsetQuaternion);
+            }
+            if (SelectedFrameId != 0)
+            {
+                size += 1 + pb::CodedOutputStream.ComputeUInt32Size(SelectedFrameId);
+            }
+            if (_unknownFields != null)
+            {
+                size += _unknownFields.CalculateSize();
+            }
+            return size;
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public void MergeFrom(Response other)
+        {
+            if (other == null)
+            {
+                return;
+            }
+            if (other.position_ != null)
+            {
+                if (position_ == null)
+                {
+                    Position = new global::SturfeeVPS.Core.Proto.Position();
+                }
+                Position.MergeFrom(other.Position);
+            }
+            if (other.yawOffsetQuaternion_ != null)
+            {
+                if (yawOffsetQuaternion_ == null)
+                {
+                    YawOffsetQuaternion = new global::SturfeeVPS.Core.Proto.Quaternion();
+                }
+                YawOffsetQuaternion.MergeFrom(other.YawOffsetQuaternion);
+            }
+            if (other.pitchOffsetQuaternion_ != null)
+            {
+                if (pitchOffsetQuaternion_ == null)
+                {
+                    PitchOffsetQuaternion = new global::SturfeeVPS.Core.Proto.Quaternion();
+                }
+                PitchOffsetQuaternion.MergeFrom(other.PitchOffsetQuaternion);
+            }
+            if (other.eulerOffset_ != null)
+            {
+                if (eulerOffset_ == null)
+                {
+                    EulerOffset = new global::SturfeeVPS.Core.Proto.OffsetEuler();
+                }
+                EulerOffset.MergeFrom(other.EulerOffset);
+            }
+            if (other.rollOffsetQuaternion_ != null)
+            {
+                if (rollOffsetQuaternion_ == null)
+                {
+                    RollOffsetQuaternion = new global::SturfeeVPS.Core.Proto.Quaternion();
+                }
+                RollOffsetQuaternion.MergeFrom(other.RollOffsetQuaternion);
+            }
+            if (other.offsetQuaternion_ != null)
+            {
+                if (offsetQuaternion_ == null)
+                {
+                    OffsetQuaternion = new global::SturfeeVPS.Core.Proto.Quaternion();
+                }
+                OffsetQuaternion.MergeFrom(other.OffsetQuaternion);
+            }
+            if (other.SelectedFrameId != 0)
+            {
+                SelectedFrameId = other.SelectedFrameId;
+            }
+            _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public void MergeFrom(pb::CodedInputStream input)
+        {
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+            input.ReadRawMessage(this);
+#else
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
         switch(tag) {
@@ -2594,169 +3106,238 @@ namespace SturfeeVPS.Core.Proto {
             input.ReadMessage(EulerOffset);
             break;
           }
-        }
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
-            break;
-          case 10: {
-            if (position_ == null) {
-              Position = new global::SturfeeVPS.Core.Proto.Position();
+          case 42: {
+            if (rollOffsetQuaternion_ == null) {
+              RollOffsetQuaternion = new global::SturfeeVPS.Core.Proto.Quaternion();
             }
-            input.ReadMessage(Position);
+            input.ReadMessage(RollOffsetQuaternion);
             break;
           }
-          case 18: {
-            if (yawOffsetQuaternion_ == null) {
-              YawOffsetQuaternion = new global::SturfeeVPS.Core.Proto.Quaternion();
+          case 50: {
+            if (offsetQuaternion_ == null) {
+              OffsetQuaternion = new global::SturfeeVPS.Core.Proto.Quaternion();
             }
-            input.ReadMessage(YawOffsetQuaternion);
+            input.ReadMessage(OffsetQuaternion);
             break;
           }
-          case 26: {
-            if (pitchOffsetQuaternion_ == null) {
-              PitchOffsetQuaternion = new global::SturfeeVPS.Core.Proto.Quaternion();
-            }
-            input.ReadMessage(PitchOffsetQuaternion);
-            break;
-          }
-          case 34: {
-            if (eulerOffset_ == null) {
-              EulerOffset = new global::SturfeeVPS.Core.Proto.OffsetEuler();
-            }
-            input.ReadMessage(EulerOffset);
+          case 56: {
+            SelectedFrameId = input.ReadUInt32();
             break;
           }
         }
       }
+#endif
+        }
+
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input)
+        {
+            uint tag;
+            while ((tag = input.ReadTag()) != 0)
+            {
+                switch (tag)
+                {
+                    default:
+                        _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+                        break;
+                    case 10:
+                        {
+                            if (position_ == null)
+                            {
+                                Position = new global::SturfeeVPS.Core.Proto.Position();
+                            }
+                            input.ReadMessage(Position);
+                            break;
+                        }
+                    case 18:
+                        {
+                            if (yawOffsetQuaternion_ == null)
+                            {
+                                YawOffsetQuaternion = new global::SturfeeVPS.Core.Proto.Quaternion();
+                            }
+                            input.ReadMessage(YawOffsetQuaternion);
+                            break;
+                        }
+                    case 26:
+                        {
+                            if (pitchOffsetQuaternion_ == null)
+                            {
+                                PitchOffsetQuaternion = new global::SturfeeVPS.Core.Proto.Quaternion();
+                            }
+                            input.ReadMessage(PitchOffsetQuaternion);
+                            break;
+                        }
+                    case 34:
+                        {
+                            if (eulerOffset_ == null)
+                            {
+                                EulerOffset = new global::SturfeeVPS.Core.Proto.OffsetEuler();
+                            }
+                            input.ReadMessage(EulerOffset);
+                            break;
+                        }
+                    case 42:
+                        {
+                            if (rollOffsetQuaternion_ == null)
+                            {
+                                RollOffsetQuaternion = new global::SturfeeVPS.Core.Proto.Quaternion();
+                            }
+                            input.ReadMessage(RollOffsetQuaternion);
+                            break;
+                        }
+                    case 50:
+                        {
+                            if (offsetQuaternion_ == null)
+                            {
+                                OffsetQuaternion = new global::SturfeeVPS.Core.Proto.Quaternion();
+                            }
+                            input.ReadMessage(OffsetQuaternion);
+                            break;
+                        }
+                    case 56:
+                        {
+                            SelectedFrameId = input.ReadUInt32();
+                            break;
+                        }
+                }
+            }
+        }
+#endif
+
     }
-    #endif
 
-  }
-
-  public sealed partial class Error : pb::IMessage<Error>
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    public sealed partial class Error : pb::IMessage<Error>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
-  #endif
-  {
-    private static readonly pb::MessageParser<Error> _parser = new pb::MessageParser<Error>(() => new Error());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<Error> Parser { get { return _parser; } }
+#endif
+    {
+        private static readonly pb::MessageParser<Error> _parser = new pb::MessageParser<Error>(() => new Error());
+        private pb::UnknownFieldSet _unknownFields;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public static pb::MessageParser<Error> Parser { get { return _parser; } }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::SturfeeVPS.Core.Proto.ParamsReflection.Descriptor.MessageTypes[8]; }
-    }
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public static pbr::MessageDescriptor Descriptor
+        {
+            get { return global::SturfeeVPS.Core.Proto.ParamsReflection.Descriptor.MessageTypes[8]; }
+        }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        pbr::MessageDescriptor pb::IMessage.Descriptor
+        {
+            get { return Descriptor; }
+        }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public Error() {
-      OnConstruction();
-    }
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public Error()
+        {
+            OnConstruction();
+        }
 
-    partial void OnConstruction();
+        partial void OnConstruction();
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public Error(Error other) : this() {
-      code_ = other.code_;
-      message_ = other.message_;
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public Error(Error other) : this()
+        {
+            code_ = other.code_;
+            message_ = other.message_;
+            _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+        }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public Error Clone() {
-      return new Error(this);
-    }
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public Error Clone()
+        {
+            return new Error(this);
+        }
 
-    /// <summary>Field number for the "code" field.</summary>
-    public const int CodeFieldNumber = 1;
-    private global::SturfeeVPS.Core.Proto.Error.Types.ErrorCodes code_ = global::SturfeeVPS.Core.Proto.Error.Types.ErrorCodes.NoError;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::SturfeeVPS.Core.Proto.Error.Types.ErrorCodes Code {
-      get { return code_; }
-      set {
-        code_ = value;
-      }
-    }
+        /// <summary>Field number for the "code" field.</summary>
+        public const int CodeFieldNumber = 1;
+        private global::SturfeeVPS.Core.Proto.Error.Types.ErrorCodes code_ = global::SturfeeVPS.Core.Proto.Error.Types.ErrorCodes.NoError;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public global::SturfeeVPS.Core.Proto.Error.Types.ErrorCodes Code
+        {
+            get { return code_; }
+            set
+            {
+                code_ = value;
+            }
+        }
 
-    /// <summary>Field number for the "message" field.</summary>
-    public const int MessageFieldNumber = 2;
-    private string message_ = "";
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public string Message {
-      get { return message_; }
-      set {
-        message_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
-      }
-    }
+        /// <summary>Field number for the "message" field.</summary>
+        public const int MessageFieldNumber = 2;
+        private string message_ = "";
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public string Message
+        {
+            get { return message_; }
+            set
+            {
+                message_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+            }
+        }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override bool Equals(object other) {
-      return Equals(other as Error);
-    }
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public override bool Equals(object other)
+        {
+            return Equals(other as Error);
+        }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(Error other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (Code != other.Code) return false;
-      if (Message != other.Message) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public bool Equals(Error other)
+        {
+            if (ReferenceEquals(other, null))
+            {
+                return false;
+            }
+            if (ReferenceEquals(other, this))
+            {
+                return true;
+            }
+            if (Code != other.Code) return false;
+            if (Message != other.Message) return false;
+            return Equals(_unknownFields, other._unknownFields);
+        }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (Code != global::SturfeeVPS.Core.Proto.Error.Types.ErrorCodes.NoError) hash ^= Code.GetHashCode();
-      if (Message.Length != 0) hash ^= Message.GetHashCode();
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public override int GetHashCode()
+        {
+            int hash = 1;
+            if (Code != global::SturfeeVPS.Core.Proto.Error.Types.ErrorCodes.NoError) hash ^= Code.GetHashCode();
+            if (Message.Length != 0) hash ^= Message.GetHashCode();
+            if (_unknownFields != null)
+            {
+                hash ^= _unknownFields.GetHashCode();
+            }
+            return hash;
+        }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public override string ToString()
+        {
+            return pb::JsonFormatter.ToDiagnosticString(this);
+        }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void WriteTo(pb::CodedOutputStream output) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      output.WriteRawMessage(this);
-    #else
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public void WriteTo(pb::CodedOutputStream output)
+        {
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+            output.WriteRawMessage(this);
+#else
       if (Code != global::SturfeeVPS.Core.Proto.Error.Types.ErrorCodes.NoError) {
         output.WriteRawTag(8);
         output.WriteEnum((int) Code);
@@ -2768,64 +3349,77 @@ namespace SturfeeVPS.Core.Proto {
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
-    #endif
-    }
+#endif
+        }
 
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (Code != global::SturfeeVPS.Core.Proto.Error.Types.ErrorCodes.NoError) {
-        output.WriteRawTag(8);
-        output.WriteEnum((int) Code);
-      }
-      if (Message.Length != 0) {
-        output.WriteRawTag(18);
-        output.WriteString(Message);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(ref output);
-      }
-    }
-    #endif
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output)
+        {
+            if (Code != global::SturfeeVPS.Core.Proto.Error.Types.ErrorCodes.NoError)
+            {
+                output.WriteRawTag(8);
+                output.WriteEnum((int)Code);
+            }
+            if (Message.Length != 0)
+            {
+                output.WriteRawTag(18);
+                output.WriteString(Message);
+            }
+            if (_unknownFields != null)
+            {
+                _unknownFields.WriteTo(ref output);
+            }
+        }
+#endif
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int CalculateSize() {
-      int size = 0;
-      if (Code != global::SturfeeVPS.Core.Proto.Error.Types.ErrorCodes.NoError) {
-        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Code);
-      }
-      if (Message.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeStringSize(Message);
-      }
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public int CalculateSize()
+        {
+            int size = 0;
+            if (Code != global::SturfeeVPS.Core.Proto.Error.Types.ErrorCodes.NoError)
+            {
+                size += 1 + pb::CodedOutputStream.ComputeEnumSize((int)Code);
+            }
+            if (Message.Length != 0)
+            {
+                size += 1 + pb::CodedOutputStream.ComputeStringSize(Message);
+            }
+            if (_unknownFields != null)
+            {
+                size += _unknownFields.CalculateSize();
+            }
+            return size;
+        }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(Error other) {
-      if (other == null) {
-        return;
-      }
-      if (other.Code != global::SturfeeVPS.Core.Proto.Error.Types.ErrorCodes.NoError) {
-        Code = other.Code;
-      }
-      if (other.Message.Length != 0) {
-        Message = other.Message;
-      }
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public void MergeFrom(Error other)
+        {
+            if (other == null)
+            {
+                return;
+            }
+            if (other.Code != global::SturfeeVPS.Core.Proto.Error.Types.ErrorCodes.NoError)
+            {
+                Code = other.Code;
+            }
+            if (other.Message.Length != 0)
+            {
+                Message = other.Message;
+            }
+            _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+        }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(pb::CodedInputStream input) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      input.ReadRawMessage(this);
-    #else
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public void MergeFrom(pb::CodedInputStream input)
+        {
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+            input.ReadRawMessage(this);
+#else
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
         switch(tag) {
@@ -2842,52 +3436,59 @@ namespace SturfeeVPS.Core.Proto {
           }
         }
       }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
-            break;
-          case 8: {
-            Code = (global::SturfeeVPS.Core.Proto.Error.Types.ErrorCodes) input.ReadEnum();
-            break;
-          }
-          case 18: {
-            Message = input.ReadString();
-            break;
-          }
+#endif
         }
-      }
-    }
-    #endif
 
-    #region Nested types
-    /// <summary>Container for nested types declared in the Error message type.</summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static partial class Types {
-      public enum ErrorCodes {
-        [pbr::OriginalName("NO_ERROR")] NoError = 0,
-        [pbr::OriginalName("UNEXPECTED_SERVER_ERROR")] UnexpectedServerError = 5211,
-        [pbr::OriginalName("PROTOCOL_ERROR")] ProtocolError = 5212,
-        [pbr::OriginalName("VALIDATION_ERROR")] ValidationError = 5213,
-        [pbr::OriginalName("OUT_OF_COVERAGE_ERROR")] OutOfCoverageError = 5214,
-        [pbr::OriginalName("GROUND_NOT_ENOUGH_FEATURES_ERROR")] GroundNotEnoughFeaturesError = 5215,
-      }
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input)
+        {
+            uint tag;
+            while ((tag = input.ReadTag()) != 0)
+            {
+                switch (tag)
+                {
+                    default:
+                        _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+                        break;
+                    case 8:
+                        {
+                            Code = (global::SturfeeVPS.Core.Proto.Error.Types.ErrorCodes)input.ReadEnum();
+                            break;
+                        }
+                    case 18:
+                        {
+                            Message = input.ReadString();
+                            break;
+                        }
+                }
+            }
+        }
+#endif
+
+        #region Nested types
+        /// <summary>Container for nested types declared in the Error message type.</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public static partial class Types
+        {
+            public enum ErrorCodes
+            {
+                [pbr::OriginalName("NO_ERROR")] NoError = 0,
+                [pbr::OriginalName("UNEXPECTED_SERVER_ERROR")] UnexpectedServerError = 5211,
+                [pbr::OriginalName("PROTOCOL_ERROR")] ProtocolError = 5212,
+                [pbr::OriginalName("VALIDATION_ERROR")] ValidationError = 5213,
+                [pbr::OriginalName("OUT_OF_COVERAGE_ERROR")] OutOfCoverageError = 5214,
+                [pbr::OriginalName("GROUND_NOT_ENOUGH_FEATURES_ERROR")] GroundNotEnoughFeaturesError = 5215,
+            }
+
+        }
+        #endregion
 
     }
+
     #endregion
-
-  }
-
-  #endregion
 
 }
 

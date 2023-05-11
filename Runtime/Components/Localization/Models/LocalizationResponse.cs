@@ -16,6 +16,7 @@ namespace SturfeeVPS.SDK
         public Quaternion yawOrientationCorrection;
         public Quaternion pitchOrientationCorrection;
         public Quaternion rollOrientationCorrection;
+        public Quaternion rotationOffset;
         public Vector3 eulerOffset;
 
         public static LocalizationResponse ParseProtobufResponse(Response response)
@@ -41,7 +42,14 @@ namespace SturfeeVPS.SDK
                     y = (float)response.PitchOffsetQuaternion.Y,
                     z = (float)response.PitchOffsetQuaternion.Z,
                     w = (float)response.PitchOffsetQuaternion.W,
-                },               
+                },
+                rotationOffset = new Quaternion
+                {
+                    x = (float)response.OffsetQuaternion.X,
+                    y = (float)response.OffsetQuaternion.Y,
+                    z = (float)response.OffsetQuaternion.Z,
+                    w = (float)response.OffsetQuaternion.W,
+                },
             };
 
             if(response.EulerOffset != null)

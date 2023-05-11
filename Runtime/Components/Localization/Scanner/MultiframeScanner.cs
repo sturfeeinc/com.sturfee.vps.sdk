@@ -5,17 +5,30 @@ using SturfeeVPS.UI;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 
+
 // FOR DEBUG
 using Newtonsoft.Json.Linq;
 
 namespace SturfeeVPS.SDK
 {
+    [Serializable]
+    public class ScanFrameInfo // brent - sdk debug
+    {
+        public UnityEngine.Vector3 Position;
+        public UnityEngine.Quaternion Rotation;
+
+        public UnityEngine.Vector3 LocalPosition;        
+        public UnityEngine.Quaternion LocalRotation;
+    }
+
     /// <summary>
     /// \brief Base multiframe scanner class. \details Currently derived by SturfeeVPS.SDK.HDScanner and SturfeeVPS.SDK.SatelliteScanner.
     /// </summary>
@@ -44,8 +57,15 @@ namespace SturfeeVPS.SDK
         public override OffsetType OffsetType => ScanConfig.OffsetType;
         public override ScanType ScanType => ScanConfig.ScanType;
 
+        private int _responseNum = 0;
+
+        // brent - sdk debug
+        public static List<ScanFrameInfo> ScanFrames; // = new List<ScanFrameInfo>(); // brent - sdk debug
+        public static LocalizationResponseMessage VpsReponse; // brent - sdk debug
+
         public override async Task Initialize(uint requestNum)
         {
+            ScanFrames = new List<ScanFrameInfo>(); // brent - sdk debug
             _requestNum = requestNum;
             _scannerUI.ReadyForScan();
         }
@@ -53,7 +73,10 @@ namespace SturfeeVPS.SDK
         public override void StartScan()
         {
             IsScanning = true;
-                        
+
+            _responseNum = UnityEngine.Random.Range(1,100000);
+
+
             _scannerUI.StartScan(ScanConfig);
             _requestId = (_requestNum * 10) + (int)Request.Types.OperationMessages.Alignment;
             _requestNum++;
@@ -74,6 +97,8 @@ namespace SturfeeVPS.SDK
             _scannerUI.StopScan();
 
             TriggerScanStopEvent();
+
+            ScanFrames.Clear();
         }
 
         protected virtual async void CaptureAndSendAsync()
@@ -84,6 +109,15 @@ namespace SturfeeVPS.SDK
             float currentTargetYaw = 0;
             int diff = ScanType == ScanType.HD ? 1 : 3;
             _requestId = (_requestNum * 10) + (int)Request.Types.OperationMessages.Alignment;
+
+            ScanFrames.Add(new ScanFrameInfo
+            {
+                Position = Camera.transform.position,
+                Rotation = Camera.transform.rotation,
+
+                LocalPosition = Camera.transform.localPosition,                
+                LocalRotation = Camera.transform.localRotation
+            });
 
             await Task.Yield();
 
@@ -144,7 +178,9 @@ namespace SturfeeVPS.SDK
             {
                 throw new Exception($"[MultiframeScanner] ::Cannot send reuest. LocalizationService is NULL");
             }
-            
+
+            Debug.Log($"[MultiframeScanner] :: ScanFrames = {JsonUtility.ToJson(ScanFrames)}");
+
             byte[] buffer = request.ToByteArray();
             _localizationService.Send(buffer, (success) =>
             {
@@ -155,6 +191,16 @@ namespace SturfeeVPS.SDK
                     {
                         _requestTimeStamp = DateTime.Now;
                     }
+
+                    // // save to file
+                    // if (!Directory.Exists(Path.Combine(Application.persistentDataPath, "VPS-IMAGES", $"SCAN-API")))
+                    // {
+                    //     Directory.CreateDirectory(Path.Combine(Application.persistentDataPath, "VPS-IMAGES", $"SCAN-API"));
+                    // }
+                    // var filepath = Path.Combine(Application.persistentDataPath, "VPS-IMAGES", $"SCAN-API", $"SCAN_REQUEST_{request.FrameOrder}_{request.TotalNumOfFrames}.json");
+                    // var json = Newtonsoft.Json.JsonConvert.SerializeObject(request);
+                    // Debug.Log($"Scan Request = {json}");
+                    // SaveJsonFile(filepath, json);
                 }
                 else
                 {
@@ -171,12 +217,35 @@ namespace SturfeeVPS.SDK
             _scannerUI.ScanComplete();
 
             LocalizationResponseMessage localizationResponseMessage = LocalizationResponseMessage.ParseProtobufResponseMessage(responseMessage);
+
+            VpsReponse = localizationResponseMessage;
+
             TriggerScanCompleteEvent(localizationResponseMessage);
+
+            // // save to file
+            // if (!Directory.Exists(Path.Combine(Application.persistentDataPath, "VPS-IMAGES", $"SCAN-API")))
+            // {
+            //     Directory.CreateDirectory(Path.Combine(Application.persistentDataPath, "VPS-IMAGES", $"SCAN-API"));
+            // }
+            // var filepath = Path.Combine(Application.persistentDataPath, "VPS-IMAGES", $"SCAN-API", $"SCAN_RESPONSE_{_responseNum++}.json");
+            // var json = JsonUtility.ToJson(localizationResponseMessage); // Newtonsoft.Json.JsonConvert.SerializeObject(localizationResponseMessage);
+            // Debug.Log($"Scan Response = {json}");
+            // SaveJsonFile(filepath, json);
+            
         }
 
         protected virtual Request BuildRequest(uint frameOrder, uint numOfFrames)
         {
             var xrSession = XrSessionManager.GetSession();
+
+            ScanFrames.Add(new ScanFrameInfo
+            {
+                Position = Camera.transform.position,
+                Rotation = Camera.transform.rotation,
+
+                LocalPosition = Camera.transform.localPosition,
+                LocalRotation = Camera.transform.localRotation
+            });
 
             Request request = new Request
             {
@@ -515,5 +584,23 @@ namespace SturfeeVPS.SDK
         }
         #endregion
 
+
+        public static void SaveJsonFile(string filepath, string json)
+        {
+            //MyLogger.Log("Saving json to " + filepath);
+            string directoryName = Path.GetDirectoryName(filepath);
+            if (!Directory.Exists(directoryName))
+            {
+                Directory.CreateDirectory(directoryName);
+            }
+
+            using (StreamWriter streamWriter = new StreamWriter(filepath ?? ""))
+            {
+                streamWriter.Write(json);
+                streamWriter.Flush();
+                streamWriter.Close();
+                streamWriter.Dispose();
+            }
+        }
     }
 }

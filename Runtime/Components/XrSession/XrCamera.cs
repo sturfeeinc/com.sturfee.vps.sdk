@@ -10,6 +10,9 @@ namespace SturfeeVPS.SDK
     /// </summary>
     public class XrCamera : MonoBehaviour
     {
+        public static bool InternalControl = true;
+        public static XrCamera Instance => _instance;
+
         private static XrCamera _instance;
 
         [SerializeField]
@@ -80,30 +83,32 @@ namespace SturfeeVPS.SDK
 
         private void Update()
         {
-            var xrSession = XrSessionManager.GetSession();
-
-            if (xrSession == null)// || xrSession.Status < XRSessionStatus.Ready)
+            if (InternalControl)
             {
-                return;
+                var xrSession = XrSessionManager.GetSession();
+
+                if (xrSession == null)// || xrSession.Status < XRSessionStatus.Ready)
+                {
+                    return;
+                }
+
+                // update local Pose of camera based on sensor readings(PoseProvider)
+                _camera.transform.localPosition = Converters.WorldToUnityPosition(Position);
+                _camera.transform.localRotation = Converters.WorldToUnityRotation(Rotation);
+
+                // FOR DEBUG
+                if (PrintDebug)
+                    SturfeeDebug.Log($"[XrCamera.cs] [DEBUG BUTTON PRESS] Position: {Position}, Rotation: {Rotation}");
+
+                // update projection matrix based on sensor readings (VideoProvider)
+                var videoProvider = xrSession.GetProvider<IVideoProvider>();
+                if (videoProvider != null && videoProvider.GetProviderStatus() == ProviderStatus.Ready)
+                {
+                    _camera.projectionMatrix = videoProvider.GetProjectionMatrix();
+                }
+
+                ApplyOffsets();
             }
-
-            // update local Pose of camera based on sensor readings(PoseProvider)
-            _camera.transform.localPosition = Converters.WorldToUnityPosition(Position);
-            _camera.transform.localRotation = Converters.WorldToUnityRotation(Rotation);         
-
-            // FOR DEBUG
-            if (PrintDebug)
-                SturfeeDebug.Log($"[XrCamera.cs] [DEBUG BUTTON PRESS] Position: {Position}, Rotation: {Rotation}");   
-            
-            // update projection matrix based on sensor readings (VideoProvider)
-            var videoProvider = xrSession.GetProvider<IVideoProvider>();
-            if (videoProvider != null && videoProvider.GetProviderStatus() == ProviderStatus.Ready)
-            {
-                _camera.projectionMatrix = videoProvider.GetProjectionMatrix();
-            }
-
-            ApplyOffsets();
-
         }
 
         // private void Update2() // Jay's change
