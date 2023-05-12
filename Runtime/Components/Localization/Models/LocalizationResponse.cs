@@ -18,6 +18,7 @@ namespace SturfeeVPS.SDK
         public Quaternion rollOrientationCorrection;
         public Quaternion rotationOffset;
         public Vector3 eulerOffset;
+        public int FrameNumber;
 
         public static LocalizationResponse ParseProtobufResponse(Response response)
         {
@@ -50,6 +51,7 @@ namespace SturfeeVPS.SDK
                     z = (float)response.OffsetQuaternion.Z,
                     w = (float)response.OffsetQuaternion.W,
                 },
+                FrameNumber = (int)response.SelectedFrameId
             };
 
             if(response.EulerOffset != null)

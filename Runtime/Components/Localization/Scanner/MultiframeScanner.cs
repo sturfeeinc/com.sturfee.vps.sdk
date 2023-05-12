@@ -60,19 +60,46 @@ namespace SturfeeVPS.SDK
         private int _responseNum = 0;
 
         // brent - sdk debug
-        public static List<ScanFrameInfo> ScanFrames; // = new List<ScanFrameInfo>(); // brent - sdk debug
+        public static bool IsLocalized = false;
+        public static List<ScanFrameInfo> ScanFrames;
         public static LocalizationResponseMessage VpsReponse; // brent - sdk debug
+        public static ScanFrameInfo SelectedFrame;
+
+        //private static MultiframeScanner _instance;
+
+        //public static MultiframeScanner CurrentInstance
+        //{
+        //    get
+        //    {
+        //        if (_instance == null)
+        //        {
+        //            _instance = GameObject.FindObjectOfType<MultiframeScanner>();
+        //        }
+
+        //        return _instance;
+        //    }
+        //}
 
         public override async Task Initialize(uint requestNum)
         {
-            ScanFrames = new List<ScanFrameInfo>(); // brent - sdk debug
+            ScanFrames = new List<ScanFrameInfo>();
             _requestNum = requestNum;
             _scannerUI.ReadyForScan();
+            IsLocalized = false;
+        }
+
+        private void OnDestroy()
+        {
+            IsLocalized = false;
+            ScanFrames = new List<ScanFrameInfo>();
         }
 
         public override void StartScan()
         {
+            ScanFrames.Clear();
+
             IsScanning = true;
+            IsLocalized = false;
 
             _responseNum = UnityEngine.Random.Range(1,100000);
 
@@ -192,15 +219,15 @@ namespace SturfeeVPS.SDK
                         _requestTimeStamp = DateTime.Now;
                     }
 
-                    // // save to file
-                    // if (!Directory.Exists(Path.Combine(Application.persistentDataPath, "VPS-IMAGES", $"SCAN-API")))
-                    // {
-                    //     Directory.CreateDirectory(Path.Combine(Application.persistentDataPath, "VPS-IMAGES", $"SCAN-API"));
-                    // }
-                    // var filepath = Path.Combine(Application.persistentDataPath, "VPS-IMAGES", $"SCAN-API", $"SCAN_REQUEST_{request.FrameOrder}_{request.TotalNumOfFrames}.json");
-                    // var json = Newtonsoft.Json.JsonConvert.SerializeObject(request);
-                    // Debug.Log($"Scan Request = {json}");
-                    // SaveJsonFile(filepath, json);
+                    // save to file
+                    if (!Directory.Exists(Path.Combine(Application.persistentDataPath, "VPS-IMAGES", $"SCAN-API")))
+                    {
+                        Directory.CreateDirectory(Path.Combine(Application.persistentDataPath, "VPS-IMAGES", $"SCAN-API"));
+                    }
+                    var filepath = Path.Combine(Application.persistentDataPath, "VPS-IMAGES", $"SCAN-API", $"SCAN_REQUEST_{request.FrameOrder}_{request.TotalNumOfFrames}.json");
+                    var json = Newtonsoft.Json.JsonConvert.SerializeObject(request);
+                    Debug.Log($"Scan Request = {json}");
+                    SaveJsonFile(filepath, json);
                 }
                 else
                 {
@@ -219,18 +246,20 @@ namespace SturfeeVPS.SDK
             LocalizationResponseMessage localizationResponseMessage = LocalizationResponseMessage.ParseProtobufResponseMessage(responseMessage);
 
             VpsReponse = localizationResponseMessage;
+            SelectedFrame = ScanFrames[localizationResponseMessage.response.FrameNumber];
+            IsLocalized = true;
 
             TriggerScanCompleteEvent(localizationResponseMessage);
 
-            // // save to file
-            // if (!Directory.Exists(Path.Combine(Application.persistentDataPath, "VPS-IMAGES", $"SCAN-API")))
-            // {
-            //     Directory.CreateDirectory(Path.Combine(Application.persistentDataPath, "VPS-IMAGES", $"SCAN-API"));
-            // }
-            // var filepath = Path.Combine(Application.persistentDataPath, "VPS-IMAGES", $"SCAN-API", $"SCAN_RESPONSE_{_responseNum++}.json");
-            // var json = JsonUtility.ToJson(localizationResponseMessage); // Newtonsoft.Json.JsonConvert.SerializeObject(localizationResponseMessage);
-            // Debug.Log($"Scan Response = {json}");
-            // SaveJsonFile(filepath, json);
+            // save to file
+            if (!Directory.Exists(Path.Combine(Application.persistentDataPath, "VPS-IMAGES", $"SCAN-API")))
+            {
+                Directory.CreateDirectory(Path.Combine(Application.persistentDataPath, "VPS-IMAGES", $"SCAN-API"));
+            }
+            var filepath = Path.Combine(Application.persistentDataPath, "VPS-IMAGES", $"SCAN-API", $"SCAN_RESPONSE_{_responseNum++}.json");
+            var json = JsonUtility.ToJson(localizationResponseMessage); // Newtonsoft.Json.JsonConvert.SerializeObject(localizationResponseMessage);
+            Debug.Log($"Scan Response = {json}");
+            SaveJsonFile(filepath, json);
             
         }
 

@@ -12,6 +12,9 @@ namespace SturfeeVPS.SDK
         public abstract Quaternion PitchOffset { protected set; get; }
         public abstract Quaternion RollOffset { protected set; get; }
         public abstract Vector3 EulerOffset { protected set; get; }
+        public abstract Quaternion RotationOffset { protected set; get; }
+        public abstract int FrameNumber { protected set; get; }
+        public abstract GeoLocation Location { protected set; get; }
 
         public abstract Scanner Scanner { protected set; get; }
 

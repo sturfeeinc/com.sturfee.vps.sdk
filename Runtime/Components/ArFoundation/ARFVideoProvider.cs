@@ -1,43 +1,142 @@
 using SturfeeVPS.Core;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.ARFoundation;
+using UnityEngine.XR.ARSubsystems;
+using Unity.Collections.LowLevel.Unsafe;
 
 namespace SturfeeVPS.SDK
 {
     public class ARFVideoProvider : BaseVideoProvider
     {
         private Matrix4x4 _projectionMatrix;
+        private Matrix4x4 _localizationProjectionMatrix;
+        private Matrix4x4 _xrCameraProjectionMatrix;
+
+        private ARCameraManager _arCameraManager;
+
+        private Texture2D _currentFrame = null;
+        private TextureFormat _format = TextureFormat.RGBA32;
+
+        private int _imageCounter = 0;
+
+        private int _maxWidth = 720;
+
+        private bool _isLocalized = false;
+
+        private void Update()
+        {
+            _projectionMatrix = _isLocalized ? _xrCameraProjectionMatrix : _localizationProjectionMatrix;
+        }
+
         public override void OnRegister()
         {
             base.OnRegister();
             //_arfManager = FindObjectOfType<ARFManager>();
 
-            ARFManager.CurrentInstance.ArCamera.GetComponent<ARCameraManager>().frameReceived += OnFrameReceived;
+            _currentFrame = null;
+            _currentFrame = new Texture2D(2, 2, _format, false);
+
+            _arCameraManager = ARFManager.CurrentInstance.ArCamera.GetComponent<ARCameraManager>();
+            _arCameraManager.frameReceived += OnFrameReceived;
 
             ARSession.stateChanged += ARSession_stateChanged;
+
+            SturfeeEventManager.OnLocalizationStart += HandleResetLocalization;
+            SturfeeEventManager.OnLocalizationDisabled += HandleResetLocalization;
+            SturfeeEventManager.OnLocalizationSuccessful += HandleLocalizationSuccess;
         }
 
-        public override Texture2D GetCurrentFrame()
+        public override void OnUnregister()
         {
-            int width = GetWidth();
-            int height = GetHeight();
+            base.OnUnregister();
 
-            // Create a temporary render texture 
-            RenderTexture tempRT = RenderTexture.GetTemporary(width, height, 0, RenderTextureFormat.ARGB32);
-            tempRT.depth = 24;
+            _arCameraManager.frameReceived -= OnFrameReceived;
 
-            Graphics.Blit(Texture2D.whiteTexture, tempRT, ARFManager.CurrentInstance.ArCamera.GetComponent<ARCameraBackground>().material);
+            ARSession.stateChanged -= ARSession_stateChanged;
 
-            // Copy the tempRT to a regular texture by reading from the current render target (i.e. tempRT)
-            var snap = new Texture2D(width, height);
-            snap.ReadPixels(new Rect(0, 0, width, height), 0, 0, false); // ReadPixels(Rect source, ...) ==> Rectangular region of the view to read from. ***Pixels are read from current render target.***
-            snap.Apply();
+            SturfeeEventManager.OnLocalizationStart -= HandleResetLocalization;
+            SturfeeEventManager.OnLocalizationDisabled -= HandleResetLocalization;
+            SturfeeEventManager.OnLocalizationSuccessful -= HandleLocalizationSuccess;
+        }
 
-            Destroy(tempRT);
+        private void OnDestroy()
+        {
+            _arCameraManager.frameReceived -= OnFrameReceived;
 
-            return snap;
+            ARSession.stateChanged -= ARSession_stateChanged;
+
+            SturfeeEventManager.OnLocalizationStart -= HandleResetLocalization;
+            SturfeeEventManager.OnLocalizationDisabled -= HandleResetLocalization;
+            SturfeeEventManager.OnLocalizationSuccessful -= HandleLocalizationSuccess;
+        }
+
+        private void HandleLocalizationSuccess()
+        {
+            _isLocalized = true;
+        }
+
+        private void HandleResetLocalization()
+        {
+            _isLocalized = false;
+            _imageCounter = 0;
+        }
+
+        unsafe public override Texture2D GetCurrentFrame()
+        {
+            // Attempt to get the latest camera image. If this method succeds it acquires a native resource that must be disposed
+            if (_arCameraManager == null) { return _currentFrame; }
+
+            Texture2D frame = _currentFrame;
+
+            if (_arCameraManager.TryAcquireLatestCpuImage(out XRCpuImage xrCpuImage))
+            {
+                if (xrCpuImage != null)
+                {
+                    try
+                    {
+                        // store the most recent frame received for use by the SDK     
+                        _currentFrame = new Texture2D(xrCpuImage.width, xrCpuImage.height, _format, false);
+                        var conversionParams = new XRCpuImage.ConversionParams(xrCpuImage, _format, XRCpuImage.Transformation.MirrorX);
+                        var rawTextureData = _currentFrame.GetRawTextureData<byte>();
+                        xrCpuImage.Convert(conversionParams, new IntPtr(rawTextureData.GetUnsafePtr()), rawTextureData.Length);
+                        _currentFrame.Apply();
+
+                        // build the frame to share with the SDK (rotate, scale, etc)...
+
+                        // rotate the texture clockwise 90 degrees
+                        frame = RotateTexture(_currentFrame, true);
+                        // resize to <WIDTH> x 720 -- maintain aspect
+                        var aspect = (float)xrCpuImage.width / (float)xrCpuImage.height;
+                        frame = ResizeTexture(frame, _maxWidth, (int)(_maxWidth * aspect));
+
+                        ////then Save To Disk as JPG
+                        //byte[] bytes = frame.EncodeToJPG();
+                        //File.WriteAllBytes(Path.Combine(dirPath, $"{_imageCounter}.jpg"), bytes);
+                    }
+                    catch (Exception ex)
+                    {
+                        Debug.LogError(ex);
+                        //throw;
+                    }
+                    finally
+                    {
+                        xrCpuImage.Dispose();
+                    }
+                }
+            }
+
+            if (_currentFrame != null)
+            {
+                if (_arCameraManager.TryGetIntrinsics(out XRCameraIntrinsics cameraIntrinsics))
+                {
+                    _localizationProjectionMatrix = IntrinsicsToMatrix(cameraIntrinsics);//, width, height);
+                }
+            }
+
+            return frame;
         }
 
         public override float GetFOV()
@@ -47,7 +146,8 @@ namespace SturfeeVPS.SDK
 
         public override int GetHeight()
         {
-            return (int)ResizedResolution().y;
+            //return _currentFrame != null ? _currentFrame.height : 0;
+            return _currentFrame != null ? _currentFrame.width : 0;
         }
 
         public override Matrix4x4 GetProjectionMatrix()
@@ -62,7 +162,8 @@ namespace SturfeeVPS.SDK
 
         public override int GetWidth()
         {
-            return (int)ResizedResolution().x;
+            //return _currentFrame != null ? _currentFrame.width : 0;
+            return _currentFrame != null ? _currentFrame.height : 0;
         }
 
         public override bool IsPortrait()
@@ -70,11 +171,16 @@ namespace SturfeeVPS.SDK
             return Screen.orientation == ScreenOrientation.Portrait;
         }
 
-        private void OnFrameReceived(ARCameraFrameEventArgs args)
+        unsafe private void OnFrameReceived(ARCameraFrameEventArgs args)
         {
             if (args.projectionMatrix.HasValue)
             {
-                _projectionMatrix = args.projectionMatrix.Value;
+                _xrCameraProjectionMatrix = args.projectionMatrix.Value;
+            }
+
+            if (_arCameraManager != null && _arCameraManager.TryGetIntrinsics(out XRCameraIntrinsics cameraIntrinsics))
+            {
+                _localizationProjectionMatrix = IntrinsicsToMatrix(cameraIntrinsics);//, width, height);
             }
         }
 
@@ -86,41 +192,97 @@ namespace SturfeeVPS.SDK
             }
         }
 
-        private Vector2 ResizedResolution()
+        private Matrix4x4 IntrinsicsToMatrix(XRCameraIntrinsics cameraIntrinsics) //, float inputWidth, float inputHeight)
         {
-            float aspectRatio = GetProjectionMatrix()[1, 1] / GetProjectionMatrix()[0, 0];
-            float width, height;
-            int divideBy = 1;
+            var fx = cameraIntrinsics.focalLength.y;
+            var fy = cameraIntrinsics.focalLength.x;
+            var cx = cameraIntrinsics.principalPoint.y;
+            var cy = cameraIntrinsics.principalPoint.x;
 
-            if (IsPortrait())
+            var inputWidth = cameraIntrinsics.resolution.x;
+            var inputHeight = cameraIntrinsics.resolution.y;
+
+            // final image will be rotated, so width and height should swap
+            var aspect = (float)inputWidth / (float)inputHeight;
+            var width = (float)_maxWidth;
+            var height = (float)(_maxWidth * aspect); // resize but maintain aspect          
+
+            // deal with scaling everything based on the image resize
+            var scalar = width / (float)inputHeight; // use height here because we swapped width and height
+            fx *= scalar;
+            fy *= scalar;
+            cx *= scalar;
+            cy *= scalar;
+
+            var zNear = 0.01f;
+            var zFar = 2000f;
+
+            var result = new Matrix4x4();
+
+            result.m00 = 2f * fx / width;
+            result.m01 = 0;
+            result.m02 = 0;
+            result.m03 = 0;
+
+            result.m10 = 0;
+            result.m11 = 2f * fy / height;
+            result.m12 = 0;
+            result.m13 = 0;
+
+            result.m20 = 1f - 2f * cx / width;
+            result.m21 = 2f * cy / height - 1f;
+            result.m22 = (zFar + zNear) / (zNear - zFar);
+            result.m23 = -1;
+
+            result.m30 = 0;
+            result.m31 = 0;
+            result.m32 = 2f * zFar * zNear / (zNear - zFar);
+            result.m33 = 0;
+
+            return result;
+        }
+
+        private Texture2D ResizeTexture(Texture2D input, int width, int height)
+        {
+            // Create a temporary render texture 
+            RenderTexture tempRT = RenderTexture.GetTemporary(width, height, 0, RenderTextureFormat.ARGB32);
+            tempRT.depth = 24;
+
+            Graphics.Blit(input, tempRT);
+
+            // Copy the tempRT to a regular texture by reading from the current render target (i.e. tempRT)
+            var snap = new Texture2D(width, height);
+            snap.ReadPixels(new Rect(0, 0, width, height), 0, 0, false); // ReadPixels(Rect source, ...) ==> Rectangular region of the view to read from. ***Pixels are read from current render target.***
+            snap.Apply();
+
+            Destroy(tempRT);
+
+            return snap;
+        }
+
+        private Texture2D RotateTexture(Texture2D originalTexture, bool clockwise)
+        {
+            Color32[] original = originalTexture.GetPixels32();
+            Color32[] rotated = new Color32[original.Length];
+            int w = originalTexture.width;
+            int h = originalTexture.height;
+
+            int iRotated, iOriginal;
+
+            for (int j = 0; j < h; ++j)
             {
-                width = Screen.width;
-                height = width / aspectRatio;
-                if (width > 720)
+                for (int i = 0; i < w; ++i)
                 {
-                    divideBy = (int)width / 720;
-                    if ((int)width % 720 != 0)
-                    {
-                        divideBy++;
-                    }
+                    iRotated = (i + 1) * h - j - 1;
+                    iOriginal = clockwise ? original.Length - 1 - (j * w + i) : j * w + i;
+                    rotated[iRotated] = original[iOriginal];
                 }
             }
-            else
-            {
-                height = Screen.height;
-                width = height * aspectRatio;
-                if (height > 720)
-                {
-                    divideBy = (int)height / 720;
 
-                    if ((int)height % 720 != 0)
-                    {
-                        divideBy++;
-                    }
-                }
-            }
-
-            return new Vector2(width / divideBy, height / divideBy);
+            Texture2D rotatedTexture = new Texture2D(h, w);
+            rotatedTexture.SetPixels32(rotated);
+            rotatedTexture.Apply();
+            return rotatedTexture;
         }
     }
 }

@@ -18,15 +18,19 @@ namespace SturfeeVPS.SDK
         private ScanSelector _scanSelector;
 
         [Header("Internal")]
-        [SerializeField][ReadOnly]
+        [SerializeField]
+        [ReadOnly]
         protected Scanner _scanner;
-        [SerializeField][ReadOnly]
+        [SerializeField]
+        [ReadOnly]
         protected GeoLocation _vpsLocation;
-        [SerializeField][ReadOnly]
+        [SerializeField]
+        [ReadOnly]
         protected uint _requestNum = 1;
-        [SerializeField][ReadOnly]
+        [SerializeField]
+        [ReadOnly]
         protected ProviderStatus _providerStatus;
-        
+
         #region overrides
 
         public override OffsetType OffsetType { protected set { } get { return _scanner.OffsetType; } }
@@ -34,13 +38,16 @@ namespace SturfeeVPS.SDK
         public override Quaternion PitchOffset { protected set; get; }
         public override Quaternion RollOffset { protected set; get; }
         public override Vector3 EulerOffset { protected set; get; }
+        public override Quaternion RotationOffset { protected set; get; }
+        public override int FrameNumber { protected set; get; }
+        public override GeoLocation Location { protected set; get; }
 
         public override void EnableLocalization()
         {
             _providerStatus = ProviderStatus.Initializing;
             TriggerLocalizationRequestedEvent();
 
-            _scanSelector.SelectScanner(OnScannerSelected);                
+            _scanSelector.SelectScanner(OnScannerSelected);
         }
 
         public override void StopLocalization()
@@ -74,7 +81,7 @@ namespace SturfeeVPS.SDK
 
         public void SetScanner(Scanner scanner)
         {
-            if(_scanner != null)
+            if (_scanner != null)
             {
                 _scanner.OnScanStart -= OnScanStart;
                 _scanner.OnScanCapture -= OnScanCapture;
@@ -103,12 +110,12 @@ namespace SturfeeVPS.SDK
                 await _scanner.Initialize(_requestNum);
                 VpsButton.CurrentInstance.SetState(VpsScanState.ReadyToScan);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Debug.LogException(e);
                 SturfeeDebug.LogError(e.Message);
                 VpsButton.CurrentInstance.SetState(VpsScanState.Off);
-                
+
                 string localizedError;
                 if (e is IdException ex)
                 {
@@ -153,7 +160,7 @@ namespace SturfeeVPS.SDK
             SturfeeDebug.Log($"[SturfeeVPSLocalizationProvider] :: OnScanFail");
             TriggerLocalizationFailEvent(error);
         }
-        
+
         private void OnScanComplete(LocalizationResponseMessage responseMessage)
         {
             SturfeeDebug.Log($"[SturfeeVPSLocalizationProvider] :: OnScanComplete");
@@ -162,14 +169,18 @@ namespace SturfeeVPS.SDK
             if (responseMessage.error == null)
             {
                 YawOffset = responseMessage.response.yawOrientationCorrection;
-
                 PitchOffset = responseMessage.response.pitchOrientationCorrection;
 
-                EulerOffset = responseMessage.response.eulerOffset; ;
-                SturfeeDebug.Log($" Euler offset : {EulerOffset}");                
+                RotationOffset = responseMessage.response.rotationOffset;
+                EulerOffset = responseMessage.response.eulerOffset;
+                SturfeeDebug.Log($" Euler offset : {EulerOffset}");
+
+                FrameNumber = responseMessage.response.FrameNumber;
+
+                Location = responseMessage.response.location;
 
                 _vpsLocation = responseMessage.response.location;
-                
+
                 SturfeeDebug.Log($"Localization completed using {_scanner.ScanType} Scanner. Applying {_scanner.OffsetType} offsets");
 
                 SturfeeDebug.Log(JsonUtility.ToJson(responseMessage));
@@ -182,19 +193,19 @@ namespace SturfeeVPS.SDK
             else
             {
                 SturfeeDebug.LogError($"[SturfeeVPSLocalizationProvider] :: Localization failed => {responseMessage.error.message}");
-                
+
                 // FOR DEBUG
                 // SturfeeDebug.LogError($"[SturfeeVPSLocalizationProvider] :: Error Code: {responseMessage.error.code}");
                 // SturfeeDebug.LogError($"[SturfeeVPSLocalizationProvider] :: Request ID: {responseMessage.requestId}");
                 // SturfeeDebug.LogError($"[SturfeeVPSLocalizationProvider] :: Tracking ID: {responseMessage.trackingId}");
                 // SturfeeDebug.Log(JsonUtility.ToJson(responseMessage));                
 
-                _providerStatus= ProviderStatus.Stopped;
+                _providerStatus = ProviderStatus.Stopped;
 
                 string localizedError = SturfeeLocalizationProvider.Instance.GetString($"{responseMessage.error.code}", responseMessage.error.message);
-                TriggerLocalizationFailEvent(localizedError);                
+                TriggerLocalizationFailEvent(localizedError);
             }
-            
+
         }
 
         #endregion
