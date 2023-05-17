@@ -99,7 +99,7 @@ namespace SturfeeVPS.SDK
             if (HDSitesManager.CurrentInstance.UseDtHdId)
             {
                 Debug.Log($"DOWNLOADING!: {Site.mesh.ply}");
-                DownloadFile(Site.mesh.ply, meshFile);
+                await DownloadFile(Site.mesh.ply, meshFile);
                 return;
             }
 

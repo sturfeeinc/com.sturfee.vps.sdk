@@ -260,7 +260,6 @@ namespace SturfeeVPS.SDK
             var json = JsonUtility.ToJson(localizationResponseMessage); // Newtonsoft.Json.JsonConvert.SerializeObject(localizationResponseMessage);
             Debug.Log($"Scan Response = {json}");
             SaveJsonFile(filepath, json);
-            
         }
 
         protected virtual Request BuildRequest(uint frameOrder, uint numOfFrames)

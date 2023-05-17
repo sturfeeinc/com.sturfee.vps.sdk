@@ -41,6 +41,11 @@ namespace SturfeeVPS.SDK
 
         private void Start()
         {
+            if (FindObjectOfType<XrCameraController>() == null)
+            {
+                this.gameObject.AddComponent<XrCameraController>();
+            }
+            
             SturfeeThemeProvider.Instance.ApplyTheme();
 
             if (CreateOnStart)

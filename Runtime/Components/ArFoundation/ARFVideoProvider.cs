@@ -2,6 +2,8 @@ using SturfeeVPS.Core;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
@@ -91,6 +93,14 @@ namespace SturfeeVPS.SDK
 
             Texture2D frame = _currentFrame;
 
+            _imageCounter++;
+
+            var dirPath = Path.Combine(Application.persistentDataPath, "VPS-IMAGES"); // , $"{_saveId}");
+            if (!Directory.Exists(dirPath))
+            {
+                Directory.CreateDirectory(dirPath);
+            }
+
             if (_arCameraManager.TryAcquireLatestCpuImage(out XRCpuImage xrCpuImage))
             {
                 if (xrCpuImage != null)
@@ -112,7 +122,7 @@ namespace SturfeeVPS.SDK
                         var aspect = (float)xrCpuImage.width / (float)xrCpuImage.height;
                         frame = ResizeTexture(frame, _maxWidth, (int)(_maxWidth * aspect));
 
-                        ////then Save To Disk as JPG
+                        ////then Save To Disk as JPG -- this is required for tracking fix (brent)
                         //byte[] bytes = frame.EncodeToJPG();
                         //File.WriteAllBytes(Path.Combine(dirPath, $"{_imageCounter}.jpg"), bytes);
                     }
@@ -124,6 +134,34 @@ namespace SturfeeVPS.SDK
                     finally
                     {
                         xrCpuImage.Dispose();
+                    }
+
+                    // save screen capture too -- this is required for tracking fix (brent)
+                    RenderTexture tempRT = RenderTexture.GetTemporary(Screen.width, Screen.height, 0, RenderTextureFormat.ARGB32);
+                    tempRT.depth = 24;
+                    try
+                    {
+                        Graphics.Blit(Texture2D.whiteTexture, tempRT, ARFManager.CurrentInstance.ArCamera.GetComponent<ARCameraBackground>().material);
+                        // Copy the tempRT to a regular texture by reading from the current render target (i.e. tempRT)
+                        var snap = new Texture2D(Screen.width, Screen.height);
+                        snap.ReadPixels(new Rect(0, 0, Screen.width, Screen.height), 0, 0, false); // ReadPixels(Rect source, ...) ==> Rectangular region of the view to read from. ***Pixels are read from current render target.***
+                        snap.Apply();
+                        Destroy(tempRT);
+
+                        ////then Save To Disk as JPG -- this is required for tracking fix (brent)
+                        //byte[] bytes2 = snap.EncodeToJPG();
+                        //File.WriteAllBytes(Path.Combine(dirPath, $"SCREEN_{_imageCounter}.jpg"), bytes2);
+
+                        //WriteImageDataToFile(snap, Path.Combine(dirPath, $"SCREEN_{_imageCounter}.jpg"));
+                    }
+                    catch (Exception ex)
+                    {
+                        Debug.LogError(ex);
+                        //throw;
+                    }
+                    finally
+                    {
+                        Destroy(tempRT);
                     }
                 }
             }
@@ -186,6 +224,8 @@ namespace SturfeeVPS.SDK
 
         private void ARSession_stateChanged(ARSessionStateChangedEventArgs state)
         {
+            Debug.Log($"[ARFVideoProvider] :: ARSession_stateChanged => {state}");
+
             if (state.state == ARSessionState.SessionTracking)
             {
                 XrCamera.Camera.clearFlags = CameraClearFlags.Depth;

@@ -74,8 +74,10 @@ namespace SturfeeVPS.SDK
 
         public void ScanComplete()
         {
+            _caprtureUI.StopScan();
             _onScanComplete?.Invoke();
             _isScanning = false;
+            _caprtureUI.gameObject.SetActive(false);
         }
     }
 }
