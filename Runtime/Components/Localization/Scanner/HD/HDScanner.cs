@@ -17,6 +17,8 @@ namespace SturfeeVPS.SDK
             await WaitForSessionProviders();
             SturfeeDebug.Log($" [HDScanner] :: Providers ready");
 
+            XrCameraController.CurrentInstance.ControlType = XrCameraControlType.VpsHd;
+
             await ValidateToken(TokenUtils.GetVpsToken());
 
             _localizationService = CreateLocalizationService();
