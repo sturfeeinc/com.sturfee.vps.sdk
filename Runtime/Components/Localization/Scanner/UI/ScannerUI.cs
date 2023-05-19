@@ -40,6 +40,7 @@ namespace SturfeeVPS.SDK
 
         public void StartScan(ScanConfig scanConfig)
         {
+            _caprtureUI.gameObject.SetActive(true);
             _caprtureUI.StartScan(scanConfig.YawAngle, scanConfig.TargetCount);
             _onScanStart?.Invoke();
 
