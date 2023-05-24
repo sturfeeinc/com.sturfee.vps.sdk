@@ -246,8 +246,11 @@ namespace SturfeeVPS.SDK
             LocalizationResponseMessage localizationResponseMessage = LocalizationResponseMessage.ParseProtobufResponseMessage(responseMessage);
 
             VpsReponse = localizationResponseMessage;
-            SelectedFrame = ScanFrames[localizationResponseMessage.response.FrameNumber];
-            IsLocalized = true;
+            if (localizationResponseMessage.error == null)
+            {
+                SelectedFrame = ScanFrames[localizationResponseMessage.response.FrameNumber];
+                IsLocalized = true;
+            }
 
             TriggerScanCompleteEvent(localizationResponseMessage);
 

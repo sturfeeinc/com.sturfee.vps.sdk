@@ -14,6 +14,8 @@ namespace SturfeeVPS.SDK
             await WaitForSessionProviders();
             SturfeeDebug.Log($" [SatelliteScanner] :: Providers ready");
 
+            XrCameraController.CurrentInstance.ControlType = XrCameraControlType.VpsSatellite;
+
             var location = XrSessionManager.GetSession().GetProvider<IGpsProvider>().GetFineLocation(out _);
             await ValidateToken(TokenUtils.GetVpsToken());
             bool inCoverage = await CheckCoverage(location);
