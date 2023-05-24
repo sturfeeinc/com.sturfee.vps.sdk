@@ -48,6 +48,22 @@ namespace SturfeeVPS.SDK
                 if (EventSystem.current.IsPointerOverGameObject())
                     return;
 
+                // if UI is hit
+                if (Input.touchCount > 0)
+                {
+                    for (int i = 0; i < Input.touchCount; i++)
+                    {
+                        if (EventSystem.current.IsPointerOverGameObject(Input.GetTouch(i).fingerId))
+                        {
+                            return;
+                        }
+                    }
+                }
+                else if (EventSystem.current.IsPointerOverGameObject())
+                {
+                    return;
+                }
+
                 var hits = new List<ARRaycastHit>();
                 // Perform the raycast        
                 if (ARRaycastManager.Raycast(touch.position, hits, TrackableType.PlaneWithinPolygon))
