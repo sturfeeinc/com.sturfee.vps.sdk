@@ -13,6 +13,8 @@ namespace SturfeeVPS.SDK
 {
     public class ARFVideoProvider : BaseVideoProvider
     {
+        public bool ClearFrameData = true;
+
         private Matrix4x4 _projectionMatrix;
         private Matrix4x4 _localizationProjectionMatrix;
         private Matrix4x4 _xrCameraProjectionMatrix;
@@ -107,12 +109,15 @@ namespace SturfeeVPS.SDK
                 {
                     try
                     {
+                        if (ClearFrameData && _currentFrame != null) Destroy(_currentFrame);
                         // store the most recent frame received for use by the SDK     
                         _currentFrame = new Texture2D(xrCpuImage.width, xrCpuImage.height, _format, false);
                         var conversionParams = new XRCpuImage.ConversionParams(xrCpuImage, _format, XRCpuImage.Transformation.MirrorX);
                         var rawTextureData = _currentFrame.GetRawTextureData<byte>();
                         xrCpuImage.Convert(conversionParams, new IntPtr(rawTextureData.GetUnsafePtr()), rawTextureData.Length);
                         _currentFrame.Apply();
+
+                        rawTextureData.Dispose();
 
                         // build the frame to share with the SDK (rotate, scale, etc)...
 
@@ -146,13 +151,14 @@ namespace SturfeeVPS.SDK
                         var snap = new Texture2D(Screen.width, Screen.height);
                         snap.ReadPixels(new Rect(0, 0, Screen.width, Screen.height), 0, 0, false); // ReadPixels(Rect source, ...) ==> Rectangular region of the view to read from. ***Pixels are read from current render target.***
                         snap.Apply();
-                        Destroy(tempRT);
 
                         ////then Save To Disk as JPG -- this is required for tracking fix (brent)
                         //byte[] bytes2 = snap.EncodeToJPG();
                         //File.WriteAllBytes(Path.Combine(dirPath, $"SCREEN_{_imageCounter}.jpg"), bytes2);
 
                         //WriteImageDataToFile(snap, Path.Combine(dirPath, $"SCREEN_{_imageCounter}.jpg"));
+
+                        Destroy(snap);
                     }
                     catch (Exception ex)
                     {
