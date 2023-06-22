@@ -1,46 +1,55 @@
-﻿Shader "Sturfee/Transparent" {
+﻿Shader "Sturfee/URP_Transparent" {
 	Properties{
 		_Color("Shadow Color", Color) = (1,1,1,1)
 		_ShadowInt("Shadow Intensity", Range(0,1)) = 1.0
 		_Cutoff("Alpha cutoff", Range(0,1)) = 0.5
 	}
 
-	SubShader{
-		Tags{ 
-			"Queue" = "Geometry-1"
-			"RenderType" = "TransparentCutout"
-			"IgnoreProjector" = "False"
-		}
-		LOD 200
-		Blend Zero SrcColor		
-		Offset 0, -1
-		ZWrite On
+	SubShader
+    {
+        // Render the Occlusion shader before all
+        // opaque geometry to prime the depth buffer.
+        Tags { "Queue"="Geometry-1" }
 
-		CGPROGRAM
+        ZWrite On
+        ZTest LEqual
+        ColorMask 0
 
-		#pragma surface surf ShadowOnly alphatest:_Cutoff fullforwardshadows
+        Pass
+        {
+            CGPROGRAM
+            #pragma vertex vert
+            #pragma fragment frag
 
-		fixed4 _Color;
-		float _ShadowInt;
+            #include "UnityCG.cginc"
 
-		struct Input {
-			float2 uv_MainTex;
-		};
+            struct appdata
+            {
+                float4 vertex : POSITION;
+                UNITY_VERTEX_INPUT_INSTANCE_ID
+            };
 
-		inline fixed4 LightingShadowOnly(SurfaceOutput s, fixed3 lightDir, fixed atten) {
-			fixed4 c;
-			c.rgb = s.Albedo*atten;
-			c.a = s.Alpha;
-			return c;
-		}
+            struct v2f
+            {
+                float4 position : SV_POSITION;
+                UNITY_VERTEX_OUTPUT_STEREO
+            };
 
-		void surf(Input IN, inout SurfaceOutput o) {
-			fixed4 c = _LightColor0 + _LightColor0 * _Color;
-			o.Albedo = lerp(float3(1.0, 1.0, 1.0), c.rgb, _ShadowInt); //c.rgb;
-			o.Alpha = 1.0f;
-		}
-		ENDCG		
-	}
+            v2f vert (appdata input)
+            {
+                v2f output;
+                UNITY_SETUP_INSTANCE_ID(input);
+                UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(output);
 
-	Fallback "Transparent/Cutout/VertexLit"
+                output.position = UnityObjectToClipPos(input.vertex);
+                return output;
+            }
+
+            fixed4 frag (v2f input) : SV_Target
+            {
+                return fixed4(0.0, 0.0, 0.0, 0.0);
+            }
+            ENDCG
+        }
+    }
 }
