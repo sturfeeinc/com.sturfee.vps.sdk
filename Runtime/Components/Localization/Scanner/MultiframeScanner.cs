@@ -125,7 +125,7 @@ namespace SturfeeVPS.SDK
 
             TriggerScanStopEvent();
 
-            ScanFrames.Clear();
+            if (ScanFrames.Any()) { ScanFrames.Clear(); }
         }
 
         protected virtual async void CaptureAndSendAsync()
@@ -338,6 +338,10 @@ namespace SturfeeVPS.SDK
         {
             if (_localizationService != null)
             {
+                _localizationService.OnSocketOpen -= OnSocketOpen;
+                _localizationService.OnSocketReceive -= OnSocketRecieve;
+                _localizationService.OnSocketError -= OnSocketError;
+                _localizationService.OnSocketClose -= OnSocketClose;
                 _localizationService.Disconnect();
                 _localizationService = null;
             }
