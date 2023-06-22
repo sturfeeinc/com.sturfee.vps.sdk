@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: URP_BuildingHide
+  m_Name: BuildingHide
   m_Shader: {fileID: 4800000, guid: daf08e58ae95ad84399dfc8278203846, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
