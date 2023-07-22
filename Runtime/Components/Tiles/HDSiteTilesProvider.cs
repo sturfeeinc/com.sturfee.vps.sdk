@@ -262,6 +262,11 @@ namespace SturfeeVPS.SDK
                     success = await gltf.InstantiateMainSceneAsync(go.transform);
                     //OnMeshLoaded(data, dataType, filePath, go, null);
 
+                    foreach (MeshFilter mf in go.GetComponentsInChildren<MeshFilter>())
+                    {
+                        mf.gameObject.AddComponent<MeshCollider>();
+                    }
+
                     meshGameObject = go;
                     meshGameObject.transform.rotation = Quaternion.Euler(-90, 180, 0);
                     Debug.Log($"HDSiteTilesProvider :: Finished importing mesh gltf : {go.name}");

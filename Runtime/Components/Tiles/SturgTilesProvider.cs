@@ -255,6 +255,11 @@ namespace SturfeeVPS.SDK.Providers
 
                     await gltf.InstantiateSceneAsync(tilesGO.transform, 0);
                     await gltf.InstantiateSceneAsync(tilesGO.transform, 1);
+
+                    foreach (MeshFilter mf in tilesGO.GetComponentsInChildren<MeshFilter>())
+                    {
+                        mf.gameObject.AddComponent<MeshCollider>();
+                    }
                 }
                 else
                 {
