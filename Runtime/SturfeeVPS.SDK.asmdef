@@ -3,7 +3,7 @@
     "rootNamespace": "SturfeeVPS.SDK",
     "references": [
         "SturfeeVPS.Core",
-        "UnityGLTFScripts",
+        "glTFast",
         "Unity.TextMeshPro",
         "DOTween.Modules",
         "GUID:ee5b030f9e5fd654099b5e6ec08e246a",

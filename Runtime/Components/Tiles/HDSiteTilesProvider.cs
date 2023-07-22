@@ -10,8 +10,9 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Networking;
-using UnityGLTF;
-using UnityGLTF.Loader;
+//using UnityGLTF;
+//using UnityGLTF.Loader;
+using GLTFast;
 
 namespace SturfeeVPS.SDK
 {
@@ -23,7 +24,7 @@ namespace SturfeeVPS.SDK
         private HDSite _site;
      
 
-        private AsyncCoroutineHelper _asyncCoroutineHelper;
+        //private AsyncCoroutineHelper _asyncCoroutineHelper;
         private S3Service _s3Service;
 
         public event TilesLoadedAction OnTileLoaded;
@@ -202,11 +203,11 @@ namespace SturfeeVPS.SDK
 
         private async Task<GameObject> LoadGlb(string filePath)
         {
-            var importOptions = new ImportOptions
-            {
-                DataLoader = new FileLoader(Path.GetDirectoryName(filePath)),
-                AsyncCoroutineHelper = AsyncCoroutineHelper,
-            };
+            //var importOptions = new ImportOptions
+            //{
+            //    DataLoader = new FileLoader(Path.GetDirectoryName(filePath)),
+            //    AsyncCoroutineHelper = AsyncCoroutineHelper,
+            //};
 
             Debug.Log($"HDSiteTilesProvider :: Khronos => Loading file = {filePath}");
 
@@ -214,29 +215,60 @@ namespace SturfeeVPS.SDK
             {
                 _providerStatus = ProviderStatus.Initializing;
                 var filename = Path.GetFileNameWithoutExtension(filePath);
-                var importer = new GLTFSceneImporter(filePath, importOptions);
 
-                importer.Collider = GLTFSceneImporter.ColliderType.Mesh;
+
+                //var importer = new GLTFSceneImporter(filePath, importOptions);
+
+                //importer.Collider = GLTFSceneImporter.ColliderType.Mesh;
+
+                //GameObject meshGameObject = null;
+
+                //await importer.LoadSceneAsync(-1, true, (go, err) =>
+                //{
+                //    if (go == null)
+                //    {
+                //        Debug.LogError($"HDSiteTilesProvider :: No Mesh Found for Import ({filePath}");
+                //        return;
+                //    }
+
+                //    meshGameObject = go;
+                //    meshGameObject.transform.rotation = Quaternion.Euler(-90, 180, 0);
+
+                //    Debug.Log($"HDSiteTilesProvider :: Finished importing mesh gltf : {go.name}");
+                //});
+
+                //while (meshGameObject == null)
+                //{
+                //    await Task.Yield();
+                //}
+
+                //_providerStatus = ProviderStatus.Ready;
+                //return meshGameObject;
+
+
 
                 GameObject meshGameObject = null;
-
-                await importer.LoadSceneAsync(-1, true, (go, err) =>
+                byte[] glbData = File.ReadAllBytes(filePath);
+                var gltf = new GltfImport();
+                bool success = await gltf.LoadGltfBinary(
+                    glbData,
+                    // The URI of the original data is important for resolving relative URIs within the glTF
+                    new Uri(filePath)
+                    );
+                if (success)
                 {
-                    if (go == null)
-                    {
-                        Debug.LogError($"HDSiteTilesProvider :: No Mesh Found for Import ({filePath}");
-                        return;
-                    }
+                    var go = new GameObject($"GLTF_SCENE");
+                    //go.transform.SetParent(parent.transform);
+                    success = await gltf.InstantiateMainSceneAsync(go.transform);
+                    //OnMeshLoaded(data, dataType, filePath, go, null);
 
                     meshGameObject = go;
                     meshGameObject.transform.rotation = Quaternion.Euler(-90, 180, 0);
-
                     Debug.Log($"HDSiteTilesProvider :: Finished importing mesh gltf : {go.name}");
-                });
-
-                while (meshGameObject == null)
+                }
+                else
                 {
-                    await Task.Yield();
+                    Debug.LogError($"HDSiteTilesProvider :: No Mesh Found for Import ({filePath}");
                 }
 
                 _providerStatus = ProviderStatus.Ready;
@@ -319,16 +351,16 @@ namespace SturfeeVPS.SDK
             }
         }
 
-        private AsyncCoroutineHelper AsyncCoroutineHelper
-        {
-            get
-            {
-                if (_asyncCoroutineHelper == null)
-                {
-                    _asyncCoroutineHelper = new GameObject("_AsyncCoroutineHelper").AddComponent<AsyncCoroutineHelper>();
-                }
-                return _asyncCoroutineHelper;
-            }
-        }
+        //private AsyncCoroutineHelper AsyncCoroutineHelper
+        //{
+        //    get
+        //    {
+        //        if (_asyncCoroutineHelper == null)
+        //        {
+        //            _asyncCoroutineHelper = new GameObject("_AsyncCoroutineHelper").AddComponent<AsyncCoroutineHelper>();
+        //        }
+        //        return _asyncCoroutineHelper;
+        //    }
+        //}
     }
 }

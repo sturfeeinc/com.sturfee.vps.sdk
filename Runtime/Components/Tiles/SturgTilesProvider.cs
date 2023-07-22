@@ -9,8 +9,9 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
-using UnityGLTF;
-using UnityGLTF.Loader;
+//using UnityGLTF;
+//using UnityGLTF.Loader;
+using GLTFast;
 
 namespace SturfeeVPS.SDK.Providers
 {
@@ -190,42 +191,77 @@ namespace SturfeeVPS.SDK.Providers
 
         private async Task LoadGltf(GameObject tilesGO, string uri, CancellationToken cancellationToken = default)
         {
+            Debug.Log($" Loading Gltf ({uri})...");
             SturfeeDebug.Log(" Loading Gltf...");
 
             try
             {
-                var importOptions = new ImportOptions
+                //var importOptions = new ImportOptions
+                //{
+                //    AsyncCoroutineHelper = tilesGO.GetComponent<AsyncCoroutineHelper>() ?? tilesGO.AddComponent<AsyncCoroutineHelper>()
+                //};
+
+                //GLTFSceneImporter sceneImporter = null;
+
+                //ImporterFactory factory = ScriptableObject.CreateInstance<DefaultImporterFactory>();
+
+                //string directoryPath = URIHelper.GetDirectoryName(uri);
+                //importOptions.DataLoader = new FileLoader(directoryPath);
+                //sceneImporter = factory.CreateSceneImporter(
+                //    Path.GetFileName(uri),
+                //    importOptions
+                //    );
+
+                //sceneImporter.SceneParent = tilesGO.transform;
+                //sceneImporter.Collider = GLTFSceneImporter.ColliderType.Mesh;
+                //sceneImporter.MaximumLod = 300;
+                //sceneImporter.Timeout = 100;
+                //sceneImporter.IsMultithreaded = false;
+                //sceneImporter.CustomShaderName = "VR/SpatialMapping/Occlusion";
+
+                //await sceneImporter.LoadSceneAsync(0, true, null, cancellationToken);
+                //await sceneImporter.LoadSceneAsync(1, true, null, cancellationToken);
+
+                //if (importOptions.DataLoader != null)
+                //{
+                //    sceneImporter?.Dispose();
+                //    sceneImporter = null;
+                //    importOptions.DataLoader = null;
+                //}
+
+
+                byte[] glbData = File.ReadAllBytes(uri);
+                var gltf = new GltfImport();
+                //bool success = await gltf.LoadGltfBinary(
+                //    glbData,
+                //    // The URI of the original data is important for resolving relative URIs within the glTF
+                //    new Uri(uri)
+                //    );
+
+                //// Create a settings object and configure it accordingly
+                //var settings = new ImportSettings
+                //{
+                //    GenerateMipMaps = true,
+                //    AnisotropicFilterLevel = 3,
+                //    NodeNameMethod = NameImportMethod.OriginalUnique
+                //};
+                var success = await gltf.Load(uri);//, settings);
+                if (success)
                 {
-                    AsyncCoroutineHelper = tilesGO.GetComponent<AsyncCoroutineHelper>() ?? tilesGO.AddComponent<AsyncCoroutineHelper>()
-                };
+                    //var go = new GameObject($"GLTF_SCENE");
+                    //go.transform.SetParent(tilesGO.transform);
+                    //success = await gltf.InstantiateMainSceneAsync(go.transform);
+                    ////OnMeshLoaded(data, dataType, filePath, go, null);
 
-                GLTFSceneImporter sceneImporter = null;
-
-                ImporterFactory factory = ScriptableObject.CreateInstance<DefaultImporterFactory>();
-
-                string directoryPath = URIHelper.GetDirectoryName(uri);
-                importOptions.DataLoader = new FileLoader(directoryPath);
-                sceneImporter = factory.CreateSceneImporter(
-                    Path.GetFileName(uri),
-                    importOptions
-                    );
-
-                sceneImporter.SceneParent = tilesGO.transform;
-                sceneImporter.Collider = GLTFSceneImporter.ColliderType.Mesh;
-                sceneImporter.MaximumLod = 300;
-                sceneImporter.Timeout = 100;
-                sceneImporter.IsMultithreaded = false;
-                sceneImporter.CustomShaderName = "VR/SpatialMapping/Occlusion";
-
-                await sceneImporter.LoadSceneAsync(0, true, null, cancellationToken);
-                await sceneImporter.LoadSceneAsync(1, true, null, cancellationToken);
-
-                if (importOptions.DataLoader != null)
-                {
-                    sceneImporter?.Dispose();
-                    sceneImporter = null;
-                    importOptions.DataLoader = null;
+                    await gltf.InstantiateSceneAsync(tilesGO.transform, 0);
+                    await gltf.InstantiateSceneAsync(tilesGO.transform, 1);
                 }
+                else
+                {
+                    Debug.LogError($"SturgTilesProvider :: ERROR loading GLTF file");
+                }
+
+
             }
             catch (Exception e)
             {
