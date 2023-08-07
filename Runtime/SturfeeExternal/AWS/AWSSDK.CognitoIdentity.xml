@@ -4561,6 +4561,11 @@
             Configuration for accessing Amazon CognitoIdentity service
             </summary>
         </member>
+        <member name="P:Amazon.CognitoIdentity.AmazonCognitoIdentityConfig.ServiceId">
+            <summary>
+             The ServiceId, which is the unique identifier for a service.
+            </summary>
+        </member>
         <member name="M:Amazon.CognitoIdentity.AmazonCognitoIdentityConfig.#ctor">
             <summary>
             Default constructor
@@ -4622,6 +4627,39 @@
             <p>The LEGACY mode provides default settings that vary per SDK and were used prior to establishment of defaults_mode</p>
             </summary>
         </member>
+        <member name="T:Amazon.CognitoIdentity.Endpoints.CognitoIdentityEndpointParameters">
+            <summary>
+            Contains parameters used for resolving CognitoIdentity endpoints
+            Parameters can be sourced from client config and service operations
+            Used by internal CognitoIdentityEndpointProvider and CognitoIdentityEndpointResolver
+            Can be used by custom EndpointProvider, see ClientConfig.EndpointProvider
+            </summary>
+        </member>
+        <member name="M:Amazon.CognitoIdentity.Endpoints.CognitoIdentityEndpointParameters.#ctor">
+            <summary>
+            CognitoIdentityEndpointParameters constructor
+            </summary>
+        </member>
+        <member name="P:Amazon.CognitoIdentity.Endpoints.CognitoIdentityEndpointParameters.Region">
+            <summary>
+            Region parameter
+            </summary>
+        </member>
+        <member name="P:Amazon.CognitoIdentity.Endpoints.CognitoIdentityEndpointParameters.UseDualStack">
+            <summary>
+            UseDualStack parameter
+            </summary>
+        </member>
+        <member name="P:Amazon.CognitoIdentity.Endpoints.CognitoIdentityEndpointParameters.UseFIPS">
+            <summary>
+            UseFIPS parameter
+            </summary>
+        </member>
+        <member name="P:Amazon.CognitoIdentity.Endpoints.CognitoIdentityEndpointParameters.Endpoint">
+            <summary>
+            Endpoint parameter
+            </summary>
+        </member>
         <member name="T:Amazon.CognitoIdentity.AmazonCognitoIdentityException">
             <summary>
              Common exception for the CognitoIdentity service.
@@ -4666,6 +4704,27 @@
             <param name="errorCode"></param>
             <param name="requestId"></param>
             <param name="statusCode"></param>
+        </member>
+        <member name="T:Amazon.CognitoIdentity.Internal.AmazonCognitoIdentityEndpointProvider">
+            <summary>
+            Amazon CognitoIdentity endpoint provider.
+            Resolves endpoint for given set of CognitoIdentityEndpointParameters.
+            Can throw AmazonClientException if endpoint resolution is unsuccessful.
+            </summary>
+        </member>
+        <member name="M:Amazon.CognitoIdentity.Internal.AmazonCognitoIdentityEndpointProvider.ResolveEndpoint(Amazon.Runtime.Endpoints.EndpointParameters)">
+            <summary>
+            Resolve endpoint for CognitoIdentityEndpointParameters
+            </summary>
+        </member>
+        <member name="T:Amazon.CognitoIdentity.Internal.AmazonCognitoIdentityEndpointResolver">
+            <summary>
+            Amazon CognitoIdentity endpoint resolver.
+            Custom PipelineHandler responsible for resolving endpoint and setting authentication parameters for CognitoIdentity service requests.
+            Collects values for CognitoIdentityEndpointParameters and then tries to resolve endpoint by calling 
+            ResolveEndpoint method on GlobalEndpoints.Provider if present, otherwise uses CognitoIdentityEndpointProvider.
+            Responsible for setting authentication and http headers provided by resolved endpoint.
+            </summary>
         </member>
         <member name="T:Amazon.CognitoIdentity.Internal.AmazonCognitoIdentityMetadata">
             <summary>
@@ -5020,6 +5079,12 @@
             <summary>
             Creates the signer for the service.
             </summary>
+        </member>
+        <member name="M:Amazon.CognitoIdentity.AmazonCognitoIdentityClient.CustomizeRuntimePipeline(Amazon.Runtime.Internal.RuntimePipeline)">
+            <summary>
+            Customizes the runtime pipeline.
+            </summary>
+            <param name="pipeline">Runtime pipeline for the current client.</param>
         </member>
         <member name="P:Amazon.CognitoIdentity.AmazonCognitoIdentityClient.ServiceMetadata">
             <summary>
