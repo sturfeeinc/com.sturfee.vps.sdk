@@ -132,7 +132,8 @@ namespace SturfeeVPS.SDK.Editor
         protected virtual void OnConfigTab()
         {
             HandleTheme();
-            HandleEditorFallbackLocation();            
+            HandleEditorFallbackLocation();
+            HandleVpsLayers();
         }
 
         protected virtual void HandleVpsToken()
@@ -250,6 +251,17 @@ namespace SturfeeVPS.SDK.Editor
             EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
         }
 
+        protected virtual void HandleVpsLayers()
+        {
+            GUILayout.Label("VPS Settings", EditorStyles.boldLabel);
+            EditorGUILayout.Space();
+            if (GUILayout.Button("Install VPS Layers", GUILayout.Width(150)))
+            {
+                InstallVpsLayers();
+            }
+            EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
+        }
+
         protected virtual void SaveAuth()
         {
             if (_sturfeeWindowAuth != null)
@@ -312,6 +324,41 @@ namespace SturfeeVPS.SDK.Editor
             result.SetPixels(pix);
             result.Apply();
             return result;
+        }
+
+        public static void InstallVpsLayers()
+        {
+            Debug.Log($"Installing VPS layers..");
+            SerializedObject tagManager = new SerializedObject(AssetDatabase.LoadAllAssetsAtPath("ProjectSettings/TagManager.asset")[0]);
+            SerializedProperty layers = tagManager.FindProperty("layers");
+
+            Type type = typeof(SturfeeLayers);
+            foreach (var layer in type.GetFields(System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.Public))
+            {
+                var layerValue = layer.GetValue(null).ToString();
+                bool existLayer = false;
+                for (int i = 8; i < layers.arraySize; i++)
+                {
+                    SerializedProperty layerSp = layers.GetArrayElementAtIndex(i);
+                    if (layerSp.stringValue == layerValue)
+                    {
+                        existLayer = true;
+                        break;
+                    }
+                }
+                for (int j = 8; j < layers.arraySize; j++)
+                {
+                    SerializedProperty layerSP = layers.GetArrayElementAtIndex(j);
+                    if (layerSP.stringValue == "" && !existLayer)
+                    {
+                        layerSP.stringValue = layerValue;
+                        tagManager.ApplyModifiedProperties();
+
+                        break;
+                    }
+                }
+            }
+            Debug.Log($"Done!");
         }
     }
 

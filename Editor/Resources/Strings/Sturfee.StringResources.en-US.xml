@@ -44,8 +44,7 @@
 		<StringResource id="PROTOCOL_ERROR" value="Server Error"/>
 		<StringResource id="VALIDATION_ERROR" value="Server Error"/>
 		<StringResource id="OUT_OF_COVERAGE_ERROR" value="Requested location is out of coverage"/>
-		<StringResource id="ServerError" value="Server Error"/>
-            		
+		<StringResource id="ServerError" value="Server Error"/>            		
 		
 	</Resources>
 </StringResources>

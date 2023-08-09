@@ -36,9 +36,7 @@
 		<StringResource id="PoseProviderNotSupported" value="Pose/IMU not supported"/>
 		<StringResource id="PoseProviderTimeout" value="Pose/IMU timeOut"/>
 		<StringResource id="VideoProviderNotSupported" value="Video not supported"/>
-		<StringResource id="VideoProviderTimeout" value="Video TimeOut"/>
-		
-		
+		<StringResource id="VideoProviderTimeout" value="Video TimeOut"/>		
 
 		<!--Localization-->
 		<StringResource id="NO_ERROR" value="内部サーバーエラー"/>
