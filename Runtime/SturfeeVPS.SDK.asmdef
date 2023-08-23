@@ -12,7 +12,8 @@
         "Unity.XR.ARSubsystems",
         "Unity.XR.ARCore",
         "Unity.XR.ARKit",
-        "NGeoHash"
+        "NGeoHash",
+        "Sturfee.DigitalTwin.Auth"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

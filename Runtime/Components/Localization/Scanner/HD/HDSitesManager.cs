@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
+using Sturfee.Auth;
 
 namespace SturfeeVPS.SDK
 {
@@ -111,6 +112,7 @@ namespace SturfeeVPS.SDK
                         uwr.downloadHandler = dh;
 
                         uwr.method = UnityWebRequest.kHttpVerbGET;
+                        AuthHelper.AddAuthHeaders(uwr);
                         await uwr.SendWebRequest();
 
                         if (uwr.result == UnityWebRequest.Result.ConnectionError) //uwr.isNetworkError || uwr.isHttpError)
